@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="QualityProfile" format=3]
+
+[ext_resource type="Script" path="res://data/quality/quality_profile.gd" id="1_qp"]
+
+[resource]
+script = ExtResource("1_qp")
+rung = 1
+combat_max_fps = 60
+menu_max_fps = 30
+physics_ticks = 60
+render_scale = 0.9
+real_lights = 2
+shadows_enabled = false
+fake_lights = 24
+gpu_particles = false
+particle_ratio = 0.7
+swarm_anim_fps = 20
+max_enemies = 40
+audio_voices = 24
+screen_shake = true
+rim_and_dissolve_shaders = true

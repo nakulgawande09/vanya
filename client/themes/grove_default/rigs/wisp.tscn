@@ -1,0 +1,18 @@
+[gd_scene format=3]
+
+[node name="Wisp" type="Node2D"]
+
+[node name="Shape0" type="Polygon2D" parent="."]
+color = Color(0.2902, 0.1216, 0.3686, 1)
+polygon = PackedVector2Array(0.00, -14.00, 9.00, 0.00, 0.00, 14.00, -9.00, 0.00)
+
+[node name="Shape0Outline" type="Line2D" parent="."]
+points = PackedVector2Array(0.00, -14.00, 9.00, 0.00, 0.00, 14.00, -9.00, 0.00)
+closed = true
+width = 2
+default_color = Color(0.1098, 0.06275, 0.08627, 1)
+joint_mode = 2
+
+[node name="Shape1" type="Polygon2D" parent="."]
+color = Color(0.898, 0.4196, 1, 1)
+polygon = PackedVector2Array(4.00, 0.00, 3.24, 2.35, 1.24, 3.80, -1.24, 3.80, -3.24, 2.35, -4.00, 0.00, -3.24, -2.35, -1.24, -3.80, 1.24, -3.80, 3.24, -2.35)

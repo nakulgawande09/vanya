@@ -1,0 +1,64 @@
+{
+  "theme_id": "grove_default",
+  "pack_version": "0.1.0",
+  "schema_version": 1,
+  "min_client": "0.1.0",
+  "max_client": "",
+  "signature": "",
+  "fonts": {
+    "display": "",
+    "body": ""
+  },
+  "ui_theme": "res://themes/grove_default/ui_theme.tres",
+  "palette": {
+    "night_ink": "#1C1016",
+    "deep_grove": "#16241F",
+    "canopy": "#2F5A44",
+    "trail_clay": "#6B4430",
+    "geru_earth": "#9B3B1F",
+    "rice_white": "#F3EAD6",
+    "skin_umber": "#7A4A2F",
+    "spirit_jade": "#6FF2B0",
+    "meat_amber": "#E0913F",
+    "torch_gold": "#FFC54A",
+    "blight_violet": "#4A1F5E",
+    "blight_glow": "#E56BFF",
+    "storm_sky": "#8FD3FF",
+    "kumkum_red": "#C8372D"
+  },
+  "archetypes": {
+    "hunter": {
+      "visual": "res://themes/grove_default/rigs/hunter.tscn",
+      "name_key": "ARCH_HUNTER_NAME"
+    },
+    "rotling": {
+      "visual": "res://themes/grove_default/rigs/rotling.tscn",
+      "name_key": "ARCH_ROTLING_NAME"
+    },
+    "thornback": {
+      "visual": "res://themes/grove_default/rigs/thornback.tscn",
+      "name_key": "ARCH_THORNBACK_NAME"
+    },
+    "wisp": {
+      "visual": "res://themes/grove_default/rigs/wisp.tscn",
+      "name_key": "ARCH_WISP_NAME"
+    },
+    "rotheart": {
+      "visual": "res://themes/grove_default/rigs/rotheart.tscn",
+      "name_key": "ARCH_ROTHEART_NAME"
+    },
+    "meat": {
+      "visual": "res://themes/grove_default/rigs/meat.tscn",
+      "name_key": "ARCH_MEAT_NAME"
+    },
+    "spirit": {
+      "visual": "res://themes/grove_default/rigs/spirit.tscn",
+      "name_key": "ARCH_SPIRIT_NAME"
+    },
+    "torch": {
+      "visual": "res://themes/grove_default/rigs/torch.tscn",
+      "name_key": "ARCH_TORCH_NAME"
+    }
+  },
+  "files": []
+}

@@ -1,0 +1,32 @@
+# Vanya — rules for code changes
+
+Read `docs/standards.md` (engineering standards) before larger changes. These are the rules that matter most:
+
+## Godot / GDScript
+- Godot **4.7.2** only. Reject Godot 3 APIs (`yield`, `KinematicBody2D`, `export var`, `onready var`, `.instance()`); `tools/lint_deps.py` checks this.
+- Type every declaration (`var hp: int`, `-> void`). `untyped_declaration` and the `unsafe_*` warnings are errors. Convert JSON or Dictionary values with `VarUtil.to_int()` and similar instead of `int(variant)`.
+- Code order: signals → enums → consts → @export → vars → @onready → `_init`/`_ready` → public → private.
+- Call down, signal up. `EventBus` is only for cross-scene events. Don't use `/root/...` paths, or `$"../.."` across scene boundaries.
+- Keep at most 6 autoloads, with no gameplay state in them. Adding one needs an ADR.
+
+## Dependencies (enforced by `tools/lint_deps.py`)
+- `core/` is pure logic: no references to `themes/`, `ui/`, `services/`, `gameplay/` or `addons/`, or to the ThemeRegistry, Services or SceneRouter autoloads.
+- Gameplay never hard-codes theme paths. It uses `ThemeRegistry.visual_for(Ids.ROTLING)`.
+- `themes/**` contain assets and data only: no scripts or native libraries.
+- Archetype IDs in `core/archetypes/ids.gd` are immutable once shipped.
+
+## Performance (docs/standards.md §B)
+- No per-entity `_process` for enemies; managers call `tick(delta)`. No allocations in hot loops.
+- Pool everything; never `instantiate()` or `queue_free()` during waves.
+- Darkness is `CanvasModulate` plus additive fake-light sprites. Use at most 1 real `PointLight2D` on low tier and no 2D shadows.
+- Every feature defines behaviour for all 4 quality rungs (`data/quality/*.tres`).
+
+## Services
+- Gameplay and UI use the `Services` interfaces (`ads`, `iap`, `analytics`, `thermal`, `save`), never SDK plugins directly. Fakes are the default.
+- Grant ad rewards only from `rewarded_earned`. Purchases are granted only after server verification.
+
+## Checks before committing
+```
+python3 tools/lint_deps.py
+just client-test        # or the raw commands in the justfile
+```

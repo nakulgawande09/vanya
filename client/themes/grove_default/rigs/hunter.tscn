@@ -1,0 +1,84 @@
+[gd_scene format=3]
+
+[node name="Hunter" type="Node2D"]
+
+[node name="Line0" type="Line2D" parent="."]
+points = PackedVector2Array(-7.00, -10.00, -16.00, 2.00)
+width = 3
+default_color = Color(0.4784, 0.2902, 0.1843, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+joint_mode = 2
+
+[node name="Line1" type="Line2D" parent="."]
+points = PackedVector2Array(7.00, -10.00, 15.00, -4.00)
+width = 3
+default_color = Color(0.4784, 0.2902, 0.1843, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+joint_mode = 2
+
+[node name="Line2" type="Line2D" parent="."]
+points = PackedVector2Array(-4.00, 10.00, -8.00, 26.00)
+width = 3
+default_color = Color(0.4784, 0.2902, 0.1843, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+joint_mode = 2
+
+[node name="Line3" type="Line2D" parent="."]
+points = PackedVector2Array(4.00, 10.00, 9.00, 26.00)
+width = 3
+default_color = Color(0.4784, 0.2902, 0.1843, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+joint_mode = 2
+
+[node name="Shape4" type="Polygon2D" parent="."]
+color = Color(0.4784, 0.2902, 0.1843, 1)
+polygon = PackedVector2Array(-10.00, -14.00, 10.00, -14.00, 0.00, -1.00)
+
+[node name="Shape4Outline" type="Line2D" parent="."]
+points = PackedVector2Array(-10.00, -14.00, 10.00, -14.00, 0.00, -1.00)
+closed = true
+width = 2
+default_color = Color(0.1098, 0.06275, 0.08627, 1)
+joint_mode = 2
+
+[node name="Shape5" type="Polygon2D" parent="."]
+color = Color(0.4784, 0.2902, 0.1843, 1)
+polygon = PackedVector2Array(0.00, -1.00, -10.00, 12.00, 10.00, 12.00)
+
+[node name="Shape5Outline" type="Line2D" parent="."]
+points = PackedVector2Array(0.00, -1.00, -10.00, 12.00, 10.00, 12.00)
+closed = true
+width = 2
+default_color = Color(0.1098, 0.06275, 0.08627, 1)
+joint_mode = 2
+
+[node name="Shape6" type="Polygon2D" parent="."]
+color = Color(0.4784, 0.2902, 0.1843, 1)
+polygon = PackedVector2Array(6.00, -22.00, 5.54, -19.70, 4.24, -17.76, 2.30, -16.46, 0.00, -16.00, -2.30, -16.46, -4.24, -17.76, -5.54, -19.70, -6.00, -22.00, -5.54, -24.30, -4.24, -26.24, -2.30, -27.54, -0.00, -28.00, 2.30, -27.54, 4.24, -26.24, 5.54, -24.30)
+
+[node name="Shape6Outline" type="Line2D" parent="."]
+points = PackedVector2Array(6.00, -22.00, 5.54, -19.70, 4.24, -17.76, 2.30, -16.46, 0.00, -16.00, -2.30, -16.46, -4.24, -17.76, -5.54, -19.70, -6.00, -22.00, -5.54, -24.30, -4.24, -26.24, -2.30, -27.54, -0.00, -28.00, 2.30, -27.54, 4.24, -26.24, 5.54, -24.30)
+closed = true
+width = 2
+default_color = Color(0.1098, 0.06275, 0.08627, 1)
+joint_mode = 2
+
+[node name="Line7" type="Line2D" parent="."]
+points = PackedVector2Array(15.00, -16.00, 21.00, -4.00, 15.00, 8.00)
+width = 2.5
+default_color = Color(1, 0.7725, 0.2902, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+joint_mode = 2
+
+[node name="Line8" type="Line2D" parent="."]
+points = PackedVector2Array(15.00, -16.00, 15.00, 8.00)
+width = 1
+default_color = Color(0.9529, 0.9176, 0.8392, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+joint_mode = 2

@@ -1,0 +1,22 @@
+[gd_scene format=3]
+
+[node name="Rotling" type="Node2D"]
+
+[node name="Shape0" type="Polygon2D" parent="."]
+color = Color(0.2902, 0.1216, 0.3686, 1)
+polygon = PackedVector2Array(11.00, 0.00, 9.91, 4.77, 6.86, 8.60, 2.45, 10.72, -2.45, 10.72, -6.86, 8.60, -9.91, 4.77, -11.00, 0.00, -9.91, -4.77, -6.86, -8.60, -2.45, -10.72, 2.45, -10.72, 6.86, -8.60, 9.91, -4.77)
+
+[node name="Shape0Outline" type="Line2D" parent="."]
+points = PackedVector2Array(11.00, 0.00, 9.91, 4.77, 6.86, 8.60, 2.45, 10.72, -2.45, 10.72, -6.86, 8.60, -9.91, 4.77, -11.00, 0.00, -9.91, -4.77, -6.86, -8.60, -2.45, -10.72, 2.45, -10.72, 6.86, -8.60, 9.91, -4.77)
+closed = true
+width = 2
+default_color = Color(0.1098, 0.06275, 0.08627, 1)
+joint_mode = 2
+
+[node name="Shape1" type="Polygon2D" parent="."]
+color = Color(0.898, 0.4196, 1, 1)
+polygon = PackedVector2Array(-2.00, -2.00, -2.59, -0.59, -4.00, 0.00, -5.41, -0.59, -6.00, -2.00, -5.41, -3.41, -4.00, -4.00, -2.59, -3.41)
+
+[node name="Shape2" type="Polygon2D" parent="."]
+color = Color(0.898, 0.4196, 1, 1)
+polygon = PackedVector2Array(6.00, -2.00, 5.41, -0.59, 4.00, 0.00, 2.59, -0.59, 2.00, -2.00, 2.59, -3.41, 4.00, -4.00, 5.41, -3.41)

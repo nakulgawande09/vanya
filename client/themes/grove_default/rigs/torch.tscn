@@ -1,0 +1,22 @@
+[gd_scene format=3]
+
+[node name="Torch" type="Node2D"]
+
+[node name="Line0" type="Line2D" parent="."]
+points = PackedVector2Array(0.00, 18.00, 0.00, 0.00)
+width = 4
+default_color = Color(0.4196, 0.2667, 0.1882, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+joint_mode = 2
+
+[node name="Shape1" type="Polygon2D" parent="."]
+color = Color(1, 0.7725, 0.2902, 1)
+polygon = PackedVector2Array(-6.00, 0.00, 6.00, 0.00, 0.00, -16.00)
+
+[node name="Shape1Outline" type="Line2D" parent="."]
+points = PackedVector2Array(-6.00, 0.00, 6.00, 0.00, 0.00, -16.00)
+closed = true
+width = 1.5
+default_color = Color(0.1098, 0.06275, 0.08627, 1)
+joint_mode = 2

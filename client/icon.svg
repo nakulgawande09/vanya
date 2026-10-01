@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#16241F"/>
+  <circle cx="256" cy="256" r="196" fill="#2F5A44"/>
+  <!-- Warli hunter: circle head, two triangles torso, line limbs -->
+  <g fill="#F3EAD6" stroke="#1C1016" stroke-width="8" stroke-linejoin="round" stroke-linecap="round">
+    <circle cx="256" cy="140" r="34"/>
+    <polygon points="196,186 316,186 256,262"/>
+    <polygon points="256,262 196,338 316,338"/>
+    <path d="M206 196 L160 260 M306 196 L352 236 M226 338 L206 410 M286 338 L310 410" fill="none" stroke="#F3EAD6" stroke-width="16"/>
+  </g>
+  <path d="M352 196 Q400 256 352 316" fill="none" stroke="#FFC54A" stroke-width="10" stroke-linecap="round"/>
+  <line x1="352" y1="196" x2="352" y2="316" stroke="#FFC54A" stroke-width="4"/>
+  <circle cx="390" cy="120" r="14" fill="#6FF2B0"/>
+</svg>

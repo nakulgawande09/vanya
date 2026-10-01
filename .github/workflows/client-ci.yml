@@ -1,0 +1,52 @@
+name: client-ci
+
+on:
+  push:
+    branches: [main, "claude/**", "feat/**"]
+  pull_request:
+
+concurrency:
+  group: client-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Dependency rules
+        run: python3 tools/lint_deps.py
+
+      - name: Cache Godot
+        uses: actions/cache@v4
+        with:
+          path: .tools
+          key: godot-${{ hashFiles('.godot-version') }}
+
+      - name: Set up Godot and GdUnit4
+        id: godot
+        run: echo "bin=$(tools/setup_godot.sh | tail -n 1)" >> "$GITHUB_OUTPUT"
+
+      - name: Import project
+        run: ${{ steps.godot.outputs.bin }} --headless --path client --import
+
+      - name: Smoke boot (no script or scene errors)
+        run: |
+          ${{ steps.godot.outputs.bin }} --headless --path client --quit-after 120 2>&1 | tee smoke.log
+          if grep -E "SCRIPT ERROR|^ERROR:" smoke.log; then exit 1; fi
+
+      - name: GdUnit4 tests
+        run: >
+          ${{ steps.godot.outputs.bin }} --headless --path client -s -d
+          --remote-debug tcp://127.0.0.1:0
+          res://addons/gdUnit4/bin/GdUnitCmdTool.gd --ignoreHeadlessMode -a res://tests
+
+      - name: Upload test report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gdunit-report
+          path: client/reports/
+          if-no-files-found: ignore

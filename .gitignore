@@ -1,0 +1,32 @@
+# Godot
+.godot/
+*.translation
+client/android/
+client/addons/gdUnit4/
+client/reports/
+export_credentials.cfg
+.tools/
+
+# Signing material — never commit
+*.keystore
+*.jks
+*.p12
+*.mobileprovision
+
+# Builds
+out/
+dist/
+build/
+*.apk
+*.aab
+*.idsig
+
+# Python
+__pycache__/
+.venv/
+.env
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
