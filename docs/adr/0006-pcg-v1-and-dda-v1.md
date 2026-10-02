@@ -1,0 +1,21 @@
+# ADR-0006: Chunk-based room generation, flow-field pathing, Elo DDA with rails
+
+- **Status:** Accepted (2026-10-02)
+- **Context:** The first playable used hand-tuned room scatter and a fixed difficulty curve. The dev plan (§6.2, §7) calls for deterministic on-device generation with validation and fallbacks, and for statistical difficulty adjustment inside safety rails. There are no prototypes, so this repo is the base.
+- **Decision:**
+  - **PCG v1** (`client/pcg/`, pure logic):
+    - A room stacks three authored 11×6 chunks (typed `ChunkDef` resources, five families plus the tutorial) between fixed gate and start strips. Chunk edges are matched (WFC-lite) and chunks are randomly mirrored.
+    - Portals and the cage are placed by distance rules; torches and bushes by spaced scatter along the walls.
+    - Every room is validated: reachability, open floor ≥ 55%, portal path ≥ 8 tiles, a clear gate apron. A failing room is reseeded up to 5 times, then replaced by a hand-made room.
+    - Generation uses integer grid math, so it can be ported to Python. It runs on a `WorkerThreadPool` task during the grove fade.
+  - **Pathing:** `FlowField` (BFS over the 13 × 30 grid, rebuilt when the hunter changes cell or every 0.2 s). Beasts follow its gradient and slide along blocked cells. Blight roots slow everyone to 60%.
+  - **DDA v1** (`client/dda/`, pure logic):
+    - The Elo-style `SkillRating` puts rooms and the player on one scale.
+    - `DdaRails` maps the target difficulty (Story 85% / Normal 75% / Hunter 60%) to a wave budget scale. Limits: ±8% per room, ±20% per five-grove arc, 0.75–1.25 overall. Mercy rules and anti-sandbag apply, and supply-side spirit help is the first knob moved.
+    - `IntensityDirector` paces waves (build-up / peak / relax).
+    - Each room logs `room_result` telemetry.
+- **Consequences:**
+  - Rooms vary per seed and stay reproducible; golden digests in `client/tests/golden/rooms.json` pin generation. Regenerate them deliberately when the chunk library changes.
+  - Balance now depends on the rating scale constants in `DdaRails` (`D_GROVE_ONE`, `D_PER_GROVE`, `D_PER_SCALE`). Re-fit them from `room_result` data once playtests run (dev plan §7.6).
+  - The intensity decay is 0.85/s rather than the plan's 0.97/s, because 0.97 never relaxes within the 12 s window at our damage scale.
+- **Revisit if:** the fallback rate rises above 5% (add chunks), or the room-clear rate in telemetry drifts more than 10 points from target.

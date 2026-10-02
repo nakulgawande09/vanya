@@ -21,6 +21,10 @@ func _notification(what: int) -> void:
 
 
 func _start() -> void:
+	var saved: Variant = Services.save.load_game().get("settings", {})
+	var settings: GameSettings = GameSettings.from_dict(_dict(saved))
+	TranslationServer.set_locale(settings.locale)
+	AdaptiveQuality.apply_setting(settings.graphics)
 	# TODO(week 11): UMP consent → (iOS) ATT → MobileAds.initialize(), only once consent allows ads.
 	Services.ads.initialize()
 	Services.iap.initialize()
@@ -28,3 +32,8 @@ func _start() -> void:
 	Services.thermal.start()
 	Services.analytics.log_event(&"app_started", {"quality_rung": AdaptiveQuality.current_rung()})
 	EventBus.boot_completed.emit()
+
+
+static func _dict(v: Variant) -> Dictionary:
+	var d: Dictionary = v if v is Dictionary else {}
+	return d

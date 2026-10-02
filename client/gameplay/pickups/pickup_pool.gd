@@ -3,7 +3,7 @@ extends Node2D
 ## Pooled meat and spirit drops: they bounce out of a fallen beast, then the hunter's magnet
 ## pulls them in (Blight beasts board: "Meat drop · bounce 3 · magnet trail").
 
-signal collected(kind: StringName, amount: int)
+signal collected(kind: StringName, amount: int, at: Vector2)
 
 const PER_KIND: int = 24
 const MAGNET_RANGE: float = 80.0
@@ -67,7 +67,7 @@ func tick(delta: float, hunter: Vector2) -> void:
 		if _t[i] > BOUNCE_TIME and d < MAGNET_RANGE:
 			n.position += to_h / maxf(d, 0.001) * minf(d, MAGNET_SPEED * delta)
 			if d < COLLECT_RANGE:
-				collected.emit(_kinds[i], 1)
+				collected.emit(_kinds[i], 1, n.position)
 				_park(i)
 		elif _t[i] <= BOUNCE_TIME:
 			n.position += _vel[i] * delta

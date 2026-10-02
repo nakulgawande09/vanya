@@ -1,7 +1,7 @@
 extends SceneTree
-## Visual QA tour: camp → grove fight → defeat, for each bundled theme. Needs a renderer (Xvfb).
+## Visual QA tour for one theme: camp → tutorial tip → generated grove → fight → pause →
+## settings (in Hindi) → defeat. Needs a renderer (Xvfb):
 ##   godot --path client -s ../tools/screenshot_tour.gd -- <out_dir> [theme_id]
-## Writes <theme>_camp.png, <theme>_grove.png, <theme>_fight.png, <theme>_defeat.png.
 
 var _out: String
 var _theme: StringName
@@ -20,35 +20,51 @@ func _process(_delta: float) -> bool:
 	match _frame:
 		2:
 			root.get_node("ThemeRegistry").call("activate", _theme)
-			var save: SaveService = root.get_node("Services").get("save") as SaveService
-			save.set_value("theme_id", String(_theme))
-			save.set_value("profile", {"meat": 184, "spirit": 23, "owned_arrows": ["stone", "flint"], "equipped_arrow": "flint", "shrine_levels": {"suryak": 2, "tamba": 1, "anjor": 3}})
-			save.save_game()
+			var save: Object = root.get_node("Services").get("save")
+			save.call("set_value", "theme_id", String(_theme))
+			save.call("set_value", "settings", {})
+			save.call("set_value", "profile", {"meat": 184, "spirit": 23, "owned_arrows": ["stone", "flint"],
+					"equipped_arrow": "flint", "shrine_levels": {"suryak": 2, "tamba": 1, "kaja": 3}})
+			save.call("save_game")
 			change_scene_to_file("res://ui/screens/main.tscn")
 		40:
 			_shot("camp")
 			change_scene_to_file("res://gameplay/run/grove_run.tscn")
-		50:
+		70:
 			_run = current_scene
-			_run.set("run_seed", 3)
-		60:
+			_shot("tutorial")
+			_run.call("skip_tutorial")
+		130:
 			_shot("grove")
-		61:
-			(_run.get("run") as RefCounted).call("add_spirit", 7)
-			(_run.get_node("%Player") as Node).call("set_move_input", Vector2(0.3, -1))
-		150:
-			(_run.get_node("%Player") as Node).call("set_move_input", Vector2(-0.4, -0.3))
-		260:
-			(_run.get_node("%Player") as Node).call("set_move_input", Vector2.ZERO)
-			(_run.get("gods") as Node).call("try_cast", &"meghra")
-		266:
+			(_run.get("run") as Object).call("add_spirit", 7)
+			_player().call("set_move_input", Vector2(0.3, -1))
+		220:
+			_player().call("set_move_input", Vector2(-0.4, -0.3))
+		330:
+			_player().call("set_move_input", Vector2.ZERO)
+			(_run.get("gods") as Object).call("try_cast", &"meghra")
+		336:
 			_shot("fight")
-		268:
-			(_run.get("run") as RefCounted).call("take_damage", 999)
-		360:
+			_run.call("open_pause")
+		342:
+			_shot("pause")
+			(_run.get_node("%Settings") as Object).call("open")
+			TranslationServer.set_locale("hi")
+			(_run.get_node("%Settings") as Object).call("_build")
+		350:
+			_shot("settings_hi")
+			TranslationServer.set_locale("en")
+			(_run.get_node("%Settings") as CanvasItem).visible = false
+			_run.call("resume")
+			(_run.get("run") as Object).call("take_damage", 999)
+		440:
 			_shot("defeat")
 			return true
 	return false
+
+
+func _player() -> Object:
+	return _run.get_node("%Player")
 
 
 func _shot(name: String) -> void:

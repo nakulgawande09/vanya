@@ -19,6 +19,7 @@ var profile: Profile
 @onready var _arrow_list: VBoxContainer = %ArrowList
 @onready var _shrine_grid: GridContainer = %ShrineGrid
 @onready var _theme_button: Button = %ThemeButton
+@onready var _settings_screen: SettingsScreen = %Settings
 
 
 func _ready() -> void:
@@ -38,8 +39,11 @@ func _ready() -> void:
 	_shrine_paid.text = tr(&"PAID_IN") % tr(&"CURRENCY_B_NAME").to_lower()
 	_enter_button.text = tr(&"ENTER_GROVE")
 	_enter_button.pressed.connect(_on_enter_pressed)
-	_theme_button.pressed.connect(_on_theme_pressed)
-	_theme_button.text = tr(&"THEME_BUTTON") % tr(&"THEME_TITLE")
+	_theme_button.pressed.connect(_settings_screen.open)
+	_theme_button.text = tr(&"SETTINGS_TITLE")
+	_settings_screen.closed.connect(func(reload: bool) -> void:
+		if reload:
+			SceneRouter.change_to(CAMP_SCENE))
 	_refresh()
 	_enter_button.grab_focus()
 
@@ -206,14 +210,3 @@ func _recover_checkpoint(data: Dictionary) -> void:
 func _on_enter_pressed() -> void:
 	_enter_button.disabled = true
 	SceneRouter.change_to(GROVE_SCENE)
-
-
-## Debug/test toggle between bundled themes (Deep Reef proves the swap path end to end).
-func _on_theme_pressed() -> void:
-	var themes: Array[StringName] = ThemeRegistry.available_themes()
-	var next: StringName = themes[(themes.find(ThemeRegistry.theme_id) + 1) % themes.size()]
-	if ThemeRegistry.activate(next):
-		Services.save.set_value("theme_id", String(next))
-		Services.save.save_game()
-		Services.analytics.log_event(&"theme_switched", {"theme_id": String(next)})
-		SceneRouter.change_to(CAMP_SCENE)

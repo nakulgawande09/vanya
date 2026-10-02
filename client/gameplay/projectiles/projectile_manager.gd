@@ -23,7 +23,10 @@ var _o_vel: PackedVector2Array = PackedVector2Array()
 var _o_life: PackedFloat32Array = PackedFloat32Array()
 var _o_damage: PackedInt32Array = PackedInt32Array()
 var _arrow_mm: MultiMeshInstance2D
+var _trail_mm: MultiMeshInstance2D
 var _orb_mm: MultiMeshInstance2D
+## Two fading ghosts behind each arrow (High / Medium rungs only).
+var trails: bool = true
 var _hits: PackedInt32Array = PackedInt32Array()
 
 
@@ -42,6 +45,8 @@ func _init() -> void:
 
 
 func setup(arrow_texture: Texture2D, orb_texture: Texture2D, emissive_layer: Node) -> void:
+	_trail_mm = _make(arrow_texture, ARROWS * 2, true)
+	add_child(_trail_mm)
 	_arrow_mm = _make(arrow_texture, ARROWS)
 	add_child(_arrow_mm)
 	_orb_mm = _make(orb_texture, ORBS)
@@ -53,8 +58,9 @@ func setup(arrow_texture: Texture2D, orb_texture: Texture2D, emissive_layer: Nod
 
 
 func set_arrow_texture(tex: Texture2D) -> void:
-	_arrow_mm.texture = tex
-	(_arrow_mm.multimesh.mesh as QuadMesh).size = tex.get_size() / 3.0
+	for mmi: MultiMeshInstance2D in [_arrow_mm, _trail_mm]:
+		mmi.texture = tex
+		(mmi.multimesh.mesh as QuadMesh).size = tex.get_size() / 3.0
 
 
 func fire_arrow(from: Vector2, direction: Vector2, speed: float, damage: int, pierce: int) -> void:
@@ -139,11 +145,24 @@ func tick(delta: float, grid: SpatialHash, bounds: Rect2, hunter_pos: Vector2, h
 
 func _sync() -> void:
 	var am: MultiMesh = _arrow_mm.multimesh
+	var tm: MultiMesh = _trail_mm.multimesh
+	var hidden: Transform2D = Transform2D(0.0, Vector2(-9999, -9999))
 	for i: int in ARROWS:
 		if _a_life[i] > 0.0:
-			am.set_instance_transform_2d(i, Transform2D(_a_vel[i].angle(), _a_pos[i]))
+			var angle: float = _a_vel[i].angle()
+			am.set_instance_transform_2d(i, Transform2D(angle, _a_pos[i]))
+			if trails:
+				tm.set_instance_transform_2d(i * 2, Transform2D(angle, _a_pos[i] - _a_vel[i] * 0.018))
+				tm.set_instance_transform_2d(i * 2 + 1, Transform2D(angle, _a_pos[i] - _a_vel[i] * 0.036))
+				tm.set_instance_color(i * 2, Color(1, 1, 1, 0.45))
+				tm.set_instance_color(i * 2 + 1, Color(1, 1, 1, 0.2))
+			else:
+				tm.set_instance_transform_2d(i * 2, hidden)
+				tm.set_instance_transform_2d(i * 2 + 1, hidden)
 		else:
-			am.set_instance_transform_2d(i, Transform2D(0.0, Vector2(-9999, -9999)))
+			am.set_instance_transform_2d(i, hidden)
+			tm.set_instance_transform_2d(i * 2, hidden)
+			tm.set_instance_transform_2d(i * 2 + 1, hidden)
 	var om: MultiMesh = _orb_mm.multimesh
 	for i: int in ORBS:
 		if _o_life[i] > 0.0:
@@ -152,11 +171,12 @@ func _sync() -> void:
 			om.set_instance_transform_2d(i, Transform2D(0.0, Vector2(-9999, -9999)))
 
 
-func _make(tex: Texture2D, count: int) -> MultiMeshInstance2D:
+func _make(tex: Texture2D, count: int, colors: bool = false) -> MultiMeshInstance2D:
 	var quad: QuadMesh = QuadMesh.new()
 	quad.size = tex.get_size() / 3.0
 	var mm: MultiMesh = MultiMesh.new()
 	mm.transform_format = MultiMesh.TRANSFORM_2D
+	mm.use_colors = colors
 	mm.mesh = quad
 	mm.instance_count = count
 	var inst: MultiMeshInstance2D = MultiMeshInstance2D.new()

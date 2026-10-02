@@ -42,6 +42,18 @@ static func tier_for(ram_bytes: int, adapter_name: String) -> QualityProfile.Run
 	return rung
 
 
+## Applies the player's graphics setting (GameSettings.Graphics): AUTO re-detects the device tier,
+## otherwise the chosen rung becomes the ceiling. Thermal step-downs still apply on top.
+func apply_setting(graphics: int) -> void:
+	if graphics == 0:
+		var ram: int = VarUtil.to_int(OS.get_memory_info().get("physical"), 0)
+		device_ceiling = tier_for(ram, RenderingServer.get_video_adapter_name())
+	else:
+		device_ceiling = clampi(graphics - 1, 0, 2) as QualityProfile.Rung
+	_pending_rung = -1
+	_apply(device_ceiling)
+
+
 static func load_profile(rung: QualityProfile.Rung) -> QualityProfile:
 	return load(PROFILE_PATHS[rung]) as QualityProfile
 

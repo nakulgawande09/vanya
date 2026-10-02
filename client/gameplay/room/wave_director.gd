@@ -14,6 +14,8 @@ const WARMUP: float = 1.2
 const SPAWN_INTERVAL: float = 0.28
 
 var phase: Phase = Phase.WARMUP
+## While held (tutorial), nothing starts or spawns.
+var hold: bool = false
 var waves: Array[Array] = []
 var wave_index: int = -1
 var relax_time: float = 5.0
@@ -36,6 +38,8 @@ func total_waves() -> int:
 
 
 func tick(delta: float, world: CombatWorld) -> void:
+	if hold:
+		return
 	_t += delta
 	match phase:
 		Phase.WARMUP:

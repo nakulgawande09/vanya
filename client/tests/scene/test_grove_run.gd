@@ -18,9 +18,10 @@ func after_test() -> void:
 	Services.save = _save_before
 
 
-func _start(run_seed: int = 11) -> GroveRun:
+func _start(run_seed: int = 11, with_tutorial: bool = false) -> GroveRun:
 	var scene: GroveRun = (load(RUN_SCENE) as PackedScene).instantiate() as GroveRun
 	scene.run_seed = run_seed
+	scene.tutorial_enabled = with_tutorial
 	scene_runner(auto_free(scene))
 	scene.set_physics_process(false)
 	return scene
@@ -143,3 +144,70 @@ func test_fifth_grove_brings_rotheart_and_its_fight_loop() -> void:
 	var hp: int = boss.hp
 	boss.take_damage(10, Vector2.RIGHT)
 	assert_int(hp - boss.hp).is_equal(20)
+
+
+func test_first_run_tutorial_walks_through_every_step_once() -> void:
+	var run: GroveRun = _start(11, true)
+	_tough(run)
+	assert_object(run.tutorial).is_not_null()
+	assert_int(run.run.grove).is_equal(0)
+	assert_bool(run.director.hold).is_true()
+	var player: Player = run.get_node("%Player") as Player
+	player.global_position += Vector2(0, -70)
+	_step(run, 0.2)
+	assert_int(run.tutorial.step).is_equal(TutorialFlow.Step.SHOOT)
+	assert_bool(run.director.hold).is_false()
+	var guard: int = 0
+	while run.tutorial.step == TutorialFlow.Step.SHOOT and guard < 60:
+		_step(run, 1.0)
+		guard += 1
+	assert_int(run.tutorial.step).is_equal(TutorialFlow.Step.CAGE)
+	player.global_position = run.cage.position + Vector2(10, 0)
+	_step(run, 1.2)
+	assert_int(run.tutorial.step).is_equal(TutorialFlow.Step.GOD)
+	assert_int(run.run.spirit).is_greater_equal(TutorialFlow.GOD_SPIRIT)
+	assert_bool(run.gods.try_cast(Ids.MEGHRA)).is_true()
+	_step(run, 0.1)
+	assert_int(run.tutorial.step).is_equal(TutorialFlow.Step.GATE)
+	guard = 0
+	while not run.gate_open and guard < 60:
+		_step(run, 1.0)
+		guard += 1
+	assert_bool(run.gate_open).is_true()
+	player.global_position = run.plan.gate_position() + Vector2(0, 12)
+	_step(run, 0.1)
+	assert_object(run.tutorial).is_null()
+	assert_bool(run.profile.tutorial_done).is_true()
+	await get_tree().create_timer(1.0).timeout
+	assert_int(run.run.grove).is_equal(1)
+	var saved: Dictionary = Services.save.load_game()["profile"]
+	assert_bool(saved.get("tutorial_done", false) == true).is_true()
+
+
+func test_tutorial_is_skipped_once_done() -> void:
+	Services.save.set_value("profile", {"tutorial_done": true})
+	Services.save.save_game()
+	var run: GroveRun = _start(11, true)
+	assert_object(run.tutorial).is_null()
+	assert_int(run.run.grove).is_equal(1)
+
+
+func test_pause_and_resume() -> void:
+	var run: GroveRun = _start()
+	run.open_pause()
+	assert_bool(get_tree().paused).is_true()
+	assert_bool((run.get_node("%Pause") as Control).visible).is_true()
+	run.resume()
+	assert_bool(get_tree().paused).is_false()
+	assert_bool((run.get_node("%Pause") as Control).visible).is_false()
+
+
+func test_dda_rates_the_cleared_room() -> void:
+	var run: GroveRun = _start()
+	_tough(run)
+	var guard: int = 0
+	while not run.gate_open and guard < 120:
+		_step(run, 1.0)
+		guard += 1
+	assert_int(run.skill.rooms).is_equal(1)
+	assert_float(run.skill.rating).is_not_equal(SkillRating.START)

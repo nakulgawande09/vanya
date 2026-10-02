@@ -91,8 +91,10 @@ func sync(target: Vector2) -> void:
 		else:
 			frame = _clip_frame(&"run", sim.anim_t[i])
 		var at: Vector2 = sim.pos[i] - Vector2(0, _cell.y / 2)
-		mm.set_instance_transform_2d(i, Transform2D(0.0, at))
 		var flash: float = 1.0 if sim.flash_t[i] > 0.0 else 0.0
+		# Hit squash: wider and shorter for the flash frames, anchored at the feet.
+		var sq: Vector2 = Vector2(1.18, 0.86) if flash > 0.0 else Vector2.ONE
+		mm.set_instance_transform_2d(i, Transform2D(0.0, sq, 0.0, at + Vector2(0, _cell.y / 2 * (1.0 - sq.y))))
 		mm.set_instance_custom_data(i, Color(float(frame), facing, flash, alpha))
 		if eyes != null:
 			var eye_alpha: float = 0.0 if s == SwarmSim.State.DYING else alpha

@@ -6,6 +6,8 @@ extends Node2D
 
 signal enemy_killed(archetype: StringName, at: Vector2)
 signal shake_requested(amount: float)
+## A hit worth freezing a few frames for (elite or boss kill, boss stunned).
+signal impact(seconds: float)
 
 const SWARM_CAPACITY: int = 40
 const SCENE_BASE: int = 1000
@@ -65,6 +67,8 @@ func setup(room_bounds: Rect2, layers: Dictionary, the_run: RunState, the_hunter
 			e.setup(defs[id], scene, emissive, bounds)
 			e.handle = SCENE_BASE + enemies.size()
 			e.died.connect(_on_scene_enemy_died)
+			if e is RotheartBoss:
+				(e as RotheartBoss).phase_changed.connect(_on_boss_phase)
 			enemies.append(e)
 	projectiles = ProjectileManager.new()
 	projectiles.name = "Projectiles"
@@ -89,6 +93,7 @@ func setup(room_bounds: Rect2, layers: Dictionary, the_run: RunState, the_hunter
 func set_quality(profile: QualityProfile) -> void:
 	_quality = profile
 	swarm_renderer.set_quality(profile)
+	projectiles.trails = profile.rung <= QualityProfile.Rung.MEDIUM
 
 
 ## Loads a room's passability (logs, idols, roots) into the shared flow field.
@@ -288,6 +293,14 @@ func _on_scene_enemy_died(e: SceneEnemy) -> void:
 	_on_killed(e.def.id, e.position)
 	if e is RotheartBoss:
 		shake(10.0)
+		impact.emit(0.12)
+	else:
+		impact.emit(0.05)
+
+
+func _on_boss_phase(phase: int) -> void:
+	if phase == RotheartBoss.Phase.STUNNED:
+		impact.emit(0.12)
 
 
 func _on_killed(id: StringName, at: Vector2) -> void:
@@ -305,7 +318,7 @@ func _on_killed(id: StringName, at: Vector2) -> void:
 	enemy_killed.emit(id, at)
 
 
-func _on_collected(kind: StringName, amount: int) -> void:
+func _on_collected(kind: StringName, amount: int, _at: Vector2) -> void:
 	if kind == Ids.MEAT:
 		run.add_meat(amount)
 	else:

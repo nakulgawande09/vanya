@@ -16,6 +16,8 @@ const CHECKPOINT_KEY: String = "run_checkpoint"
 ## Fixed seed for tests and benchmarks; 0 picks a fresh one per run.
 @export var run_seed: int = 0
 @export var auto_start: bool = true
+## Run the first-run tutorial grove when the profile hasn't finished it (tests turn this off).
+@export var tutorial_enabled: bool = true
 
 var run: RunState
 var profile: Profile
@@ -23,6 +25,7 @@ var settings: GameSettings
 var skill: SkillRating
 var rails: DdaRails = DdaRails.new()
 var intensity: IntensityDirector
+var tutorial: TutorialFlow
 var world: CombatWorld
 var gods: GodCaster
 var guides: Guides
@@ -43,6 +46,8 @@ var in_transition: bool = false
 @onready var _hud: Hud = %Hud
 @onready var _fade: ColorRect = %Fade
 @onready var _defeat: DefeatScreen = %Defeat
+@onready var _pause: PauseScreen = %Pause
+@onready var _settings_screen: SettingsScreen = %Settings
 
 var _darkness: Darkness
 var _builder: RoomBuilder
@@ -63,6 +68,7 @@ var _room_min_hp: float = 1.0
 var _room_near_deaths: int = 0
 var _room_rated: bool = false
 var _was_low: bool = false
+var _hitstop: float = 0.0
 
 
 func _ready() -> void:
@@ -93,7 +99,12 @@ func _ready() -> void:
 	world.setup(plan.walkable_rect(), {"emissive": _emissive, "decals": _decals, "entities": _entities}, run, _player,
 			GameData.shrine_bonus(profile, ShrineDef.Stat.DAMAGE), run_seed)
 	world.projectiles.set_arrow_texture(ThemeRegistry.texture_for(GameData.arrow(profile.equipped_arrow).texture_id))
-	world.shake_requested.connect(func(a: float) -> void: _shake = maxf(_shake, a))
+	world.shake_requested.connect(func(a: float) -> void:
+		if settings.screen_shake:
+			_shake = maxf(_shake, a))
+	world.impact.connect(func(seconds: float) -> void: _hitstop = maxf(_hitstop, seconds))
+	world.pickups.collected.connect(_on_pickup_collected)
+	world.numbers.enabled = settings.damage_numbers
 	_player.world = world
 	gods = GodCaster.new()
 	gods.name = "Gods"
@@ -112,6 +123,17 @@ func _ready() -> void:
 	_hud.god_pressed.connect(func(g: StringName) -> void: gods.try_cast(g))
 	_hud.set_health(run.hp, run.max_hp)
 	_hud.set_currencies(run.meat, run.spirit)
+	_hud.flash_intensity = settings.flash_intensity
+	_hud.set_left_handed(settings.left_handed)
+	_hud.pause_pressed.connect(open_pause)
+	_pause.resume_pressed.connect(resume)
+	_pause.settings_pressed.connect(func() -> void:
+		_pause.visible = false
+		_settings_screen.open())
+	_pause.abandon_pressed.connect(func() -> void:
+		get_tree().paused = false
+		end_run())
+	_settings_screen.closed.connect(_on_settings_closed)
 	_defeat.revive_pressed.connect(_on_revive_pressed)
 	_defeat.camp_pressed.connect(end_run)
 	_defeat.visible = false
@@ -119,8 +141,12 @@ func _ready() -> void:
 	AdaptiveQuality.set_combat(true)
 	EventBus.run_started.emit(run_seed)
 	Services.analytics.log_event(&"run_started", {"theme_id": String(ThemeRegistry.theme_id)})
+	_hud.skip_pressed.connect(skip_tutorial)
 	if auto_start:
-		start_grove(1)
+		if tutorial_enabled and not profile.tutorial_done:
+			start_tutorial()
+		else:
+			start_grove(1)
 
 
 func _exit_tree() -> void:
@@ -130,21 +156,63 @@ func _exit_tree() -> void:
 	AdaptiveQuality.set_combat(false)
 
 
-## Backgrounding pauses the run and flushes a checkpoint (standards §B.4); focus resumes it.
+## Backgrounding or Android back opens the pause menu and flushes a checkpoint (standards §B.4).
 func _notification(what: int) -> void:
-	if what == NOTIFICATION_APPLICATION_PAUSED or what == NOTIFICATION_APPLICATION_FOCUS_OUT:
-		if run != null:
-			_save_checkpoint()
-		if is_inside_tree():
-			get_tree().paused = true
-	elif what == NOTIFICATION_APPLICATION_RESUMED or what == NOTIFICATION_APPLICATION_FOCUS_IN:
-		if is_inside_tree():
-			get_tree().paused = false
+	match what:
+		NOTIFICATION_APPLICATION_PAUSED, NOTIFICATION_APPLICATION_FOCUS_OUT, NOTIFICATION_WM_GO_BACK_REQUEST:
+			if run != null:
+				_save_checkpoint()
+			open_pause()
+
+
+func open_pause() -> void:
+	if not is_inside_tree() or _pause == null or run == null or run.is_dead() or _settings_screen.visible:
+		return
+	get_tree().paused = true
+	_pause.open()
+
+
+func resume() -> void:
+	_pause.visible = false
+	get_tree().paused = false
+
+
+func _on_settings_closed(_needs_reload: bool) -> void:
+	_apply_settings()
+	_pause.open()
+
+
+func _apply_settings() -> void:
+	settings = GameSettings.from_dict(_saved_settings())
+	rails.adaptive = settings.adaptive_challenge
+	world.numbers.enabled = settings.damage_numbers
+	_hud.flash_intensity = settings.flash_intensity
+	_hud.set_left_handed(settings.left_handed)
+
+
+## The first-run tutorial: a fixed room, three Rotlings held until the hunter has moved.
+func start_tutorial() -> void:
+	var rotlings: Array[Array] = [[Ids.ROTLING, Ids.ROTLING, Ids.ROTLING]]
+	start_grove(0, RoomGenerator.tutorial(rules), rotlings)
+	_room_rated = true
+	director.hold = true
+	tutorial = TutorialFlow.new(self)
+	tutorial.begin()
+	Services.analytics.log_event(&"tutorial_started", {})
+
+
+func skip_tutorial() -> void:
+	if tutorial == null:
+		return
+	Services.analytics.log_event(&"tutorial_skipped", {"step": tutorial.step})
+	_finish_tutorial()
+	_go_to_next_grove()
 
 
 ## Builds a fresh room for `grove` (between rooms only: never instantiates during waves).
 ## `room` is a plan generated ahead of time (off the main thread); null generates one now.
-func start_grove(grove: int, room: RoomPlan = null) -> void:
+## `fixed_waves` replaces the planner (tutorial).
+func start_grove(grove: int, room: RoomPlan = null, fixed_waves: Array[Array] = []) -> void:
 	world.clear()
 	_builder.clear()
 	run.grove = grove
@@ -170,8 +238,8 @@ func start_grove(grove: int, room: RoomPlan = null) -> void:
 	_room_near_deaths = 0
 	_room_rated = false
 	var defs: Dictionary[StringName, ArchetypeDef] = world.defs
-	var waves: Array[Array] = WavePlanner.plan(GameData.waves(), grove, defs, SeededRng.new(run_seed, grove, &"waves"),
-			_room_scale)
+	var waves: Array[Array] = fixed_waves if not fixed_waves.is_empty() else WavePlanner.plan(
+			GameData.waves(), grove, defs, SeededRng.new(run_seed, grove, &"waves"), _room_scale)
 	intensity = IntensityDirector.new()
 	director = WaveDirector.new(waves, _builder.portal_positions(plan), GameData.waves().wave_spacing, intensity)
 	director.portals_changed.connect(_on_portals_changed)
@@ -184,6 +252,11 @@ func start_grove(grove: int, room: RoomPlan = null) -> void:
 func _physics_process(delta: float) -> void:
 	if director == null:
 		return
+	if _hitstop > 0.0:
+		# Hit-stop: freeze the simulation for a few frames, keep the camera and HUD alive.
+		_hitstop -= delta
+		_update_camera(delta)
+		return
 	run.tick(delta)
 	_player.tick(delta)
 	var incoming: int = world.tick(delta)
@@ -192,14 +265,23 @@ func _physics_process(delta: float) -> void:
 		if taken > 0:
 			run.take_damage(taken)
 			world.numbers.show_number(_player.global_position + Vector2(0, -90), taken, DamageNumbers.Kind.HURT)
-			world.shake(3.0)
+			world.shake(4.0)
+			_hud.hurt()
+			_hitstop = maxf(_hitstop, 0.07)
+			if settings.haptics:
+				Input.vibrate_handheld(25)
 		_feed_dda(delta, taken)
 		director.tick(delta, world)
+		if tutorial != null:
+			tutorial.tick()
 	if cage != null and cage.tick(delta, _player.global_position):
 		_on_cage_freed(cage)
 	guides.tick(delta, incoming > 0)
 	gods.tick(delta)
 	if gate_open and not in_transition and _player.global_position.distance_to(plan.gate_position() + Vector2(0, 12)) < GATE_RANGE:
+		if tutorial != null:
+			Services.analytics.log_event(&"tutorial_completed", {})
+			_finish_tutorial()
 		_go_to_next_grove()
 	if _defeat_t >= 0.0:
 		_defeat_t += delta
@@ -276,6 +358,30 @@ func _update_camera(delta: float) -> void:
 		_camera.offset = Vector2.ZERO
 
 
+func hud() -> Hud:
+	return _hud
+
+
+func hunter_position() -> Vector2:
+	return _player.global_position
+
+
+func to_screen(world_pos: Vector2) -> Vector2:
+	return get_viewport().get_canvas_transform() * world_pos
+
+
+func _finish_tutorial() -> void:
+	tutorial.finish()
+	tutorial = null
+	profile.tutorial_done = true
+	Services.save.set_value("profile", profile.to_dict())
+	Services.save.save_game()
+
+
+func _on_pickup_collected(kind: StringName, _amount: int, at: Vector2) -> void:
+	_hud.fly_pickup(kind, get_viewport().get_canvas_transform() * at)
+
+
 func _on_portals_changed(open: bool) -> void:
 	for p: Node2D in _builder.portals:
 		p.visible = open
@@ -288,8 +394,14 @@ func _on_wave_started(index: int, total: int) -> void:
 
 
 func _on_room_cleared() -> void:
+	if tutorial != null:
+		return  # the tutorial opens its gate after the god step
 	_rate_room(true)
 	rails.on_grove_cleared()
+	open_gate()
+
+
+func open_gate() -> void:
 	gate_open = true
 	if _builder.gate_sealed != null:
 		_builder.gate_sealed.visible = false

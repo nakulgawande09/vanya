@@ -1,6 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://ui/screens/main.gd" id="1_main"]
+[ext_resource type="PackedScene" path="res://ui/screens/settings.tscn" id="2_settings"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -171,4 +172,8 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
 theme_type_variation = &"SecondaryButton"
-text = "THEME_BUTTON"
+text = "SETTINGS_TITLE"
+
+[node name="Settings" parent="." instance=ExtResource("2_settings")]
+unique_name_in_owner = true
+layout_mode = 1

@@ -4,7 +4,7 @@ A Warli-inspired 2D action roguelite for Android (iOS later), built with **Godot
 
 | Path | What | Status |
 |---|---|---|
-| `client/` | Godot project (`project.godot`) | First playable: Asset Bible art (forest + Deep Reef test theme), hunter rig, swarm/enemies/boss, waves, cages, gods, guides, camp shop and shrine, HUD, defeat/revive, Android export |
+| `client/` | Godot project (`project.godot`) | First playable: Asset Bible art (forest + Deep Reef test theme), generated rooms (PCG v1) with flow-field pathing, adaptive difficulty (DDA v1), swarm/enemies/boss, cages, gods, guides, camp shop and shrine, HUD, pause/settings (en/hi/mr), first-run tutorial, Android export |
 | `pipelines/asset/` | Asset Bible boards → theme SVGs, rigs and scenes | Working (see its README) |
 | `server/`, `shared/`, `infra/` | Backend, shared schemas, Azure infra | Placeholders |
 | `docs/` | `standards.md` (engineering standards), `dev-plan.md` (cross-platform plan), `adr/`, `art-bible/` | |

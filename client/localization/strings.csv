@@ -21,10 +21,49 @@ SHRINE_DAMAGE,+%d%% damage,+%d%% क्षति,+%d%% नुकसान
 SHRINE_HEALTH,+%d health,+%d स्वास्थ्य,+%d आरोग्य
 SHRINE_SPEED,+%d%% speed,+%d%% गति,+%d%% वेग
 SHRINE_LIGHT,"+%d%% light, reach","+%d%% रोशनी, पहुँच","+%d%% प्रकाश, पोहोच"
-THEME_BUTTON,World: %s,दुनिया: %s,जग: %s
 HUD_GROVE,Grove %d,उपवन %d,वन %d
 HUD_FRENZY,×%d frenzy,×%d उन्माद,×%d उन्माद
 HUD_WAVE,Wave %d / %d,लहर %d / %d,लाट %d / %d
 DEFEAT_SUMMARY,Grove %d · %d beasts cleansed · %d animals freed,उपवन %d · %d जानवर शुद्ध · %d जीव मुक्त,वन %d · %d पशू शुद्ध · %d प्राणी मुक्त
 WATCH_AD_REVIVE,Watch ad to rise again,फिर उठने के लिए विज्ञापन देखें,पुन्हा उठण्यासाठी जाहिरात पाहा
 REVIVE_CAPTION,Revive once per grove · rewarded ad,हर उपवन में एक बार · पुरस्कृत विज्ञापन,प्रत्येक वनात एकदा · बक्षीस जाहिरात
+SETTINGS_TITLE,Settings,सेटिंग्स,सेटिंग्ज
+DONE,Done,हो गया,झाले
+PAUSED,Paused,रुका हुआ,थांबवले
+RESUME,Resume,जारी रखें,पुढे चला
+ABANDON_RUN,Leave the run,दौड़ छोड़ें,फेरी सोडा
+SET_HAND,Joystick hand,जॉयस्टिक हाथ,जॉयस्टिक हात
+SET_LEFT,Left,बायाँ,डावा
+SET_RIGHT,Right,दायाँ,उजवा
+SET_SHAKE,Screen shake,स्क्रीन कंपन,स्क्रीन कंप
+SET_ON,On,चालू,चालू
+SET_OFF,Off,बंद,बंद
+SET_FLASH,Flashes,चमक,चमक
+SET_FULL,Full,पूरी,पूर्ण
+SET_HALF,Half,आधी,अर्धी
+SET_NUMBERS,Damage numbers,क्षति अंक,नुकसान अंक
+SET_HAPTICS,Vibration,कंपन,कंपन
+SET_LANGUAGE,Language,भाषा,भाषा
+LANG_EN,English,English,English
+LANG_HI,हिन्दी,हिन्दी,हिन्दी
+LANG_MR,मराठी,मराठी,मराठी
+SET_DIFFICULTY,Difficulty,कठिनाई,अडचण
+DIFF_STORY,Story,कहानी,कथा
+DIFF_NORMAL,Normal,सामान्य,सामान्य
+DIFF_HUNTER,Hunter,शिकारी,शिकारी
+SET_ADAPTIVE,Adaptive challenge,अनुकूली चुनौती,जुळवून घेणारे आव्हान
+SET_GRAPHICS,Graphics,ग्राफ़िक्स,ग्राफिक्स
+GFX_AUTO,Auto,स्वतः,आपोआप
+GFX_HIGH,High,उच्च,उच्च
+GFX_MEDIUM,Medium,मध्यम,मध्यम
+GFX_LOW,Low,कम,कमी
+SET_WORLD,World,दुनिया,जग
+WORLD_GROVE_DEFAULT,Tribal forest,आदिवासी वन,आदिवासी वन
+WORLD_DEEP_REEF,Deep reef,गहरी चट्टान,खोल प्रवाळ
+HUD_TUTORIAL,First grove,पहला उपवन,पहिले वन
+TUT_MOVE,Drag on the left side to move,चलने के लिए बाईं ओर खींचें,हलवण्यासाठी डावीकडे ओढा
+TUT_SHOOT,"Your bow shoots on its own — keep moving","आपका धनुष खुद चलता है — चलते रहें","तुमचे धनुष्य आपोआप चालते — हलत राहा"
+TUT_CAGE,Stand by the cage to free the bird,पक्षी को छुड़ाने के लिए पिंजरे के पास खड़े रहें,पक्ष्याला सोडवण्यासाठी पिंजऱ्याजवळ उभे राहा
+TUT_GOD,Spirit calls the gods — tap Meghra,आत्मा देवों को बुलाती है — मेघरा को दबाएँ,आत्मा देवांना बोलावते — मेघरा दाबा
+TUT_GATE,The gate opens when the grove is cleansed,उपवन शुद्ध होते ही द्वार खुलता है,वन शुद्ध झाले की दार उघडते
+TUT_SKIP,Skip,छोड़ें,वगळा
