@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="GodDef" format=3]
+
+[ext_resource type="Script" path="res://core/gods/god_def.gd" id="1_s"]
+
+[resource]
+script = ExtResource("1_s")
+id = &"vayli"
+effect = 2
+spirit_cost = 2
+cooldown = 10.0
+heal = 35
+radius = 140.0
+root_time = 3.0

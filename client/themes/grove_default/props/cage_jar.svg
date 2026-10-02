@@ -1,0 +1,40 @@
+<svg viewBox="23.438 19.531 103.125 139.844" width="132" height="179" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <radialGradient id="uFly" cx="50%" cy="50%" r="50%">
+   <stop offset="0" stop-color="#fff3b0" />
+   <stop offset=".3" stop-color="#ffc54a" stop-opacity=".8" />
+   <stop offset="1" stop-color="#ffc54a" stop-opacity="0" />
+  </radialGradient>
+ </defs>
+ <ellipse cx="75" cy="150" rx="50" ry="7" fill="#000" opacity=".35" />
+ <path d="M44 56 Q30 90 40 130 Q48 150 75 150 Q102 150 110 130 Q120 90 106 56 Z" fill="#9b3b1f" stroke="#1c1016" stroke-width="4" stroke-linejoin="round" />
+ <path d="M92 60 Q104 90 98 132 Q106 128 110 120 Q116 90 106 58 Z" fill="#6e2814" />
+ <path d="M50 96 L60 86 L70 96 L80 86 L90 96 L100 86" fill="none" stroke="#f3ead6" stroke-width="3" stroke-linejoin="round" />
+ <g fill="#f3ead6">
+  <circle cx="58" cy="116" r="3" />
+  <circle cx="75" cy="120" r="3" />
+  <circle cx="92" cy="116" r="3" />
+ </g>
+ <ellipse cx="75" cy="54" rx="34" ry="10" fill="#1c1016" />
+ <ellipse cx="75" cy="52" rx="30" ry="8" fill="url(#uFly)" />
+ <path d="M44 50 Q75 30 106 50 M52 40 L98 58 M98 40 L52 58" fill="none" stroke="#6b4226" stroke-width="3" />
+ <g transform="translate(58 20) translate(0 0) scale(0.733) translate(0 0)">
+  <g>
+   <circle cx="15" cy="15" r="14" fill="url(#uFly)" />
+   <ellipse cx="11" cy="12" rx="5" ry="3" fill="#dff4ff" opacity=".8" transform="rotate(-30 11 12)" />
+   <ellipse cx="19" cy="12" rx="5" ry="3" fill="#dff4ff" opacity=".8" transform="rotate(30 19 12)" />
+   <ellipse cx="15" cy="16" rx="3" ry="5" fill="#2a2a1c" />
+   <ellipse cx="15" cy="19" rx="3" ry="3" fill="#fff3b0" />
+  </g>
+ </g>
+ <g transform="translate(80 26) translate(0 0) scale(0.6) translate(0 0)">
+  <g>
+   <circle cx="15" cy="15" r="14" fill="url(#uFly)" />
+   <ellipse cx="11" cy="12" rx="5" ry="3" fill="#dff4ff" opacity=".8" transform="rotate(-30 11 12)" />
+   <ellipse cx="19" cy="12" rx="5" ry="3" fill="#dff4ff" opacity=".8" transform="rotate(30 19 12)" />
+   <ellipse cx="15" cy="16" rx="3" ry="5" fill="#2a2a1c" />
+   <ellipse cx="15" cy="19" rx="3" ry="3" fill="#fff3b0" />
+  </g>
+ </g>
+ <path d="M34 60 Q24 40 38 28 M116 60 Q128 42 114 30" fill="none" stroke="#6d2f86" stroke-width="4" stroke-linecap="round" />
+</svg>

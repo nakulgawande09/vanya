@@ -1,0 +1,31 @@
+<svg viewBox="16.667 0 86.667 260" width="130" height="390" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <radialGradient id="gJade" cx="50%" cy="50%" r="60%">
+   <stop offset="0" stop-color="#6ff2b0" stop-opacity=".35" />
+   <stop offset="1" stop-color="#6ff2b0" stop-opacity="0" />
+  </radialGradient>
+ </defs>
+ <g transform="translate(0 0) scale(1) translate(0 0)">
+  <g>
+   <ellipse cx="60" cy="252" rx="42" ry="7" fill="#000" opacity=".35" />
+   <rect x="36" y="78" width="48" height="174" rx="8" fill="#7a4a26" stroke="#1c1016" stroke-width="4" />
+   <rect x="60" y="80" width="22" height="170" fill="#5e3a1e" />
+   <path d="M40 110 L50 100 L60 110 L70 100 L80 110 M40 172 L50 162 L60 172 L70 162 L80 172" fill="none" stroke="#f3ead6" stroke-width="3" stroke-linejoin="round" />
+   <g fill="#f3ead6">
+    <circle cx="48" cy="136" r="3" />
+    <circle cx="60" cy="140" r="3" />
+    <circle cx="72" cy="136" r="3" />
+    <circle cx="48" cy="204" r="3" />
+    <circle cx="60" cy="208" r="3" />
+    <circle cx="72" cy="204" r="3" />
+   </g>
+   <rect x="36" y="78" width="48" height="174" rx="8" fill="none" stroke="#1c1016" stroke-width="4" />
+   <path d="M28 82 H92" stroke="#1c1016" stroke-width="10" stroke-linecap="round" />
+   <path d="M28 82 H92" stroke="#9b3b1f" stroke-width="5" stroke-linecap="round" />
+  </g>
+ </g>
+ <circle cx="60" cy="48" r="34" fill="url(#gJade)" opacity="0" />
+ <path d="M60 2 Q84 30 82 52 Q80 76 60 76 Q40 76 38 52 Q38 36 50 24 Q50 40 58 42 Q52 22 60 2 Z" fill="#ff7a2e" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+ <path d="M60 30 Q72 46 70 58 Q68 70 60 70 Q52 70 50 60 Q50 50 56 44 Q58 54 62 52 Q58 40 60 30 Z" fill="#ffc54a" />
+ <path d="M60 50 Q64 58 62 64 Q58 66 56 60 Z" fill="#fff3b0" />
+</svg>

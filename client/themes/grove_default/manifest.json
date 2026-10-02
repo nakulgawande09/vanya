@@ -1,15 +1,18 @@
 {
-  "theme_id": "grove_default",
-  "pack_version": "0.1.0",
-  "schema_version": 1,
-  "min_client": "0.1.0",
+  "pack_version": "1.0.0",
+  "schema_version": 2,
+  "min_client": "0.2.0",
   "max_client": "",
   "signature": "",
-  "fonts": {
-    "display": "",
-    "body": ""
-  },
+  "title_key": "THEME_TITLE",
+  "theme_id": "grove_default",
+  "inherits": "",
   "ui_theme": "res://themes/grove_default/ui_theme.tres",
+  "translations": [
+    "res://themes/grove_default/strings/strings.en.translation",
+    "res://themes/grove_default/strings/strings.hi.translation",
+    "res://themes/grove_default/strings/strings.mr.translation"
+  ],
   "palette": {
     "night_ink": "#1C1016",
     "deep_grove": "#16241F",
@@ -24,41 +27,179 @@
     "blight_violet": "#4A1F5E",
     "blight_glow": "#E56BFF",
     "storm_sky": "#8FD3FF",
-    "kumkum_red": "#C8372D"
+    "kumkum_red": "#C8372D",
+    "panel": "#1E2F28",
+    "panel_edge": "#2F5A44",
+    "text": "#F3EAD6",
+    "text_muted": "#B7C4B8",
+    "primary": "#6FF2B0",
+    "primary_text": "#0F2A1C",
+    "reward": "#E0913F",
+    "reward_text": "#2A1606",
+    "secondary": "#2A3F36",
+    "locked": "#3A3A3A",
+    "darkness": "#1C1016",
+    "friend_glow": "#6FF2B0",
+    "foe_glow": "#E56BFF",
+    "light": "#FFC54A",
+    "health": "#C8372D"
+  },
+  "lighting": {
+    "darkness": "#1C1016",
+    "darkness_strength": 0.74,
+    "light": "#FFC54A"
   },
   "archetypes": {
     "hunter": {
-      "visual": "res://themes/grove_default/rigs/hunter.tscn",
-      "name_key": "ARCH_HUNTER_NAME"
+      "role": "PLAYER",
+      "name_key": "HUNTER_NAME",
+      "visual": "res://themes/grove_default/rigs/hunter.tscn"
     },
     "rotling": {
+      "role": "SWARM",
+      "name_key": "ENEMY_SWARM_NAME",
       "visual": "res://themes/grove_default/rigs/rotling.tscn",
-      "name_key": "ARCH_ROTLING_NAME"
+      "flipbook": {
+        "texture": "res://themes/grove_default/rigs/rotling_sheet.svg",
+        "meta": "res://themes/grove_default/rigs/rotling_sheet.json"
+      }
     },
     "thornback": {
-      "visual": "res://themes/grove_default/rigs/thornback.tscn",
-      "name_key": "ARCH_THORNBACK_NAME"
+      "role": "TANK",
+      "name_key": "ENEMY_TANK_NAME",
+      "visual": "res://themes/grove_default/rigs/thornback.tscn"
     },
     "wisp": {
-      "visual": "res://themes/grove_default/rigs/wisp.tscn",
-      "name_key": "ARCH_WISP_NAME"
+      "role": "RANGED",
+      "name_key": "ENEMY_RANGED_NAME",
+      "visual": "res://themes/grove_default/rigs/wisp.tscn"
     },
     "rotheart": {
-      "visual": "res://themes/grove_default/rigs/rotheart.tscn",
-      "name_key": "ARCH_ROTHEART_NAME"
+      "role": "BOSS",
+      "name_key": "ENEMY_BOSS_NAME",
+      "visual": "res://themes/grove_default/rigs/rotheart.tscn"
+    },
+    "cage_bird": {
+      "role": "CAGE_TARGET",
+      "name_key": "CAGE_NAME",
+      "visual": "res://themes/grove_default/props/cage_bird.tscn"
+    },
+    "cage_hare": {
+      "role": "CAGE_TARGET",
+      "name_key": "CAGE_NAME",
+      "visual": "res://themes/grove_default/props/cage_hare.tscn"
+    },
+    "cage_jar": {
+      "role": "CAGE_TARGET",
+      "name_key": "JAR_NAME",
+      "visual": "res://themes/grove_default/props/cage_jar.tscn"
     },
     "meat": {
-      "visual": "res://themes/grove_default/rigs/meat.tscn",
-      "name_key": "ARCH_MEAT_NAME"
+      "role": "CURRENCY_A",
+      "name_key": "CURRENCY_A_NAME",
+      "visual": "res://themes/grove_default/fx/meat_drop.tscn"
     },
     "spirit": {
-      "visual": "res://themes/grove_default/rigs/spirit.tscn",
-      "name_key": "ARCH_SPIRIT_NAME"
+      "role": "CURRENCY_B",
+      "name_key": "CURRENCY_B_NAME",
+      "visual": "res://themes/grove_default/fx/spirit_drop.tscn"
     },
     "torch": {
-      "visual": "res://themes/grove_default/rigs/torch.tscn",
-      "name_key": "ARCH_TORCH_NAME"
+      "role": "LIGHT_SOURCE",
+      "name_key": "LIGHT_NAME",
+      "visual": "res://themes/grove_default/props/torch.tscn"
+    },
+    "meghra": {
+      "role": "BUFF_GOD",
+      "name_key": "GOD_MEGHRA_NAME",
+      "visual": "res://themes/grove_default/gods/meghra.tscn"
+    },
+    "dhoru": {
+      "role": "BUFF_GOD",
+      "name_key": "GOD_DHORU_NAME",
+      "visual": "res://themes/grove_default/gods/dhoru.tscn"
+    },
+    "vayli": {
+      "role": "BUFF_GOD",
+      "name_key": "GOD_VAYLI_NAME",
+      "visual": "res://themes/grove_default/gods/vayli.tscn"
+    },
+    "suryak": {
+      "role": "META_GOD",
+      "name_key": "GOD_SURYAK_NAME",
+      "visual": "res://themes/grove_default/gods/totem_suryak.tscn"
+    },
+    "tamba": {
+      "role": "META_GOD",
+      "name_key": "GOD_TAMBA_NAME",
+      "visual": "res://themes/grove_default/gods/totem_tamba.tscn"
+    },
+    "kaja": {
+      "role": "META_GOD",
+      "name_key": "GOD_KAJA_NAME",
+      "visual": "res://themes/grove_default/gods/totem_kaja.tscn"
+    },
+    "anjor": {
+      "role": "META_GOD",
+      "name_key": "GOD_ANJOR_NAME",
+      "visual": "res://themes/grove_default/gods/totem_anjor.tscn"
+    },
+    "pira": {
+      "role": "GUIDE",
+      "name_key": "GUIDE_PIRA_NAME",
+      "visual": "res://themes/grove_default/guides/pira.tscn"
+    },
+    "jugnu": {
+      "role": "GUIDE",
+      "name_key": "GUIDE_JUGNU_NAME",
+      "visual": "res://themes/grove_default/guides/jugnu_fly.tscn"
+    },
+    "hare": {
+      "role": "RESCUE",
+      "name_key": "HARE_NAME",
+      "visual": "res://themes/grove_default/guides/hare.tscn"
     }
+  },
+  "props": {
+    "bush": "res://themes/grove_default/props/bush.tscn",
+    "idol": "res://themes/grove_default/props/idol.tscn",
+    "gate_sealed": "res://themes/grove_default/props/gate_sealed.tscn",
+    "gate_open": "res://themes/grove_default/props/gate_open.tscn",
+    "log": "res://themes/grove_default/props/log.tscn",
+    "roots": "res://themes/grove_default/props/roots.tscn",
+    "dance_ring": "res://themes/grove_default/props/dance_ring.tscn",
+    "portal": "res://themes/grove_default/props/portal.tscn",
+    "ash_burst": "res://themes/grove_default/fx/ash_burst.tscn",
+    "hit_spark": "res://themes/grove_default/fx/hit_spark.tscn",
+    "rot_stain": "res://themes/grove_default/fx/rot_stain.tscn",
+    "wisp_orb": "res://themes/grove_default/fx/wisp_orb.tscn"
+  },
+  "icons": {
+    "meat": "res://themes/grove_default/icons/meat.svg",
+    "spirit": "res://themes/grove_default/icons/spirit.svg",
+    "health": "res://themes/grove_default/icons/health.svg",
+    "meghra": "res://themes/grove_default/icons/meghra.svg",
+    "dhoru": "res://themes/grove_default/icons/dhoru.svg",
+    "vayli": "res://themes/grove_default/icons/vayli.svg",
+    "suryak": "res://themes/grove_default/icons/suryak.svg",
+    "tamba": "res://themes/grove_default/icons/tamba.svg",
+    "kaja": "res://themes/grove_default/icons/kaja.svg",
+    "anjor": "res://themes/grove_default/icons/anjor.svg",
+    "pira": "res://themes/grove_default/icons/pira.svg",
+    "jugnu": "res://themes/grove_default/icons/jugnu.svg"
+  },
+  "textures": {
+    "arrow_stone": "res://themes/grove_default/fx/arrow_stone.svg",
+    "arrow_flint": "res://themes/grove_default/fx/arrow_flint.svg",
+    "arrow_bone": "res://themes/grove_default/fx/arrow_bone.svg",
+    "arrow_rapid": "res://themes/grove_default/fx/arrow_rapid.svg",
+    "wisp_orb": "res://themes/grove_default/fx/wisp_orb.svg",
+    "hit_spark": "res://themes/grove_default/fx/hit_spark.svg"
+  },
+  "tiles": "res://themes/grove_default/tiles/tiles.tres",
+  "screens": {
+    "camp": "res://themes/grove_default/ui/camp_scene.svg",
+    "defeat": "res://themes/grove_default/ui/defeat_scene.svg"
   },
   "files": []
 }

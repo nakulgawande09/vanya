@@ -1,0 +1,8 @@
+<svg viewBox="6.111 0 28.056 40" width="101" height="144" xmlns="http://www.w3.org/2000/svg">
+ <g transform="translate(0 0) scale(1) translate(0 0)">
+  <g>
+   <path d="M20 2 Q34 16 32 26 Q30 38 20 38 Q10 38 8 26 Q8 18 14 12 Q14 20 18 21 Q15 11 20 2 Z" fill="#ff7a2e" stroke="#1c1016" stroke-width="2.4" stroke-linejoin="round" />
+   <path d="M20 16 Q27 24 26 30 Q25 35 20 35 Q15 35 14 30 Q14 25 17 22 Q18 27 21 26 Q18 20 20 16 Z" fill="#ffc54a" />
+  </g>
+ </g>
+</svg>

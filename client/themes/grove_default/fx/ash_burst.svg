@@ -1,0 +1,17 @@
+<svg viewBox="24.667 14.667 71.333 46.667" width="107" height="70" xmlns="http://www.w3.org/2000/svg">
+ <g>
+  <circle cx="60" cy="38" r="22" fill="#e56bff" opacity=".25" />
+ </g>
+ <g fill="#2a1a30" stroke="#1c1016" stroke-width="2">
+  <path d="M40 30 l8 -4 l2 8 Z" />
+  <path d="M76 24 l8 2 l-4 7 Z" />
+  <path d="M84 46 l7 5 l-8 3 Z" />
+  <path d="M32 50 l6 -6 l3 8 Z" />
+ </g>
+ <g fill="#e56bff">
+  <circle cx="52" cy="20" r="2.5" />
+  <circle cx="70" cy="56" r="2" />
+  <circle cx="92" cy="34" r="2.5" />
+  <circle cx="28" cy="36" r="2" />
+ </g>
+</svg>

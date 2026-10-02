@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ArchetypeDef" format=3]
+
+[ext_resource type="Script" path="res://core/archetypes/archetype_def.gd" id="1_s"]
+
+[resource]
+script = ExtResource("1_s")
+id = &"rotheart"
+role = 3
+max_hp = 1200
+move_speed = 48.0
+contact_damage = 25
+hitbox_radius = 58.0
+meat_drop = 40
+spirit_chance = 1.0
+budget_cost = 0
+first_grove = 5
+attack_range = 320.0
+attack_cooldown = 3.0
+tell_time = 0.75
+projectile_speed = 430.0
+projectile_damage = 30

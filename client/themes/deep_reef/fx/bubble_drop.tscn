@@ -1,0 +1,76 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://themes/deep_reef/icons/bubble.svg" id="1_bubble_drop"]
+
+[sub_resource type="Gradient" id="Gradient_friend"]
+offsets = PackedFloat32Array(0, 0.35, 1)
+colors = PackedColorArray(0.498, 0.9098, 1, 0.95, 0.498, 0.9098, 1, 0.45, 0.498, 0.9098, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_friend"]
+gradient = SubResource("Gradient_friend")
+width = 64
+height = 64
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_add"]
+blend_mode = 1
+
+[sub_resource type="Animation" id="Animation_idle"]
+resource_name = "idle"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.2),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.12, 1.12), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.2),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.6), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_main"]
+_data = {
+&"idle": SubResource("Animation_idle")
+}
+
+[node name="BubbleDrop" type="Node2D"]
+
+[node name="Body" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="Body"]
+texture = ExtResource("1_bubble_drop")
+centered = false
+position = Vector2(-21.6667, -21.6667)
+scale = Vector2(0.3333, 0.3333)
+
+[node name="Emissive" type="Node2D" parent="Body"]
+
+[node name="Glow0" type="Sprite2D" parent="Body/Emissive"]
+material = SubResource("CanvasItemMaterial_add")
+texture = SubResource("GradientTexture2D_friend")
+position = Vector2(0.0006, 0.0006)
+scale = Vector2(0.6825, 0.6825)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_main")
+}
+autoplay = &"idle"

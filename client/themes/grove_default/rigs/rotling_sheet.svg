@@ -1,0 +1,590 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3115.309 160" width="2294" height="117.82">
+ <defs>
+  <radialGradient id="eyeGlow" cx="50%" cy="50%" r="50%">
+   <stop offset="0" stop-color="#ffd6ff" />
+   <stop offset=".35" stop-color="#e56bff" />
+   <stop offset="1" stop-color="#e56bff" stop-opacity="0" />
+  </radialGradient>
+ </defs>
+ <g transform="translate(0 0)">
+  <clipPath id="cell0">
+   <rect width="220" height="160" />
+  </clipPath>
+  <g clip-path="url(#cell0)">
+   <g transform="translate(0 0) rotate(0 110 140)">
+    <g transform="translate(0 0) scale(1) translate(0 0)">
+     <g>
+      <ellipse cx="112" cy="146" rx="74" ry="8" fill="#000" opacity=".35" />
+      <path d="M60 116 L52 142 M80 118 L78 144" stroke="#1c1016" stroke-width="14" stroke-linecap="round" />
+      <path d="M60 116 L52 142 M80 118 L78 144" stroke="#24102e" stroke-width="7" stroke-linecap="round" />
+      <path d="M24 84 Q8 78 10 64 Q20 72 30 72" fill="#4a1f5e" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M60 50 L70 22 L82 48 Z M88 44 L100 12 L110 42 Z M116 44 L128 20 L134 48 Z M140 52 L152 32 L156 60 Z" fill="#b04fd6" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M66 46 L70 30 M94 40 L100 22 M120 42 L127 28" stroke="#f0b8ff" stroke-width="2" stroke-linecap="round" />
+      <path d="M28 96 Q26 52 80 44 Q132 36 162 56 Q188 70 188 94 Q188 122 152 126 L62 126 Q30 124 28 96 Z" fill="#4a1f5e" />
+      <path d="M30 104 Q40 126 64 126 L152 126 Q182 122 186 102 Q150 116 100 114 Q56 114 30 104 Z" fill="#2c1238" />
+      <g fill="#f3ead6" opacity=".35">
+       <circle cx="72" cy="78" r="2.4" />
+       <circle cx="84" cy="72" r="2.4" />
+       <circle cx="96" cy="78" r="2.4" />
+       <circle cx="108" cy="72" r="2.4" />
+       <circle cx="120" cy="78" r="2.4" />
+      </g>
+      <path d="M58 92 Q70 84 80 94 Q90 104 104 96 Q116 88 128 98" fill="none" stroke="#e56bff" stroke-width="7" opacity=".3" stroke-linecap="round" />
+      <path d="M58 92 Q70 84 80 94 Q90 104 104 96 Q116 88 128 98" fill="none" stroke="#e56bff" stroke-width="2.6" stroke-linecap="round" />
+      <path d="M28 96 Q26 52 80 44 Q132 36 162 56 Q188 70 188 94 Q188 122 152 126 L62 126 Q30 124 28 96 Z" fill="none" stroke="#1c1016" stroke-width="4" stroke-linejoin="round" />
+      <path d="M150 58 L160 34 L170 60 Z" fill="#4a1f5e" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M172 74 Q204 76 208 94 Q202 110 178 108 Z" fill="#5c2a74" stroke="#1c1016" stroke-width="4" stroke-linejoin="round" />
+      <ellipse cx="203" cy="93" rx="3" ry="4" fill="#1c1016" />
+      <path d="M190 106 Q208 112 206 128 Q198 116 184 110 Z" fill="#efe3c8" stroke="#1c1016" stroke-width="3" stroke-linejoin="round" />
+      <circle cx="170" cy="80" r="14" fill="url(#eyeGlow)" />
+      <circle cx="170" cy="80" r="5" fill="#ffd6ff" stroke="#1c1016" stroke-width="2" />
+      <path d="M140 118 L136 144 M162 116 L166 142" stroke="#1c1016" stroke-width="14" stroke-linecap="round" />
+      <path d="M140 118 L136 144 M162 116 L166 142" stroke="#3a1846" stroke-width="7" stroke-linecap="round" />
+      <path d="M130 144 H142 M160 142 H172 M46 142 H58 M72 144 H84" stroke="#1c1016" stroke-width="5" stroke-linecap="round" />
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+ <g transform="translate(222.716 0)">
+  <clipPath id="cell1">
+   <rect width="220" height="160" />
+  </clipPath>
+  <g clip-path="url(#cell1)">
+   <g transform="translate(0 -6) rotate(-1.5 110 140)">
+    <g transform="translate(0 0) scale(1) translate(0 0)">
+     <g>
+      <ellipse cx="112" cy="146" rx="74" ry="8" fill="#000" opacity=".35" />
+      <path d="M60 116 L52 142 M80 118 L78 144" stroke="#1c1016" stroke-width="14" stroke-linecap="round" />
+      <path d="M60 116 L52 142 M80 118 L78 144" stroke="#24102e" stroke-width="7" stroke-linecap="round" />
+      <path d="M24 84 Q8 78 10 64 Q20 72 30 72" fill="#4a1f5e" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M60 50 L70 22 L82 48 Z M88 44 L100 12 L110 42 Z M116 44 L128 20 L134 48 Z M140 52 L152 32 L156 60 Z" fill="#b04fd6" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M66 46 L70 30 M94 40 L100 22 M120 42 L127 28" stroke="#f0b8ff" stroke-width="2" stroke-linecap="round" />
+      <path d="M28 96 Q26 52 80 44 Q132 36 162 56 Q188 70 188 94 Q188 122 152 126 L62 126 Q30 124 28 96 Z" fill="#4a1f5e" />
+      <path d="M30 104 Q40 126 64 126 L152 126 Q182 122 186 102 Q150 116 100 114 Q56 114 30 104 Z" fill="#2c1238" />
+      <g fill="#f3ead6" opacity=".35">
+       <circle cx="72" cy="78" r="2.4" />
+       <circle cx="84" cy="72" r="2.4" />
+       <circle cx="96" cy="78" r="2.4" />
+       <circle cx="108" cy="72" r="2.4" />
+       <circle cx="120" cy="78" r="2.4" />
+      </g>
+      <path d="M58 92 Q70 84 80 94 Q90 104 104 96 Q116 88 128 98" fill="none" stroke="#e56bff" stroke-width="7" opacity=".3" stroke-linecap="round" />
+      <path d="M58 92 Q70 84 80 94 Q90 104 104 96 Q116 88 128 98" fill="none" stroke="#e56bff" stroke-width="2.6" stroke-linecap="round" />
+      <path d="M28 96 Q26 52 80 44 Q132 36 162 56 Q188 70 188 94 Q188 122 152 126 L62 126 Q30 124 28 96 Z" fill="none" stroke="#1c1016" stroke-width="4" stroke-linejoin="round" />
+      <path d="M150 58 L160 34 L170 60 Z" fill="#4a1f5e" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M172 74 Q204 76 208 94 Q202 110 178 108 Z" fill="#5c2a74" stroke="#1c1016" stroke-width="4" stroke-linejoin="round" />
+      <ellipse cx="203" cy="93" rx="3" ry="4" fill="#1c1016" />
+      <path d="M190 106 Q208 112 206 128 Q198 116 184 110 Z" fill="#efe3c8" stroke="#1c1016" stroke-width="3" stroke-linejoin="round" />
+      <circle cx="170" cy="80" r="14" fill="url(#eyeGlow)" />
+      <circle cx="170" cy="80" r="5" fill="#ffd6ff" stroke="#1c1016" stroke-width="2" />
+      <path d="M140 118 L136 144 M162 116 L166 142" stroke="#1c1016" stroke-width="14" stroke-linecap="round" />
+      <path d="M140 118 L136 144 M162 116 L166 142" stroke="#3a1846" stroke-width="7" stroke-linecap="round" />
+      <path d="M130 144 H142 M160 142 H172 M46 142 H58 M72 144 H84" stroke="#1c1016" stroke-width="5" stroke-linecap="round" />
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+ <g transform="translate(445.432 0)">
+  <clipPath id="cell2">
+   <rect width="220" height="160" />
+  </clipPath>
+  <g clip-path="url(#cell2)">
+   <g transform="translate(0 -10) rotate(-3 110 140)">
+    <g transform="translate(0 0) scale(1) translate(0 0)">
+     <g>
+      <ellipse cx="112" cy="146" rx="74" ry="8" fill="#000" opacity=".35" />
+      <path d="M60 116 L52 142 M80 118 L78 144" stroke="#1c1016" stroke-width="14" stroke-linecap="round" />
+      <path d="M60 116 L52 142 M80 118 L78 144" stroke="#24102e" stroke-width="7" stroke-linecap="round" />
+      <path d="M24 84 Q8 78 10 64 Q20 72 30 72" fill="#4a1f5e" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M60 50 L70 22 L82 48 Z M88 44 L100 12 L110 42 Z M116 44 L128 20 L134 48 Z M140 52 L152 32 L156 60 Z" fill="#b04fd6" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M66 46 L70 30 M94 40 L100 22 M120 42 L127 28" stroke="#f0b8ff" stroke-width="2" stroke-linecap="round" />
+      <path d="M28 96 Q26 52 80 44 Q132 36 162 56 Q188 70 188 94 Q188 122 152 126 L62 126 Q30 124 28 96 Z" fill="#4a1f5e" />
+      <path d="M30 104 Q40 126 64 126 L152 126 Q182 122 186 102 Q150 116 100 114 Q56 114 30 104 Z" fill="#2c1238" />
+      <g fill="#f3ead6" opacity=".35">
+       <circle cx="72" cy="78" r="2.4" />
+       <circle cx="84" cy="72" r="2.4" />
+       <circle cx="96" cy="78" r="2.4" />
+       <circle cx="108" cy="72" r="2.4" />
+       <circle cx="120" cy="78" r="2.4" />
+      </g>
+      <path d="M58 92 Q70 84 80 94 Q90 104 104 96 Q116 88 128 98" fill="none" stroke="#e56bff" stroke-width="7" opacity=".3" stroke-linecap="round" />
+      <path d="M58 92 Q70 84 80 94 Q90 104 104 96 Q116 88 128 98" fill="none" stroke="#e56bff" stroke-width="2.6" stroke-linecap="round" />
+      <path d="M28 96 Q26 52 80 44 Q132 36 162 56 Q188 70 188 94 Q188 122 152 126 L62 126 Q30 124 28 96 Z" fill="none" stroke="#1c1016" stroke-width="4" stroke-linejoin="round" />
+      <path d="M150 58 L160 34 L170 60 Z" fill="#4a1f5e" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M172 74 Q204 76 208 94 Q202 110 178 108 Z" fill="#5c2a74" stroke="#1c1016" stroke-width="4" stroke-linejoin="round" />
+      <ellipse cx="203" cy="93" rx="3" ry="4" fill="#1c1016" />
+      <path d="M190 106 Q208 112 206 128 Q198 116 184 110 Z" fill="#efe3c8" stroke="#1c1016" stroke-width="3" stroke-linejoin="round" />
+      <circle cx="170" cy="80" r="14" fill="url(#eyeGlow)" />
+      <circle cx="170" cy="80" r="5" fill="#ffd6ff" stroke="#1c1016" stroke-width="2" />
+      <path d="M140 118 L136 144 M162 116 L166 142" stroke="#1c1016" stroke-width="14" stroke-linecap="round" />
+      <path d="M140 118 L136 144 M162 116 L166 142" stroke="#3a1846" stroke-width="7" stroke-linecap="round" />
+      <path d="M130 144 H142 M160 142 H172 M46 142 H58 M72 144 H84" stroke="#1c1016" stroke-width="5" stroke-linecap="round" />
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+ <g transform="translate(668.148 0)">
+  <clipPath id="cell3">
+   <rect width="220" height="160" />
+  </clipPath>
+  <g clip-path="url(#cell3)">
+   <g transform="translate(0 -6) rotate(-1.5 110 140)">
+    <g transform="translate(0 0) scale(1) translate(0 0)">
+     <g>
+      <ellipse cx="112" cy="146" rx="74" ry="8" fill="#000" opacity=".35" />
+      <path d="M60 116 L52 142 M80 118 L78 144" stroke="#1c1016" stroke-width="14" stroke-linecap="round" />
+      <path d="M60 116 L52 142 M80 118 L78 144" stroke="#24102e" stroke-width="7" stroke-linecap="round" />
+      <path d="M24 84 Q8 78 10 64 Q20 72 30 72" fill="#4a1f5e" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M60 50 L70 22 L82 48 Z M88 44 L100 12 L110 42 Z M116 44 L128 20 L134 48 Z M140 52 L152 32 L156 60 Z" fill="#b04fd6" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M66 46 L70 30 M94 40 L100 22 M120 42 L127 28" stroke="#f0b8ff" stroke-width="2" stroke-linecap="round" />
+      <path d="M28 96 Q26 52 80 44 Q132 36 162 56 Q188 70 188 94 Q188 122 152 126 L62 126 Q30 124 28 96 Z" fill="#4a1f5e" />
+      <path d="M30 104 Q40 126 64 126 L152 126 Q182 122 186 102 Q150 116 100 114 Q56 114 30 104 Z" fill="#2c1238" />
+      <g fill="#f3ead6" opacity=".35">
+       <circle cx="72" cy="78" r="2.4" />
+       <circle cx="84" cy="72" r="2.4" />
+       <circle cx="96" cy="78" r="2.4" />
+       <circle cx="108" cy="72" r="2.4" />
+       <circle cx="120" cy="78" r="2.4" />
+      </g>
+      <path d="M58 92 Q70 84 80 94 Q90 104 104 96 Q116 88 128 98" fill="none" stroke="#e56bff" stroke-width="7" opacity=".3" stroke-linecap="round" />
+      <path d="M58 92 Q70 84 80 94 Q90 104 104 96 Q116 88 128 98" fill="none" stroke="#e56bff" stroke-width="2.6" stroke-linecap="round" />
+      <path d="M28 96 Q26 52 80 44 Q132 36 162 56 Q188 70 188 94 Q188 122 152 126 L62 126 Q30 124 28 96 Z" fill="none" stroke="#1c1016" stroke-width="4" stroke-linejoin="round" />
+      <path d="M150 58 L160 34 L170 60 Z" fill="#4a1f5e" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M172 74 Q204 76 208 94 Q202 110 178 108 Z" fill="#5c2a74" stroke="#1c1016" stroke-width="4" stroke-linejoin="round" />
+      <ellipse cx="203" cy="93" rx="3" ry="4" fill="#1c1016" />
+      <path d="M190 106 Q208 112 206 128 Q198 116 184 110 Z" fill="#efe3c8" stroke="#1c1016" stroke-width="3" stroke-linejoin="round" />
+      <circle cx="170" cy="80" r="14" fill="url(#eyeGlow)" />
+      <circle cx="170" cy="80" r="5" fill="#ffd6ff" stroke="#1c1016" stroke-width="2" />
+      <path d="M140 118 L136 144 M162 116 L166 142" stroke="#1c1016" stroke-width="14" stroke-linecap="round" />
+      <path d="M140 118 L136 144 M162 116 L166 142" stroke="#3a1846" stroke-width="7" stroke-linecap="round" />
+      <path d="M130 144 H142 M160 142 H172 M46 142 H58 M72 144 H84" stroke="#1c1016" stroke-width="5" stroke-linecap="round" />
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+ <g transform="translate(890.864 0)">
+  <clipPath id="cell4">
+   <rect width="220" height="160" />
+  </clipPath>
+  <g clip-path="url(#cell4)">
+   <g transform="translate(0 0) rotate(0 110 140)">
+    <g transform="translate(0 0) scale(1) translate(0 0)">
+     <g>
+      <ellipse cx="112" cy="146" rx="74" ry="8" fill="#000" opacity=".35" />
+      <path d="M60 116 L52 142 M80 118 L78 144" stroke="#1c1016" stroke-width="14" stroke-linecap="round" />
+      <path d="M60 116 L52 142 M80 118 L78 144" stroke="#24102e" stroke-width="7" stroke-linecap="round" />
+      <path d="M24 84 Q8 78 10 64 Q20 72 30 72" fill="#4a1f5e" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M60 50 L70 22 L82 48 Z M88 44 L100 12 L110 42 Z M116 44 L128 20 L134 48 Z M140 52 L152 32 L156 60 Z" fill="#b04fd6" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M66 46 L70 30 M94 40 L100 22 M120 42 L127 28" stroke="#f0b8ff" stroke-width="2" stroke-linecap="round" />
+      <path d="M28 96 Q26 52 80 44 Q132 36 162 56 Q188 70 188 94 Q188 122 152 126 L62 126 Q30 124 28 96 Z" fill="#4a1f5e" />
+      <path d="M30 104 Q40 126 64 126 L152 126 Q182 122 186 102 Q150 116 100 114 Q56 114 30 104 Z" fill="#2c1238" />
+      <g fill="#f3ead6" opacity=".35">
+       <circle cx="72" cy="78" r="2.4" />
+       <circle cx="84" cy="72" r="2.4" />
+       <circle cx="96" cy="78" r="2.4" />
+       <circle cx="108" cy="72" r="2.4" />
+       <circle cx="120" cy="78" r="2.4" />
+      </g>
+      <path d="M58 92 Q70 84 80 94 Q90 104 104 96 Q116 88 128 98" fill="none" stroke="#e56bff" stroke-width="7" opacity=".3" stroke-linecap="round" />
+      <path d="M58 92 Q70 84 80 94 Q90 104 104 96 Q116 88 128 98" fill="none" stroke="#e56bff" stroke-width="2.6" stroke-linecap="round" />
+      <path d="M28 96 Q26 52 80 44 Q132 36 162 56 Q188 70 188 94 Q188 122 152 126 L62 126 Q30 124 28 96 Z" fill="none" stroke="#1c1016" stroke-width="4" stroke-linejoin="round" />
+      <path d="M150 58 L160 34 L170 60 Z" fill="#4a1f5e" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M172 74 Q204 76 208 94 Q202 110 178 108 Z" fill="#5c2a74" stroke="#1c1016" stroke-width="4" stroke-linejoin="round" />
+      <ellipse cx="203" cy="93" rx="3" ry="4" fill="#1c1016" />
+      <path d="M190 106 Q208 112 206 128 Q198 116 184 110 Z" fill="#efe3c8" stroke="#1c1016" stroke-width="3" stroke-linejoin="round" />
+      <circle cx="170" cy="80" r="14" fill="url(#eyeGlow)" />
+      <circle cx="170" cy="80" r="5" fill="#ffd6ff" stroke="#1c1016" stroke-width="2" />
+      <path d="M140 118 L136 144 M162 116 L166 142" stroke="#1c1016" stroke-width="14" stroke-linecap="round" />
+      <path d="M140 118 L136 144 M162 116 L166 142" stroke="#3a1846" stroke-width="7" stroke-linecap="round" />
+      <path d="M130 144 H142 M160 142 H172 M46 142 H58 M72 144 H84" stroke="#1c1016" stroke-width="5" stroke-linecap="round" />
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+ <g transform="translate(1113.58 0)">
+  <clipPath id="cell5">
+   <rect width="220" height="160" />
+  </clipPath>
+  <g clip-path="url(#cell5)">
+   <g transform="translate(0 -4) rotate(1.5 110 140)">
+    <g transform="translate(0 0) scale(1) translate(0 0)">
+     <g>
+      <ellipse cx="112" cy="146" rx="74" ry="8" fill="#000" opacity=".35" />
+      <path d="M60 116 L52 142 M80 118 L78 144" stroke="#1c1016" stroke-width="14" stroke-linecap="round" />
+      <path d="M60 116 L52 142 M80 118 L78 144" stroke="#24102e" stroke-width="7" stroke-linecap="round" />
+      <path d="M24 84 Q8 78 10 64 Q20 72 30 72" fill="#4a1f5e" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M60 50 L70 22 L82 48 Z M88 44 L100 12 L110 42 Z M116 44 L128 20 L134 48 Z M140 52 L152 32 L156 60 Z" fill="#b04fd6" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M66 46 L70 30 M94 40 L100 22 M120 42 L127 28" stroke="#f0b8ff" stroke-width="2" stroke-linecap="round" />
+      <path d="M28 96 Q26 52 80 44 Q132 36 162 56 Q188 70 188 94 Q188 122 152 126 L62 126 Q30 124 28 96 Z" fill="#4a1f5e" />
+      <path d="M30 104 Q40 126 64 126 L152 126 Q182 122 186 102 Q150 116 100 114 Q56 114 30 104 Z" fill="#2c1238" />
+      <g fill="#f3ead6" opacity=".35">
+       <circle cx="72" cy="78" r="2.4" />
+       <circle cx="84" cy="72" r="2.4" />
+       <circle cx="96" cy="78" r="2.4" />
+       <circle cx="108" cy="72" r="2.4" />
+       <circle cx="120" cy="78" r="2.4" />
+      </g>
+      <path d="M58 92 Q70 84 80 94 Q90 104 104 96 Q116 88 128 98" fill="none" stroke="#e56bff" stroke-width="7" opacity=".3" stroke-linecap="round" />
+      <path d="M58 92 Q70 84 80 94 Q90 104 104 96 Q116 88 128 98" fill="none" stroke="#e56bff" stroke-width="2.6" stroke-linecap="round" />
+      <path d="M28 96 Q26 52 80 44 Q132 36 162 56 Q188 70 188 94 Q188 122 152 126 L62 126 Q30 124 28 96 Z" fill="none" stroke="#1c1016" stroke-width="4" stroke-linejoin="round" />
+      <path d="M150 58 L160 34 L170 60 Z" fill="#4a1f5e" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M172 74 Q204 76 208 94 Q202 110 178 108 Z" fill="#5c2a74" stroke="#1c1016" stroke-width="4" stroke-linejoin="round" />
+      <ellipse cx="203" cy="93" rx="3" ry="4" fill="#1c1016" />
+      <path d="M190 106 Q208 112 206 128 Q198 116 184 110 Z" fill="#efe3c8" stroke="#1c1016" stroke-width="3" stroke-linejoin="round" />
+      <circle cx="170" cy="80" r="14" fill="url(#eyeGlow)" />
+      <circle cx="170" cy="80" r="5" fill="#ffd6ff" stroke="#1c1016" stroke-width="2" />
+      <path d="M140 118 L136 144 M162 116 L166 142" stroke="#1c1016" stroke-width="14" stroke-linecap="round" />
+      <path d="M140 118 L136 144 M162 116 L166 142" stroke="#3a1846" stroke-width="7" stroke-linecap="round" />
+      <path d="M130 144 H142 M160 142 H172 M46 142 H58 M72 144 H84" stroke="#1c1016" stroke-width="5" stroke-linecap="round" />
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+ <g transform="translate(1336.296 0)">
+  <clipPath id="cell6">
+   <rect width="220" height="160" />
+  </clipPath>
+  <g clip-path="url(#cell6)">
+   <g transform="translate(-10 0) rotate(3 110 140)">
+    <g transform="translate(0 0) scale(1) translate(0 0)">
+     <g>
+      <ellipse cx="112" cy="146" rx="74" ry="8" fill="#000" opacity=".35" />
+      <path d="M60 116 L52 142 M80 118 L78 144" stroke="#1c1016" stroke-width="14" stroke-linecap="round" />
+      <path d="M60 116 L52 142 M80 118 L78 144" stroke="#24102e" stroke-width="7" stroke-linecap="round" />
+      <path d="M24 84 Q8 78 10 64 Q20 72 30 72" fill="#4a1f5e" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M60 50 L70 22 L82 48 Z M88 44 L100 12 L110 42 Z M116 44 L128 20 L134 48 Z M140 52 L152 32 L156 60 Z" fill="#b04fd6" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M66 46 L70 30 M94 40 L100 22 M120 42 L127 28" stroke="#f0b8ff" stroke-width="2" stroke-linecap="round" />
+      <path d="M28 96 Q26 52 80 44 Q132 36 162 56 Q188 70 188 94 Q188 122 152 126 L62 126 Q30 124 28 96 Z" fill="#4a1f5e" />
+      <path d="M30 104 Q40 126 64 126 L152 126 Q182 122 186 102 Q150 116 100 114 Q56 114 30 104 Z" fill="#2c1238" />
+      <g fill="#f3ead6" opacity=".35">
+       <circle cx="72" cy="78" r="2.4" />
+       <circle cx="84" cy="72" r="2.4" />
+       <circle cx="96" cy="78" r="2.4" />
+       <circle cx="108" cy="72" r="2.4" />
+       <circle cx="120" cy="78" r="2.4" />
+      </g>
+      <path d="M58 92 Q70 84 80 94 Q90 104 104 96 Q116 88 128 98" fill="none" stroke="#e56bff" stroke-width="7" opacity=".3" stroke-linecap="round" />
+      <path d="M58 92 Q70 84 80 94 Q90 104 104 96 Q116 88 128 98" fill="none" stroke="#e56bff" stroke-width="2.6" stroke-linecap="round" />
+      <path d="M28 96 Q26 52 80 44 Q132 36 162 56 Q188 70 188 94 Q188 122 152 126 L62 126 Q30 124 28 96 Z" fill="none" stroke="#1c1016" stroke-width="4" stroke-linejoin="round" />
+      <path d="M150 58 L160 34 L170 60 Z" fill="#4a1f5e" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M172 74 Q204 76 208 94 Q202 110 178 108 Z" fill="#5c2a74" stroke="#1c1016" stroke-width="4" stroke-linejoin="round" />
+      <ellipse cx="203" cy="93" rx="3" ry="4" fill="#1c1016" />
+      <path d="M190 106 Q208 112 206 128 Q198 116 184 110 Z" fill="#efe3c8" stroke="#1c1016" stroke-width="3" stroke-linejoin="round" />
+      <circle cx="170" cy="80" r="14" fill="url(#eyeGlow)" />
+      <circle cx="170" cy="80" r="5" fill="#ffd6ff" stroke="#1c1016" stroke-width="2" />
+      <path d="M140 118 L136 144 M162 116 L166 142" stroke="#1c1016" stroke-width="14" stroke-linecap="round" />
+      <path d="M140 118 L136 144 M162 116 L166 142" stroke="#3a1846" stroke-width="7" stroke-linecap="round" />
+      <path d="M130 144 H142 M160 142 H172 M46 142 H58 M72 144 H84" stroke="#1c1016" stroke-width="5" stroke-linecap="round" />
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+ <g transform="translate(1559.012 0)">
+  <clipPath id="cell7">
+   <rect width="220" height="160" />
+  </clipPath>
+  <g clip-path="url(#cell7)">
+   <g transform="translate(14 -4) rotate(-5 110 140)">
+    <g transform="translate(0 0) scale(1) translate(0 0)">
+     <g>
+      <ellipse cx="112" cy="146" rx="74" ry="8" fill="#000" opacity=".35" />
+      <path d="M60 116 L52 142 M80 118 L78 144" stroke="#1c1016" stroke-width="14" stroke-linecap="round" />
+      <path d="M60 116 L52 142 M80 118 L78 144" stroke="#24102e" stroke-width="7" stroke-linecap="round" />
+      <path d="M24 84 Q8 78 10 64 Q20 72 30 72" fill="#4a1f5e" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M60 50 L70 22 L82 48 Z M88 44 L100 12 L110 42 Z M116 44 L128 20 L134 48 Z M140 52 L152 32 L156 60 Z" fill="#b04fd6" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M66 46 L70 30 M94 40 L100 22 M120 42 L127 28" stroke="#f0b8ff" stroke-width="2" stroke-linecap="round" />
+      <path d="M28 96 Q26 52 80 44 Q132 36 162 56 Q188 70 188 94 Q188 122 152 126 L62 126 Q30 124 28 96 Z" fill="#4a1f5e" />
+      <path d="M30 104 Q40 126 64 126 L152 126 Q182 122 186 102 Q150 116 100 114 Q56 114 30 104 Z" fill="#2c1238" />
+      <g fill="#f3ead6" opacity=".35">
+       <circle cx="72" cy="78" r="2.4" />
+       <circle cx="84" cy="72" r="2.4" />
+       <circle cx="96" cy="78" r="2.4" />
+       <circle cx="108" cy="72" r="2.4" />
+       <circle cx="120" cy="78" r="2.4" />
+      </g>
+      <path d="M58 92 Q70 84 80 94 Q90 104 104 96 Q116 88 128 98" fill="none" stroke="#e56bff" stroke-width="7" opacity=".3" stroke-linecap="round" />
+      <path d="M58 92 Q70 84 80 94 Q90 104 104 96 Q116 88 128 98" fill="none" stroke="#e56bff" stroke-width="2.6" stroke-linecap="round" />
+      <path d="M28 96 Q26 52 80 44 Q132 36 162 56 Q188 70 188 94 Q188 122 152 126 L62 126 Q30 124 28 96 Z" fill="none" stroke="#1c1016" stroke-width="4" stroke-linejoin="round" />
+      <path d="M150 58 L160 34 L170 60 Z" fill="#4a1f5e" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M172 74 Q204 76 208 94 Q202 110 178 108 Z" fill="#5c2a74" stroke="#1c1016" stroke-width="4" stroke-linejoin="round" />
+      <ellipse cx="203" cy="93" rx="3" ry="4" fill="#1c1016" />
+      <path d="M190 106 Q208 112 206 128 Q198 116 184 110 Z" fill="#efe3c8" stroke="#1c1016" stroke-width="3" stroke-linejoin="round" />
+      <circle cx="170" cy="80" r="14" fill="url(#eyeGlow)" />
+      <circle cx="170" cy="80" r="5" fill="#ffd6ff" stroke="#1c1016" stroke-width="2" />
+      <path d="M140 118 L136 144 M162 116 L166 142" stroke="#1c1016" stroke-width="14" stroke-linecap="round" />
+      <path d="M140 118 L136 144 M162 116 L166 142" stroke="#3a1846" stroke-width="7" stroke-linecap="round" />
+      <path d="M130 144 H142 M160 142 H172 M46 142 H58 M72 144 H84" stroke="#1c1016" stroke-width="5" stroke-linecap="round" />
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+ <g transform="translate(1781.728 0)">
+  <clipPath id="cell8">
+   <rect width="220" height="160" />
+  </clipPath>
+  <g clip-path="url(#cell8)">
+   <g transform="translate(6 0)">
+    <g transform="translate(0 0) scale(1) translate(0 0)">
+     <g>
+      <ellipse cx="112" cy="146" rx="74" ry="8" fill="#000" opacity=".35" />
+      <path d="M60 116 L52 142 M80 118 L78 144" stroke="#1c1016" stroke-width="14" stroke-linecap="round" />
+      <path d="M60 116 L52 142 M80 118 L78 144" stroke="#24102e" stroke-width="7" stroke-linecap="round" />
+      <path d="M24 84 Q8 78 10 64 Q20 72 30 72" fill="#4a1f5e" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M60 50 L70 22 L82 48 Z M88 44 L100 12 L110 42 Z M116 44 L128 20 L134 48 Z M140 52 L152 32 L156 60 Z" fill="#b04fd6" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M66 46 L70 30 M94 40 L100 22 M120 42 L127 28" stroke="#f0b8ff" stroke-width="2" stroke-linecap="round" />
+      <path d="M28 96 Q26 52 80 44 Q132 36 162 56 Q188 70 188 94 Q188 122 152 126 L62 126 Q30 124 28 96 Z" fill="#4a1f5e" />
+      <path d="M30 104 Q40 126 64 126 L152 126 Q182 122 186 102 Q150 116 100 114 Q56 114 30 104 Z" fill="#2c1238" />
+      <g fill="#f3ead6" opacity=".35">
+       <circle cx="72" cy="78" r="2.4" />
+       <circle cx="84" cy="72" r="2.4" />
+       <circle cx="96" cy="78" r="2.4" />
+       <circle cx="108" cy="72" r="2.4" />
+       <circle cx="120" cy="78" r="2.4" />
+      </g>
+      <path d="M58 92 Q70 84 80 94 Q90 104 104 96 Q116 88 128 98" fill="none" stroke="#e56bff" stroke-width="7" opacity=".3" stroke-linecap="round" />
+      <path d="M58 92 Q70 84 80 94 Q90 104 104 96 Q116 88 128 98" fill="none" stroke="#e56bff" stroke-width="2.6" stroke-linecap="round" />
+      <path d="M28 96 Q26 52 80 44 Q132 36 162 56 Q188 70 188 94 Q188 122 152 126 L62 126 Q30 124 28 96 Z" fill="none" stroke="#1c1016" stroke-width="4" stroke-linejoin="round" />
+      <path d="M150 58 L160 34 L170 60 Z" fill="#4a1f5e" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M172 74 Q204 76 208 94 Q202 110 178 108 Z" fill="#5c2a74" stroke="#1c1016" stroke-width="4" stroke-linejoin="round" />
+      <ellipse cx="203" cy="93" rx="3" ry="4" fill="#1c1016" />
+      <path d="M190 106 Q208 112 206 128 Q198 116 184 110 Z" fill="#efe3c8" stroke="#1c1016" stroke-width="3" stroke-linejoin="round" />
+      <circle cx="170" cy="80" r="14" fill="url(#eyeGlow)" />
+      <circle cx="170" cy="80" r="5" fill="#ffd6ff" stroke="#1c1016" stroke-width="2" />
+      <path d="M140 118 L136 144 M162 116 L166 142" stroke="#1c1016" stroke-width="14" stroke-linecap="round" />
+      <path d="M140 118 L136 144 M162 116 L166 142" stroke="#3a1846" stroke-width="7" stroke-linecap="round" />
+      <path d="M130 144 H142 M160 142 H172 M46 142 H58 M72 144 H84" stroke="#1c1016" stroke-width="5" stroke-linecap="round" />
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+ <g transform="translate(2004.444 0)">
+  <clipPath id="cell9">
+   <rect width="220" height="160" />
+  </clipPath>
+  <g clip-path="url(#cell9)">
+   <circle cx="110" cy="96" r="20" fill="none" stroke="#e56bff" stroke-width="3" opacity="0.60" />
+   <g transform="translate(0.0 0.0) scale(1.0)" opacity="1">
+    <g transform="translate(0 0) scale(1) translate(0 0)">
+     <g>
+      <ellipse cx="112" cy="146" rx="74" ry="8" fill="#000" opacity=".35" />
+      <path d="M60 116 L52 142 M80 118 L78 144" stroke="#1c1016" stroke-width="14" stroke-linecap="round" />
+      <path d="M60 116 L52 142 M80 118 L78 144" stroke="#24102e" stroke-width="7" stroke-linecap="round" />
+      <path d="M24 84 Q8 78 10 64 Q20 72 30 72" fill="#4a1f5e" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M60 50 L70 22 L82 48 Z M88 44 L100 12 L110 42 Z M116 44 L128 20 L134 48 Z M140 52 L152 32 L156 60 Z" fill="#b04fd6" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M66 46 L70 30 M94 40 L100 22 M120 42 L127 28" stroke="#f0b8ff" stroke-width="2" stroke-linecap="round" />
+      <path d="M28 96 Q26 52 80 44 Q132 36 162 56 Q188 70 188 94 Q188 122 152 126 L62 126 Q30 124 28 96 Z" fill="#4a1f5e" />
+      <path d="M30 104 Q40 126 64 126 L152 126 Q182 122 186 102 Q150 116 100 114 Q56 114 30 104 Z" fill="#2c1238" />
+      <g fill="#f3ead6" opacity=".35">
+       <circle cx="72" cy="78" r="2.4" />
+       <circle cx="84" cy="72" r="2.4" />
+       <circle cx="96" cy="78" r="2.4" />
+       <circle cx="108" cy="72" r="2.4" />
+       <circle cx="120" cy="78" r="2.4" />
+      </g>
+      <path d="M58 92 Q70 84 80 94 Q90 104 104 96 Q116 88 128 98" fill="none" stroke="#e56bff" stroke-width="7" opacity=".3" stroke-linecap="round" />
+      <path d="M58 92 Q70 84 80 94 Q90 104 104 96 Q116 88 128 98" fill="none" stroke="#e56bff" stroke-width="2.6" stroke-linecap="round" />
+      <path d="M28 96 Q26 52 80 44 Q132 36 162 56 Q188 70 188 94 Q188 122 152 126 L62 126 Q30 124 28 96 Z" fill="none" stroke="#1c1016" stroke-width="4" stroke-linejoin="round" />
+      <path d="M150 58 L160 34 L170 60 Z" fill="#4a1f5e" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M172 74 Q204 76 208 94 Q202 110 178 108 Z" fill="#5c2a74" stroke="#1c1016" stroke-width="4" stroke-linejoin="round" />
+      <ellipse cx="203" cy="93" rx="3" ry="4" fill="#1c1016" />
+      <path d="M190 106 Q208 112 206 128 Q198 116 184 110 Z" fill="#efe3c8" stroke="#1c1016" stroke-width="3" stroke-linejoin="round" />
+      <circle cx="170" cy="80" r="14" fill="url(#eyeGlow)" />
+      <circle cx="170" cy="80" r="5" fill="#ffd6ff" stroke="#1c1016" stroke-width="2" />
+      <path d="M140 118 L136 144 M162 116 L166 142" stroke="#1c1016" stroke-width="14" stroke-linecap="round" />
+      <path d="M140 118 L136 144 M162 116 L166 142" stroke="#3a1846" stroke-width="7" stroke-linecap="round" />
+      <path d="M130 144 H142 M160 142 H172 M46 142 H58 M72 144 H84" stroke="#1c1016" stroke-width="5" stroke-linecap="round" />
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+ <g transform="translate(2227.16 0)">
+  <clipPath id="cell10">
+   <rect width="220" height="160" />
+  </clipPath>
+  <g clip-path="url(#cell10)">
+   <circle cx="110" cy="96" r="30" fill="none" stroke="#e56bff" stroke-width="3" opacity="0.50" />
+   <circle cx="62" cy="72" r="4.4" fill="#e56bff" opacity="0.75" />
+   <circle cx="150" cy="66" r="4.4" fill="#e56bff" opacity="0.75" />
+   <circle cx="166" cy="102" r="4.4" fill="#e56bff" opacity="0.75" />
+   <circle cx="70" cy="108" r="4.4" fill="#e56bff" opacity="0.75" />
+   <g transform="translate(10.999999999999998 14.999999999999996) scale(0.9)" opacity="0.75">
+    <g transform="translate(0 0) scale(1) translate(0 0)">
+     <g>
+      <ellipse cx="112" cy="146" rx="74" ry="8" fill="#000" opacity=".35" />
+      <path d="M60 116 L52 142 M80 118 L78 144" stroke="#1c1016" stroke-width="14" stroke-linecap="round" />
+      <path d="M60 116 L52 142 M80 118 L78 144" stroke="#24102e" stroke-width="7" stroke-linecap="round" />
+      <path d="M24 84 Q8 78 10 64 Q20 72 30 72" fill="#4a1f5e" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M60 50 L70 22 L82 48 Z M88 44 L100 12 L110 42 Z M116 44 L128 20 L134 48 Z M140 52 L152 32 L156 60 Z" fill="#b04fd6" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M66 46 L70 30 M94 40 L100 22 M120 42 L127 28" stroke="#f0b8ff" stroke-width="2" stroke-linecap="round" />
+      <path d="M28 96 Q26 52 80 44 Q132 36 162 56 Q188 70 188 94 Q188 122 152 126 L62 126 Q30 124 28 96 Z" fill="#4a1f5e" />
+      <path d="M30 104 Q40 126 64 126 L152 126 Q182 122 186 102 Q150 116 100 114 Q56 114 30 104 Z" fill="#2c1238" />
+      <g fill="#f3ead6" opacity=".35">
+       <circle cx="72" cy="78" r="2.4" />
+       <circle cx="84" cy="72" r="2.4" />
+       <circle cx="96" cy="78" r="2.4" />
+       <circle cx="108" cy="72" r="2.4" />
+       <circle cx="120" cy="78" r="2.4" />
+      </g>
+      <path d="M58 92 Q70 84 80 94 Q90 104 104 96 Q116 88 128 98" fill="none" stroke="#e56bff" stroke-width="7" opacity=".3" stroke-linecap="round" />
+      <path d="M58 92 Q70 84 80 94 Q90 104 104 96 Q116 88 128 98" fill="none" stroke="#e56bff" stroke-width="2.6" stroke-linecap="round" />
+      <path d="M28 96 Q26 52 80 44 Q132 36 162 56 Q188 70 188 94 Q188 122 152 126 L62 126 Q30 124 28 96 Z" fill="none" stroke="#1c1016" stroke-width="4" stroke-linejoin="round" />
+      <path d="M150 58 L160 34 L170 60 Z" fill="#4a1f5e" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M172 74 Q204 76 208 94 Q202 110 178 108 Z" fill="#5c2a74" stroke="#1c1016" stroke-width="4" stroke-linejoin="round" />
+      <ellipse cx="203" cy="93" rx="3" ry="4" fill="#1c1016" />
+      <path d="M190 106 Q208 112 206 128 Q198 116 184 110 Z" fill="#efe3c8" stroke="#1c1016" stroke-width="3" stroke-linejoin="round" />
+      <circle cx="170" cy="80" r="14" fill="url(#eyeGlow)" />
+      <circle cx="170" cy="80" r="5" fill="#ffd6ff" stroke="#1c1016" stroke-width="2" />
+      <path d="M140 118 L136 144 M162 116 L166 142" stroke="#1c1016" stroke-width="14" stroke-linecap="round" />
+      <path d="M140 118 L136 144 M162 116 L166 142" stroke="#3a1846" stroke-width="7" stroke-linecap="round" />
+      <path d="M130 144 H142 M160 142 H172 M46 142 H58 M72 144 H84" stroke="#1c1016" stroke-width="5" stroke-linecap="round" />
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+ <g transform="translate(2449.877 0)">
+  <clipPath id="cell11">
+   <rect width="220" height="160" />
+  </clipPath>
+  <g clip-path="url(#cell11)">
+   <circle cx="110" cy="96" r="40" fill="none" stroke="#e56bff" stroke-width="3" opacity="0.40" />
+   <circle cx="38" cy="63" r="3.8" fill="#e56bff" opacity="0.6000000000000001" />
+   <circle cx="170" cy="54" r="3.8" fill="#e56bff" opacity="0.6000000000000001" />
+   <circle cx="194" cy="108" r="3.8" fill="#e56bff" opacity="0.6000000000000001" />
+   <circle cx="50" cy="117" r="3.8" fill="#e56bff" opacity="0.6000000000000001" />
+   <g transform="translate(21.999999999999996 29.999999999999993) scale(0.8)" opacity="0.5">
+    <g transform="translate(0 0) scale(1) translate(0 0)">
+     <g>
+      <ellipse cx="112" cy="146" rx="74" ry="8" fill="#000" opacity=".35" />
+      <path d="M60 116 L52 142 M80 118 L78 144" stroke="#1c1016" stroke-width="14" stroke-linecap="round" />
+      <path d="M60 116 L52 142 M80 118 L78 144" stroke="#24102e" stroke-width="7" stroke-linecap="round" />
+      <path d="M24 84 Q8 78 10 64 Q20 72 30 72" fill="#4a1f5e" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M60 50 L70 22 L82 48 Z M88 44 L100 12 L110 42 Z M116 44 L128 20 L134 48 Z M140 52 L152 32 L156 60 Z" fill="#b04fd6" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M66 46 L70 30 M94 40 L100 22 M120 42 L127 28" stroke="#f0b8ff" stroke-width="2" stroke-linecap="round" />
+      <path d="M28 96 Q26 52 80 44 Q132 36 162 56 Q188 70 188 94 Q188 122 152 126 L62 126 Q30 124 28 96 Z" fill="#4a1f5e" />
+      <path d="M30 104 Q40 126 64 126 L152 126 Q182 122 186 102 Q150 116 100 114 Q56 114 30 104 Z" fill="#2c1238" />
+      <g fill="#f3ead6" opacity=".35">
+       <circle cx="72" cy="78" r="2.4" />
+       <circle cx="84" cy="72" r="2.4" />
+       <circle cx="96" cy="78" r="2.4" />
+       <circle cx="108" cy="72" r="2.4" />
+       <circle cx="120" cy="78" r="2.4" />
+      </g>
+      <path d="M58 92 Q70 84 80 94 Q90 104 104 96 Q116 88 128 98" fill="none" stroke="#e56bff" stroke-width="7" opacity=".3" stroke-linecap="round" />
+      <path d="M58 92 Q70 84 80 94 Q90 104 104 96 Q116 88 128 98" fill="none" stroke="#e56bff" stroke-width="2.6" stroke-linecap="round" />
+      <path d="M28 96 Q26 52 80 44 Q132 36 162 56 Q188 70 188 94 Q188 122 152 126 L62 126 Q30 124 28 96 Z" fill="none" stroke="#1c1016" stroke-width="4" stroke-linejoin="round" />
+      <path d="M150 58 L160 34 L170 60 Z" fill="#4a1f5e" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M172 74 Q204 76 208 94 Q202 110 178 108 Z" fill="#5c2a74" stroke="#1c1016" stroke-width="4" stroke-linejoin="round" />
+      <ellipse cx="203" cy="93" rx="3" ry="4" fill="#1c1016" />
+      <path d="M190 106 Q208 112 206 128 Q198 116 184 110 Z" fill="#efe3c8" stroke="#1c1016" stroke-width="3" stroke-linejoin="round" />
+      <circle cx="170" cy="80" r="14" fill="url(#eyeGlow)" />
+      <circle cx="170" cy="80" r="5" fill="#ffd6ff" stroke="#1c1016" stroke-width="2" />
+      <path d="M140 118 L136 144 M162 116 L166 142" stroke="#1c1016" stroke-width="14" stroke-linecap="round" />
+      <path d="M140 118 L136 144 M162 116 L166 142" stroke="#3a1846" stroke-width="7" stroke-linecap="round" />
+      <path d="M130 144 H142 M160 142 H172 M46 142 H58 M72 144 H84" stroke="#1c1016" stroke-width="5" stroke-linecap="round" />
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+ <g transform="translate(2672.593 0)">
+  <clipPath id="cell12">
+   <rect width="220" height="160" />
+  </clipPath>
+  <g clip-path="url(#cell12)">
+   <circle cx="110" cy="96" r="50" fill="none" stroke="#e56bff" stroke-width="3" opacity="0.30" />
+   <circle cx="14" cy="54" r="3.2" fill="#e56bff" opacity="0.45000000000000007" />
+   <circle cx="190" cy="42" r="3.2" fill="#e56bff" opacity="0.45000000000000007" />
+   <circle cx="222" cy="114" r="3.2" fill="#e56bff" opacity="0.45000000000000007" />
+   <circle cx="30" cy="126" r="3.2" fill="#e56bff" opacity="0.45000000000000007" />
+   <g transform="translate(33.00000000000001 45.00000000000001) scale(0.7)" opacity="0.3">
+    <g transform="translate(0 0) scale(1) translate(0 0)">
+     <g>
+      <ellipse cx="112" cy="146" rx="74" ry="8" fill="#000" opacity=".35" />
+      <path d="M60 116 L52 142 M80 118 L78 144" stroke="#1c1016" stroke-width="14" stroke-linecap="round" />
+      <path d="M60 116 L52 142 M80 118 L78 144" stroke="#24102e" stroke-width="7" stroke-linecap="round" />
+      <path d="M24 84 Q8 78 10 64 Q20 72 30 72" fill="#4a1f5e" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M60 50 L70 22 L82 48 Z M88 44 L100 12 L110 42 Z M116 44 L128 20 L134 48 Z M140 52 L152 32 L156 60 Z" fill="#b04fd6" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M66 46 L70 30 M94 40 L100 22 M120 42 L127 28" stroke="#f0b8ff" stroke-width="2" stroke-linecap="round" />
+      <path d="M28 96 Q26 52 80 44 Q132 36 162 56 Q188 70 188 94 Q188 122 152 126 L62 126 Q30 124 28 96 Z" fill="#4a1f5e" />
+      <path d="M30 104 Q40 126 64 126 L152 126 Q182 122 186 102 Q150 116 100 114 Q56 114 30 104 Z" fill="#2c1238" />
+      <g fill="#f3ead6" opacity=".35">
+       <circle cx="72" cy="78" r="2.4" />
+       <circle cx="84" cy="72" r="2.4" />
+       <circle cx="96" cy="78" r="2.4" />
+       <circle cx="108" cy="72" r="2.4" />
+       <circle cx="120" cy="78" r="2.4" />
+      </g>
+      <path d="M58 92 Q70 84 80 94 Q90 104 104 96 Q116 88 128 98" fill="none" stroke="#e56bff" stroke-width="7" opacity=".3" stroke-linecap="round" />
+      <path d="M58 92 Q70 84 80 94 Q90 104 104 96 Q116 88 128 98" fill="none" stroke="#e56bff" stroke-width="2.6" stroke-linecap="round" />
+      <path d="M28 96 Q26 52 80 44 Q132 36 162 56 Q188 70 188 94 Q188 122 152 126 L62 126 Q30 124 28 96 Z" fill="none" stroke="#1c1016" stroke-width="4" stroke-linejoin="round" />
+      <path d="M150 58 L160 34 L170 60 Z" fill="#4a1f5e" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M172 74 Q204 76 208 94 Q202 110 178 108 Z" fill="#5c2a74" stroke="#1c1016" stroke-width="4" stroke-linejoin="round" />
+      <ellipse cx="203" cy="93" rx="3" ry="4" fill="#1c1016" />
+      <path d="M190 106 Q208 112 206 128 Q198 116 184 110 Z" fill="#efe3c8" stroke="#1c1016" stroke-width="3" stroke-linejoin="round" />
+      <circle cx="170" cy="80" r="14" fill="url(#eyeGlow)" />
+      <circle cx="170" cy="80" r="5" fill="#ffd6ff" stroke="#1c1016" stroke-width="2" />
+      <path d="M140 118 L136 144 M162 116 L166 142" stroke="#1c1016" stroke-width="14" stroke-linecap="round" />
+      <path d="M140 118 L136 144 M162 116 L166 142" stroke="#3a1846" stroke-width="7" stroke-linecap="round" />
+      <path d="M130 144 H142 M160 142 H172 M46 142 H58 M72 144 H84" stroke="#1c1016" stroke-width="5" stroke-linecap="round" />
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+ <g transform="translate(2895.309 0)">
+  <clipPath id="cell13">
+   <rect width="220" height="160" />
+  </clipPath>
+  <g clip-path="url(#cell13)">
+   <circle cx="110" cy="96" r="60" fill="none" stroke="#e56bff" stroke-width="3" opacity="0.20" />
+   <circle cx="-10" cy="45" r="2.6" fill="#e56bff" opacity="0.30000000000000004" />
+   <circle cx="210" cy="30" r="2.6" fill="#e56bff" opacity="0.30000000000000004" />
+   <circle cx="250" cy="120" r="2.6" fill="#e56bff" opacity="0.30000000000000004" />
+   <circle cx="10" cy="135" r="2.6" fill="#e56bff" opacity="0.30000000000000004" />
+   <g transform="translate(44.0 60.0) scale(0.6)" opacity="0.12">
+    <g transform="translate(0 0) scale(1) translate(0 0)">
+     <g>
+      <ellipse cx="112" cy="146" rx="74" ry="8" fill="#000" opacity=".35" />
+      <path d="M60 116 L52 142 M80 118 L78 144" stroke="#1c1016" stroke-width="14" stroke-linecap="round" />
+      <path d="M60 116 L52 142 M80 118 L78 144" stroke="#24102e" stroke-width="7" stroke-linecap="round" />
+      <path d="M24 84 Q8 78 10 64 Q20 72 30 72" fill="#4a1f5e" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M60 50 L70 22 L82 48 Z M88 44 L100 12 L110 42 Z M116 44 L128 20 L134 48 Z M140 52 L152 32 L156 60 Z" fill="#b04fd6" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M66 46 L70 30 M94 40 L100 22 M120 42 L127 28" stroke="#f0b8ff" stroke-width="2" stroke-linecap="round" />
+      <path d="M28 96 Q26 52 80 44 Q132 36 162 56 Q188 70 188 94 Q188 122 152 126 L62 126 Q30 124 28 96 Z" fill="#4a1f5e" />
+      <path d="M30 104 Q40 126 64 126 L152 126 Q182 122 186 102 Q150 116 100 114 Q56 114 30 104 Z" fill="#2c1238" />
+      <g fill="#f3ead6" opacity=".35">
+       <circle cx="72" cy="78" r="2.4" />
+       <circle cx="84" cy="72" r="2.4" />
+       <circle cx="96" cy="78" r="2.4" />
+       <circle cx="108" cy="72" r="2.4" />
+       <circle cx="120" cy="78" r="2.4" />
+      </g>
+      <path d="M58 92 Q70 84 80 94 Q90 104 104 96 Q116 88 128 98" fill="none" stroke="#e56bff" stroke-width="7" opacity=".3" stroke-linecap="round" />
+      <path d="M58 92 Q70 84 80 94 Q90 104 104 96 Q116 88 128 98" fill="none" stroke="#e56bff" stroke-width="2.6" stroke-linecap="round" />
+      <path d="M28 96 Q26 52 80 44 Q132 36 162 56 Q188 70 188 94 Q188 122 152 126 L62 126 Q30 124 28 96 Z" fill="none" stroke="#1c1016" stroke-width="4" stroke-linejoin="round" />
+      <path d="M150 58 L160 34 L170 60 Z" fill="#4a1f5e" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M172 74 Q204 76 208 94 Q202 110 178 108 Z" fill="#5c2a74" stroke="#1c1016" stroke-width="4" stroke-linejoin="round" />
+      <ellipse cx="203" cy="93" rx="3" ry="4" fill="#1c1016" />
+      <path d="M190 106 Q208 112 206 128 Q198 116 184 110 Z" fill="#efe3c8" stroke="#1c1016" stroke-width="3" stroke-linejoin="round" />
+      <circle cx="170" cy="80" r="14" fill="url(#eyeGlow)" />
+      <circle cx="170" cy="80" r="5" fill="#ffd6ff" stroke="#1c1016" stroke-width="2" />
+      <path d="M140 118 L136 144 M162 116 L166 142" stroke="#1c1016" stroke-width="14" stroke-linecap="round" />
+      <path d="M140 118 L136 144 M162 116 L166 142" stroke="#3a1846" stroke-width="7" stroke-linecap="round" />
+      <path d="M130 144 H142 M160 142 H172 M46 142 H58 M72 144 H84" stroke="#1c1016" stroke-width="5" stroke-linecap="round" />
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+</svg>

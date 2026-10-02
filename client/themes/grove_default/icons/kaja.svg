@@ -1,0 +1,10 @@
+<svg viewBox="0.278 0 39.722 37.222" width="143" height="134" xmlns="http://www.w3.org/2000/svg">
+ <g transform="translate(0 0) scale(1) translate(0 0)">
+  <g>
+   <g fill="none" stroke-linecap="round">
+    <path d="M4 14 H24 Q31 14 31 8 Q31 3 26 3 Q22 3 22 7 M8 22 H32 Q38 22 38 28 Q38 33 33 33 Q29 33 29 29 M4 30 H20" stroke="#1c1016" stroke-width="6" />
+    <path d="M4 14 H24 Q31 14 31 8 Q31 3 26 3 Q22 3 22 7 M8 22 H32 Q38 22 38 28 Q38 33 33 33 Q29 33 29 29 M4 30 H20" stroke="#8fd3ff" stroke-width="3" />
+   </g>
+  </g>
+ </g>
+</svg>

@@ -1,14 +1,41 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
-  <rect width="512" height="512" rx="96" fill="#16241F"/>
-  <circle cx="256" cy="256" r="196" fill="#2F5A44"/>
-  <!-- Warli hunter: circle head, two triangles torso, line limbs -->
-  <g fill="#F3EAD6" stroke="#1C1016" stroke-width="8" stroke-linejoin="round" stroke-linecap="round">
-    <circle cx="256" cy="140" r="34"/>
-    <polygon points="196,186 316,186 256,262"/>
-    <polygon points="256,262 196,338 316,338"/>
-    <path d="M206 196 L160 260 M306 196 L352 236 M226 338 L206 410 M286 338 L310 410" fill="none" stroke="#F3EAD6" stroke-width="16"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+ <defs>
+  <radialGradient id="sJade" cx="50%" cy="50%" r="50%">
+   <stop offset="0" stop-color="#6ff2b0" stop-opacity=".8" />
+   <stop offset="1" stop-color="#6ff2b0" stop-opacity="0" />
+  </radialGradient>
+  <radialGradient id="sBg" cx="40%" cy="30%" r="80%">
+   <stop offset="0" stop-color="#c24a26" />
+   <stop offset=".6" stop-color="#9b3b1f" />
+   <stop offset="1" stop-color="#5e200f" />
+  </radialGradient>
+ </defs>
+ <g transform="translate(0 0) scale(1) translate(0 0)">
+  <g>
+   <rect width="512" height="512" rx="112" fill="url(#sBg)" />
+   <circle cx="330" cy="190" r="118" fill="#f3ead6" opacity=".14" />
+   <circle cx="330" cy="190" r="118" fill="none" stroke="#ffc54a" stroke-width="6" opacity=".5" />
+   <g fill="#f3ead6" stroke="#f3ead6" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="196" cy="150" r="36" />
+    <path d="M136 204 H244 L196 290 Z" />
+    <path d="M196 290 L250 376 H150 Z" />
+    <path d="M170 376 L118 452 M226 376 L278 448" fill="none" stroke-width="22" />
+    <path d="M222 214 L372 222" fill="none" stroke-width="20" />
+    <path d="M170 212 Q150 256 240 224" fill="none" stroke-width="20" />
+   </g>
+   <path d="M372 104 Q452 222 372 340" fill="none" stroke="#1c1016" stroke-width="22" stroke-linecap="round" />
+   <path d="M372 104 Q452 222 372 340" fill="none" stroke="#f3ead6" stroke-width="12" stroke-linecap="round" />
+   <path d="M372 104 L244 222 L372 340" fill="none" stroke="#f3ead6" stroke-width="4" />
+   <circle cx="444" cy="222" r="46" fill="url(#sJade)" />
+   <path d="M226 222 H428" stroke="#1c1016" stroke-width="12" stroke-linecap="round" />
+   <path d="M226 222 H426" stroke="#f3ead6" stroke-width="5" stroke-linecap="round" />
+   <path d="M424 200 L468 222 L424 244 L434 222 Z" fill="#6ff2b0" stroke="#1c1016" stroke-width="6" stroke-linejoin="round" />
+   <path d="M232 222 L212 206 M232 222 L212 238" stroke="#c8372d" stroke-width="9" stroke-linecap="round" />
+   <path d="M184 120 Q170 70 150 64 Q166 92 176 126 Z" fill="#ffc54a" stroke="#1c1016" stroke-width="5" stroke-linejoin="round" />
+   <path d="M160 142 Q196 126 232 142" fill="none" stroke="#c8372d" stroke-width="12" stroke-linecap="round" />
+   <g fill="#f3ead6" opacity=".5">
+    <path d="M60 470 l14 -20 l14 20 l14 -20 l14 20 l14 -20 l14 20 l14 -20 l14 20 l14 -20 l14 20 l14 -20 l14 20 l14 -20 l14 20 l14 -20 l14 20 l14 -20 l14 20 l14 -20 l14 20 l14 -20 l14 20 l14 -20 l14 20 l14 -20 l14 20 l14 -20 l14 20" fill="none" stroke="#f3ead6" stroke-width="5" />
+   </g>
   </g>
-  <path d="M352 196 Q400 256 352 316" fill="none" stroke="#FFC54A" stroke-width="10" stroke-linecap="round"/>
-  <line x1="352" y1="196" x2="352" y2="316" stroke="#FFC54A" stroke-width="4"/>
-  <circle cx="390" cy="120" r="14" fill="#6FF2B0"/>
+ </g>
 </svg>

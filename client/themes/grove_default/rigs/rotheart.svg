@@ -1,0 +1,60 @@
+<svg viewBox="6.877 0.982 553.123 371.364" width="563" height="378" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <linearGradient id="kHide" x1="0" y1="0" x2="0" y2="1">
+   <stop offset="0" stop-color="#4f2266" />
+   <stop offset=".7" stop-color="#34143f" />
+   <stop offset="1" stop-color="#220c2a" />
+  </linearGradient>
+  <radialGradient id="kHeart" cx="50%" cy="45%" r="55%">
+   <stop offset="0" stop-color="#fff0ff" />
+   <stop offset=".35" stop-color="#ff5de8" />
+   <stop offset="1" stop-color="#8e1f9e" />
+  </radialGradient>
+  <radialGradient id="kEye" cx="50%" cy="50%" r="50%">
+   <stop offset="0" stop-color="#ffe0ff" />
+   <stop offset=".4" stop-color="#e56bff" />
+   <stop offset="1" stop-color="#e56bff" stop-opacity="0" />
+  </radialGradient>
+ </defs>
+ <ellipse cx="290" cy="352" rx="240" ry="18" fill="#000" opacity=".45" />
+ <path d="M110 300 Q70 330 30 326 M130 312 Q110 344 72 352 M200 318 Q196 348 170 364" fill="none" stroke="#1c1016" stroke-width="12" stroke-linecap="round" />
+ <path d="M110 300 Q70 330 30 326 M130 312 Q110 344 72 352 M200 318 Q196 348 170 364" fill="none" stroke="#3a1846" stroke-width="6" stroke-linecap="round" />
+ <path d="M150 260 L138 336 M220 270 L214 342" stroke="#1c1016" stroke-width="40" stroke-linecap="round" />
+ <path d="M150 260 L138 336 M220 270 L214 342" stroke="#230d2e" stroke-width="30" stroke-linecap="round" />
+ <path d="M84 120 L96 44 L124 108 Z M130 100 L150 14 L172 92 Z M182 86 L206 6 L222 84 Z M234 80 L262 12 L272 84 Z M286 84 L316 26 L318 92 Z M336 92 L368 46 L364 106 Z" fill="#b04fd6" stroke="#1c1016" stroke-width="5" stroke-linejoin="round" />
+ <path d="M150 24 L156 76 M206 16 L210 70 M262 22 L264 72" stroke="#f0b8ff" stroke-width="3" stroke-linecap="round" />
+ <path d="M58 246 Q38 132 150 98 Q262 66 382 90 Q470 110 494 182 Q508 250 442 274 L142 280 Q72 278 58 246 Z" fill="url(#kHide)" />
+ <path d="M70 256 Q96 282 142 280 L442 274 Q494 256 500 214 Q420 250 280 250 Q140 252 70 256 Z" fill="#1d0a24" />
+ <g fill="none" stroke="#f3ead6" stroke-width="3" opacity=".28" stroke-linecap="round">
+  <path d="M150 160 Q150 136 172 136 Q192 136 192 156 Q192 172 176 172 Q164 172 164 160" />
+  <path d="M120 200 L132 188 L144 200 L156 188 L168 200 L180 188 L192 200" />
+ </g>
+ <path d="M110 190 Q170 170 230 186 Q270 196 300 176 M96 226 Q170 208 250 224" fill="none" stroke="#e56bff" stroke-width="10" opacity=".22" stroke-linecap="round" />
+ <path d="M110 190 Q170 170 230 186 Q270 196 300 176 M96 226 Q170 208 250 224" fill="none" stroke="#e56bff" stroke-width="3" stroke-linecap="round" />
+ <path d="M296 156 Q340 132 378 164 Q394 214 350 236 Q304 242 290 200 Z" fill="#0e0414" stroke="#1c1016" stroke-width="5" stroke-linejoin="round" />
+ <circle cx="340" cy="190" r="56" fill="url(#kEye)" opacity=".7" />
+ <g>
+  <path d="M340 222 C306 200 306 170 324 164 C334 160 340 168 340 174 C340 168 346 160 356 164 C374 170 374 200 340 222 Z" fill="url(#kHeart)" stroke="#1c1016" stroke-width="4" stroke-linejoin="round" />
+ </g>
+ <path d="M308 150 Q300 190 312 232 M330 140 Q322 190 334 238 M354 140 Q366 190 356 238 M374 152 Q386 190 376 226" fill="none" stroke="#1c1016" stroke-width="10" stroke-linecap="round" />
+ <path d="M308 150 Q300 190 312 232 M330 140 Q322 190 334 238 M354 140 Q366 190 356 238 M374 152 Q386 190 376 226" fill="none" stroke="#e8dcc0" stroke-width="5" stroke-linecap="round" />
+ <path d="M58 246 Q38 132 150 98 Q262 66 382 90 Q470 110 494 182 Q508 250 442 274 L142 280 Q72 278 58 246 Z" fill="none" stroke="#1c1016" stroke-width="6" stroke-linejoin="round" />
+ <path d="M40 180 Q14 170 12 146 Q30 160 50 160" fill="#3a1846" stroke="#1c1016" stroke-width="5" stroke-linejoin="round" />
+ <path d="M420 128 Q510 108 546 156 Q560 196 522 216 Q478 226 446 204 Z" fill="#4f2266" stroke="#1c1016" stroke-width="6" stroke-linejoin="round" />
+ <path d="M440 120 L458 76 L474 122 Z M470 118 L500 84 L498 126 Z" fill="#4f2266" stroke="#1c1016" stroke-width="5" stroke-linejoin="round" />
+ <ellipse cx="540" cy="186" rx="14" ry="22" fill="#6a2f82" stroke="#1c1016" stroke-width="5" />
+ <ellipse cx="538" cy="178" rx="3.5" ry="5" fill="#1c1016" />
+ <ellipse cx="538" cy="196" rx="3.5" ry="5" fill="#1c1016" />
+ <path d="M512 212 Q556 214 562 170 Q572 206 548 236 Q526 250 504 228 Z" fill="#efe3c8" stroke="#1c1016" stroke-width="5" stroke-linejoin="round" />
+ <path d="M486 216 Q510 236 512 262 Q498 244 478 230 Z" fill="#efe3c8" stroke="#1c1016" stroke-width="4" stroke-linejoin="round" />
+ <circle cx="486" cy="140" r="22" fill="url(#kEye)" />
+ <circle cx="486" cy="140" r="7" fill="#ffe0ff" stroke="#1c1016" stroke-width="2.5" />
+ <circle cx="508" cy="160" r="18" fill="url(#kEye)" />
+ <circle cx="508" cy="160" r="5.5" fill="#ffe0ff" stroke="#1c1016" stroke-width="2.5" />
+ <circle cx="468" cy="164" r="16" fill="url(#kEye)" />
+ <circle cx="468" cy="164" r="5" fill="#ffe0ff" stroke="#1c1016" stroke-width="2.5" />
+ <path d="M400 260 L394 334 M460 250 L468 326" stroke="#1c1016" stroke-width="42" stroke-linecap="round" />
+ <path d="M400 260 L394 334 M460 250 L468 326" stroke="#34143f" stroke-width="32" stroke-linecap="round" />
+ <path d="M382 300 Q398 290 414 304 M448 292 Q464 282 480 296" fill="none" stroke="#1c1016" stroke-width="5" stroke-linecap="round" />
+ <path d="M120 342 H158 M194 346 H232 M374 344 H412 M448 336 H488" stroke="#1c1016" stroke-width="10" stroke-linecap="round" />
+</svg>

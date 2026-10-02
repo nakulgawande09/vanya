@@ -1,0 +1,64 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://themes/deep_reef/rigs/jelly.svg" id="1_jelly"]
+
+[sub_resource type="Gradient" id="Gradient_foe"]
+offsets = PackedFloat32Array(0, 0.35, 1)
+colors = PackedColorArray(1, 0.3098, 0.6275, 0.95, 1, 0.3098, 0.6275, 0.45, 1, 0.3098, 0.6275, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_foe"]
+gradient = SubResource("Gradient_foe")
+width = 64
+height = 64
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_add"]
+blend_mode = 1
+
+[sub_resource type="Animation" id="Animation_idle"]
+resource_name = "idle"
+length = 2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -6), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_main"]
+_data = {
+&"idle": SubResource("Animation_idle")
+}
+
+[node name="Jelly" type="Node2D"]
+
+[node name="Body" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="Body"]
+texture = ExtResource("1_jelly")
+centered = false
+position = Vector2(-17.5, -46.75)
+scale = Vector2(0.3333, 0.3333)
+
+[node name="Emissive" type="Node2D" parent="Body"]
+
+[node name="Glow0" type="Sprite2D" parent="Body/Emissive"]
+material = SubResource("CanvasItemMaterial_add")
+texture = SubResource("GradientTexture2D_foe")
+position = Vector2(0.1666, -33.9249)
+scale = Vector2(0.327, 0.327)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_main")
+}
+autoplay = &"idle"

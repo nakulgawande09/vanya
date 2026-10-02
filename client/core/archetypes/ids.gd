@@ -30,15 +30,18 @@ const JUGNU: StringName = &"jugnu"
 const MEAT: StringName = &"meat"
 const SPIRIT: StringName = &"spirit"
 
+# Rescue targets (CAGE_TARGET) and the animal freed from the hare cage
+const CAGE_BIRD: StringName = &"cage_bird"
+const CAGE_HARE: StringName = &"cage_hare"
+const CAGE_JAR: StringName = &"cage_jar"
+const HARE: StringName = &"hare"
+
 # World objects
-const CAGE: StringName = &"cage"
 const TORCH: StringName = &"torch"
-const IDOL: StringName = &"idol"
-const EXIT_GATE: StringName = &"exit_gate"
-const PORTAL: StringName = &"portal"
 
 const ENEMIES: Array[StringName] = [ROTLING, THORNBACK, WISP, ROTHEART]
 const RUN_GODS: Array[StringName] = [MEGHRA, DHORU, VAYLI]
 const META_GODS: Array[StringName] = [SURYAK, TAMBA, KAJA, ANJOR]
 const GUIDES: Array[StringName] = [PIRA, JUGNU]
 const CURRENCIES: Array[StringName] = [MEAT, SPIRIT]
+const CAGES: Array[StringName] = [CAGE_BIRD, CAGE_HARE, CAGE_JAR]

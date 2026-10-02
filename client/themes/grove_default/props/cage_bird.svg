@@ -1,0 +1,62 @@
+<svg viewBox="8.594 0 133.594 160" width="171" height="204.8" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <linearGradient id="uTeal" x1="0" y1="0" x2="0" y2="1">
+   <stop offset="0" stop-color="#3fc2b6" />
+   <stop offset="1" stop-color="#1e7a78" />
+  </linearGradient>
+  <radialGradient id="uJade" cx="50%" cy="50%" r="50%">
+   <stop offset="0" stop-color="#6ff2b0" stop-opacity=".45" />
+   <stop offset="1" stop-color="#6ff2b0" stop-opacity="0" />
+  </radialGradient>
+ </defs>
+ <g transform="translate(0 0) scale(1) translate(0 0)">
+  <g>
+   <ellipse cx="75" cy="150" rx="62" ry="8" fill="#000" opacity=".35" />
+   <path d="M18 138 H132 L126 150 H24 Z" fill="#6b4226" stroke="#1c1016" stroke-width="4" stroke-linejoin="round" />
+   <path d="M24 40 Q75 -6 126 40" fill="none" stroke="#1c1016" stroke-width="10" stroke-linecap="round" />
+   <path d="M24 40 Q75 -6 126 40" fill="none" stroke="#c9a15a" stroke-width="5" stroke-linecap="round" />
+   <path d="M75 12 V2" stroke="#1c1016" stroke-width="5" stroke-linecap="round" />
+   <circle cx="75" cy="0" r="6" fill="#c8372d" stroke="#1c1016" stroke-width="3" />
+  </g>
+ </g>
+ <g transform="translate(30 60) scale(.42)">
+  <g transform="translate(0 0) scale(1) translate(0 0)">
+   <g>
+    <path d="M70 84 Q30 96 6 130 Q26 118 44 114 Q22 138 20 150 Q46 124 74 98 Z" fill="#1e6f8a" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+    <circle cx="10" cy="130" r="6" fill="#6ff2b0" stroke="#1c1016" stroke-width="2.5" />
+    <circle cx="22" cy="148" r="6" fill="#6ff2b0" stroke="#1c1016" stroke-width="2.5" />
+    <path d="M60 80 Q70 54 110 52 Q150 52 162 72 Q164 96 132 104 Q96 110 72 100 Q56 94 60 80 Z" fill="url(#uTeal)" stroke="#1c1016" stroke-width="4" stroke-linejoin="round" />
+    <path d="M76 98 Q104 104 132 98 Q120 108 96 108 Z" fill="#f3ead6" opacity=".85" />
+    <g>
+     <path d="M88 70 Q96 20 136 6 Q128 30 132 42 Q116 50 112 70 Z" fill="#1e6f8a" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+     <g fill="#f3ead6">
+      <circle cx="112" cy="36" r="2.4" />
+      <circle cx="120" cy="26" r="2.4" />
+      <circle cx="106" cy="50" r="2.4" />
+     </g>
+    </g>
+    <circle cx="160" cy="62" r="22" fill="url(#uTeal)" stroke="#1c1016" stroke-width="4" />
+    <path d="M150 42 Q156 24 168 20 Q164 32 170 42 Z" fill="#1e6f8a" stroke="#1c1016" stroke-width="3" stroke-linejoin="round" />
+    <path d="M180 58 L206 64 L180 72 Z" fill="#f0a830" stroke="#1c1016" stroke-width="3" stroke-linejoin="round" />
+    <circle cx="166" cy="58" r="9" fill="url(#uJade)" />
+    <circle cx="166" cy="58" r="4.5" fill="#1c1016" />
+    <circle cx="167.5" cy="56.5" r="1.5" fill="#f3ead6" />
+    <path d="M110 108 L106 122 M126 106 L128 120" stroke="#f0a830" stroke-width="3.5" stroke-linecap="round" />
+   </g>
+  </g>
+ </g>
+ <g transform="translate(0 0) scale(1) translate(0 0)">
+  <g>
+   <g stroke-linecap="round">
+    <path d="M28 40 V140 M52 26 V140 M75 20 V140 M98 26 V140 M122 40 V140" stroke="#1c1016" stroke-width="10" />
+    <path d="M28 40 V140 M52 26 V140 M75 20 V140 M98 26 V140 M122 40 V140" stroke="#d6b36a" stroke-width="5" />
+    <path d="M24 72 H32 M48 72 H56 M71 72 H79 M94 72 H102 M118 72 H126 M24 108 H32 M48 108 H56 M71 108 H79 M94 108 H102 M118 108 H126" stroke="#8a6a32" stroke-width="3" />
+   </g>
+   <path d="M22 60 H128" stroke="#1c1016" stroke-width="7" stroke-linecap="round" />
+   <path d="M22 60 H128" stroke="#c8372d" stroke-width="3" stroke-linecap="round" />
+   <path d="M14 128 Q30 108 22 90 Q40 104 36 124 M136 120 Q118 104 128 84 Q110 100 116 122" fill="none" stroke="#1c1016" stroke-width="7" stroke-linecap="round" />
+   <path d="M14 128 Q30 108 22 90 Q40 104 36 124 M136 120 Q118 104 128 84 Q110 100 116 122" fill="none" stroke="#6d2f86" stroke-width="3.5" stroke-linecap="round" />
+   <path d="M22 96 L14 90 L24 88 Z M128 90 L138 84 L134 94 Z M36 118 L44 114 L42 122 Z" fill="#b04fd6" stroke="#1c1016" stroke-width="2" />
+  </g>
+ </g>
+</svg>

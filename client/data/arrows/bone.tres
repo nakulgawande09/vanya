@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ArrowDef" format=3]
+
+[ext_resource type="Script" path="res://core/combat/arrow_def.gd" id="1_s"]
+
+[resource]
+script = ExtResource("1_s")
+id = &"bone"
+name_key = &"ARROW_BONE"
+texture_id = &"arrow_bone"
+speed = 520.0
+aim_range = 240.0
+damage = 18
+fire_interval = 0.5
+pierce = 1
+meat_cost = 70

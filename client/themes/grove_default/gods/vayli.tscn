@@ -1,0 +1,41 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://themes/grove_default/gods/vayli.svg" id="1_vayli"]
+
+[sub_resource type="Animation" id="Animation_idle"]
+resource_name = "idle"
+length = 3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -5), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_main"]
+_data = {
+&"idle": SubResource("Animation_idle")
+}
+
+[node name="Vayli" type="Node2D"]
+
+[node name="Body" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="Body"]
+texture = ExtResource("1_vayli")
+centered = false
+position = Vector2(-52.8333, -125.6667)
+scale = Vector2(0.3333, 0.3333)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_main")
+}
+autoplay = &"idle"

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ShrineDef" format=3]
+
+[ext_resource type="Script" path="res://core/meta/shrine_def.gd" id="1_s"]
+
+[resource]
+script = ExtResource("1_s")
+id = &"kaja"
+stat = 2
+per_level = 0.08
+level_costs = PackedInt32Array(4, 8, 14, 22, 32)

@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://b8xgfl57nv3rh"
+
+[deps]
+
+files=["res://themes/deep_reef/strings/strings.en.translation", "res://themes/deep_reef/strings/strings.hi.translation", "res://themes/deep_reef/strings/strings.mr.translation"]
+
+source_file="res://themes/deep_reef/strings/strings.csv"
+dest_files=["res://themes/deep_reef/strings/strings.en.translation", "res://themes/deep_reef/strings/strings.hi.translation", "res://themes/deep_reef/strings/strings.mr.translation"]
+
+[params]
+
+compress=0
+delimiter=0
+unescape_keys=false
+unescape_translations=true

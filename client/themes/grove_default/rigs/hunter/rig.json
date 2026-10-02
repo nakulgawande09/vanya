@@ -1,0 +1,179 @@
+{
+  "source": "Asset Bible v1.1 \u00b7 11 Rigs and export",
+  "master_size": [
+    200.0,
+    260.0
+  ],
+  "game_scale": 0.3,
+  "density": 3,
+  "bones": [
+    {
+      "layer": 1,
+      "part": "head",
+      "svg_layer": "hunter/head",
+      "pivot_name": "neck",
+      "pivot": [
+        100.0,
+        80.0
+      ],
+      "parent": "torso_upper",
+      "z": 8
+    },
+    {
+      "layer": 2,
+      "part": "feather",
+      "svg_layer": "hunter/feather",
+      "pivot_name": "knot",
+      "pivot": [
+        104.0,
+        28.0
+      ],
+      "parent": "head",
+      "z": 7
+    },
+    {
+      "layer": 3,
+      "part": "torso_upper",
+      "svg_layer": "hunter/torso_upper",
+      "pivot_name": "waist",
+      "pivot": [
+        100.0,
+        148.0
+      ],
+      "parent": "",
+      "z": 5
+    },
+    {
+      "layer": 4,
+      "part": "torso_lower",
+      "svg_layer": "hunter/torso_lower",
+      "pivot_name": "waist",
+      "pivot": [
+        100.0,
+        148.0
+      ],
+      "parent": "",
+      "z": 6
+    },
+    {
+      "layer": 5,
+      "part": "arm_upper_l",
+      "svg_layer": "hunter/arm_upper_l",
+      "pivot_name": "shoulder",
+      "pivot": [
+        66.0,
+        92.0
+      ],
+      "parent": "torso_upper",
+      "z": 1
+    },
+    {
+      "layer": 6,
+      "part": "arm_lower_l",
+      "svg_layer": "hunter/arm_lower_l",
+      "pivot_name": "elbow",
+      "pivot": [
+        57.0,
+        121.0
+      ],
+      "parent": "arm_upper_l",
+      "z": 1
+    },
+    {
+      "layer": 7,
+      "part": "hand_l",
+      "svg_layer": "hunter/hand_l",
+      "pivot_name": "wrist",
+      "pivot": [
+        48.0,
+        150.0
+      ],
+      "parent": "arm_lower_l",
+      "z": 4
+    },
+    {
+      "layer": 8,
+      "part": "arm_upper_r",
+      "svg_layer": "hunter/arm_upper_r",
+      "pivot_name": "shoulder",
+      "pivot": [
+        134.0,
+        92.0
+      ],
+      "parent": "torso_upper",
+      "z": 1
+    },
+    {
+      "layer": 9,
+      "part": "arm_lower_r",
+      "svg_layer": "hunter/arm_lower_r",
+      "pivot_name": "elbow",
+      "pivot": [
+        143.0,
+        119.0
+      ],
+      "parent": "arm_upper_r",
+      "z": 1
+    },
+    {
+      "layer": 10,
+      "part": "hand_r",
+      "svg_layer": "hunter/hand_r",
+      "pivot_name": "wrist",
+      "pivot": [
+        152.0,
+        146.0
+      ],
+      "parent": "arm_lower_r",
+      "z": 4
+    },
+    {
+      "layer": 11,
+      "part": "leg_l",
+      "svg_layer": "hunter/leg_l",
+      "pivot_name": "hip socket",
+      "pivot": [
+        90.0,
+        190.0
+      ],
+      "parent": "torso_lower",
+      "z": 0
+    },
+    {
+      "layer": 12,
+      "part": "leg_r",
+      "svg_layer": "hunter/leg_r",
+      "pivot_name": "hip socket",
+      "pivot": [
+        110.0,
+        190.0
+      ],
+      "parent": "torso_lower",
+      "z": 0
+    },
+    {
+      "layer": 13,
+      "part": "bow",
+      "svg_layer": "hunter/bow",
+      "pivot_name": "grip",
+      "pivot": [
+        37.0,
+        134.0
+      ],
+      "parent": "hand_l",
+      "z": 2
+    },
+    {
+      "layer": 14,
+      "part": "string",
+      "svg_layer": "hunter/string",
+      "pivot_name": "centre",
+      "pivot": [
+        56.0,
+        141.0
+      ],
+      "parent": "bow",
+      "z": 3
+    }
+  ]
+}

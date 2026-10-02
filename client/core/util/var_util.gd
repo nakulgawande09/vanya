@@ -17,3 +17,17 @@ static func to_int(value: Variant, fallback: int = 0) -> int:
 			var s: String = str(value)
 			return s.to_int() if s.is_valid_int() else fallback
 	return fallback
+
+
+static func to_float(value: Variant, fallback: float = 0.0) -> float:
+	match typeof(value):
+		TYPE_FLOAT:
+			var f: float = value
+			return f
+		TYPE_INT:
+			var i: int = value
+			return float(i)
+		TYPE_STRING, TYPE_STRING_NAME:
+			var s: String = str(value)
+			return s.to_float() if s.is_valid_float() else fallback
+	return fallback

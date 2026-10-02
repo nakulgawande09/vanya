@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ArchetypeDef" format=3]
+
+[ext_resource type="Script" path="res://core/archetypes/archetype_def.gd" id="1_s"]
+
+[resource]
+script = ExtResource("1_s")
+id = &"wisp"
+role = 2
+max_hp = 50
+move_speed = 56.0
+contact_damage = 6
+hitbox_radius = 16.0
+meat_drop = 4
+spirit_chance = 0.2
+budget_cost = 3
+first_grove = 3
+attack_range = 170.0
+attack_cooldown = 2.2
+tell_time = 0.4
+projectile_speed = 160.0
+projectile_damage = 10

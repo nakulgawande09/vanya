@@ -1,22 +1,76 @@
 [gd_scene format=3]
 
+[ext_resource type="Texture2D" path="res://themes/grove_default/rigs/rotling.svg" id="1_rotling"]
+
+[sub_resource type="Gradient" id="Gradient_foe"]
+offsets = PackedFloat32Array(0, 0.35, 1)
+colors = PackedColorArray(0.898, 0.4196, 1, 0.95, 0.898, 0.4196, 1, 0.45, 0.898, 0.4196, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_foe"]
+gradient = SubResource("Gradient_foe")
+width = 64
+height = 64
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_add"]
+blend_mode = 1
+
+[sub_resource type="Animation" id="Animation_idle"]
+resource_name = "idle"
+length = 0.36
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.18, 0.36),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -2), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.18, 0.36),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [0.0, -0.0262, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_main"]
+_data = {
+&"idle": SubResource("Animation_idle")
+}
+
 [node name="Rotling" type="Node2D"]
 
-[node name="Shape0" type="Polygon2D" parent="."]
-color = Color(0.2902, 0.1216, 0.3686, 1)
-polygon = PackedVector2Array(11.00, 0.00, 9.91, 4.77, 6.86, 8.60, 2.45, 10.72, -2.45, 10.72, -6.86, 8.60, -9.91, 4.77, -11.00, 0.00, -9.91, -4.77, -6.86, -8.60, -2.45, -10.72, 2.45, -10.72, 6.86, -8.60, 9.91, -4.77)
+[node name="Body" type="Node2D" parent="."]
 
-[node name="Shape0Outline" type="Line2D" parent="."]
-points = PackedVector2Array(11.00, 0.00, 9.91, 4.77, 6.86, 8.60, 2.45, 10.72, -2.45, 10.72, -6.86, 8.60, -9.91, 4.77, -11.00, 0.00, -9.91, -4.77, -6.86, -8.60, -2.45, -10.72, 2.45, -10.72, 6.86, -8.60, 9.91, -4.77)
-closed = true
-width = 2
-default_color = Color(0.1098, 0.06275, 0.08627, 1)
-joint_mode = 2
+[node name="Sprite" type="Sprite2D" parent="Body"]
+texture = ExtResource("1_rotling")
+centered = false
+position = Vector2(-25.6667, -37)
+scale = Vector2(0.3333, 0.3333)
 
-[node name="Shape1" type="Polygon2D" parent="."]
-color = Color(0.898, 0.4196, 1, 1)
-polygon = PackedVector2Array(-2.00, -2.00, -2.59, -0.59, -4.00, 0.00, -5.41, -0.59, -6.00, -2.00, -5.41, -3.41, -4.00, -4.00, -2.59, -3.41)
+[node name="Emissive" type="Node2D" parent="Body"]
 
-[node name="Shape2" type="Polygon2D" parent="."]
-color = Color(0.898, 0.4196, 1, 1)
-polygon = PackedVector2Array(6.00, -2.00, 5.41, -0.59, 4.00, 0.00, 2.59, -0.59, 2.00, -2.00, 2.59, -3.41, 4.00, -4.00, 5.41, -3.41)
+[node name="Glow0" type="Sprite2D" parent="Body/Emissive"]
+material = SubResource("CanvasItemMaterial_add")
+texture = SubResource("GradientTexture2D_foe")
+position = Vector2(15.0606, -19.0303)
+scale = Vector2(0.1396, 0.1396)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_main")
+}
+autoplay = &"idle"

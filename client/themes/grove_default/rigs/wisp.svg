@@ -1,0 +1,22 @@
+<svg viewBox="17.391 12.754 126.377 166.957" width="109" height="144" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <radialGradient id="wispBody" cx="42%" cy="36%" r="70%">
+   <stop offset="0" stop-color="#5b3a78" />
+   <stop offset=".6" stop-color="#2d1b3a" />
+   <stop offset="1" stop-color="#1a0f24" />
+  </radialGradient>
+  <radialGradient id="eyeGlow" cx="50%" cy="50%" r="50%">
+   <stop offset="0" stop-color="#ffd6ff" />
+   <stop offset=".35" stop-color="#e56bff" />
+   <stop offset="1" stop-color="#e56bff" stop-opacity="0" />
+  </radialGradient>
+ </defs>
+ <ellipse cx="80" cy="172" rx="34" ry="5" fill="#000" opacity=".3" />
+ <path d="M80 18 Q126 28 126 76 Q126 112 98 124 Q88 150 62 170 Q70 142 56 126 Q34 112 34 76 Q34 28 80 18 Z" fill="url(#wispBody)" stroke="#1c1016" stroke-width="4" stroke-linejoin="round" />
+ <path d="M44 100 Q30 118 22 116 Q34 108 40 94 M116 100 Q132 116 140 112 Q128 106 120 92" fill="#2d1b3a" stroke="#1c1016" stroke-width="3" stroke-linejoin="round" />
+ <path d="M54 44 Q62 30 78 28" fill="none" stroke="#9a86d0" stroke-width="3" stroke-linecap="round" opacity=".8" />
+ <ellipse cx="80" cy="70" rx="30" ry="22" fill="url(#eyeGlow)" />
+ <ellipse cx="80" cy="70" rx="15" ry="12" fill="#ffd6ff" stroke="#1c1016" stroke-width="3" />
+ <ellipse cx="80" cy="70" rx="3.5" ry="9" fill="#1c1016" />
+ <path d="M66 98 Q80 106 94 98" fill="none" stroke="#e56bff" stroke-width="3" stroke-linecap="round" />
+</svg>

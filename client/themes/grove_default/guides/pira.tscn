@@ -1,0 +1,64 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://themes/grove_default/guides/pira.svg" id="1_pira"]
+
+[sub_resource type="Gradient" id="Gradient_friend"]
+offsets = PackedFloat32Array(0, 0.35, 1)
+colors = PackedColorArray(0.4353, 0.949, 0.6902, 0.95, 0.4353, 0.949, 0.6902, 0.45, 0.4353, 0.949, 0.6902, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_friend"]
+gradient = SubResource("Gradient_friend")
+width = 64
+height = 64
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_add"]
+blend_mode = 1
+
+[sub_resource type="Animation" id="Animation_idle"]
+resource_name = "idle"
+length = 2.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.3, 2.6),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(3, -4), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_main"]
+_data = {
+&"idle": SubResource("Animation_idle")
+}
+
+[node name="Pira" type="Node2D"]
+
+[node name="Body" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="Body"]
+texture = ExtResource("1_pira")
+centered = false
+position = Vector2(-19.5, -13.6367)
+scale = Vector2(0.3333, 0.3333)
+
+[node name="Emissive" type="Node2D" parent="Body"]
+
+[node name="Glow0" type="Sprite2D" parent="Body/Emissive"]
+material = SubResource("CanvasItemMaterial_add")
+texture = SubResource("GradientTexture2D_friend")
+position = Vector2(10.6818, -3.0912)
+scale = Vector2(0.0938, 0.0938)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_main")
+}
+autoplay = &"idle"

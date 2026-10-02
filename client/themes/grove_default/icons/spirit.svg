@@ -1,0 +1,8 @@
+<svg viewBox="3.889 0.833 32.222 39.167" width="116" height="141" xmlns="http://www.w3.org/2000/svg">
+ <g transform="translate(0 0) scale(1) translate(0 0)">
+  <g>
+   <path d="M20 3 C28 13 34 19 34 26 A14 14 0 0 1 6 26 C6 19 12 13 20 3 Z" fill="#6ff2b0" stroke="#1c1016" stroke-width="3" stroke-linejoin="round" />
+   <path d="M14 26 Q16 18 22 16" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" opacity=".85" />
+  </g>
+ </g>
+</svg>

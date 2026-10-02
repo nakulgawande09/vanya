@@ -1,0 +1,43 @@
+<svg viewBox="4.074 39.259 301.481 198.519" width="407" height="268" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <radialGradient id="gJade" cx="50%" cy="50%" r="60%">
+   <stop offset="0" stop-color="#6ff2b0" stop-opacity=".35" />
+   <stop offset="1" stop-color="#6ff2b0" stop-opacity="0" />
+  </radialGradient>
+ </defs>
+ <g transform="translate(0 0) scale(1) translate(0 0)">
+  <g>
+   <ellipse cx="150" cy="226" rx="120" ry="10" fill="#000" opacity=".35" />
+   <path d="M78 160 L66 218 M110 164 L104 222" stroke="#1c1016" stroke-width="24" stroke-linecap="round" />
+   <path d="M78 160 L66 218 M110 164 L104 222" stroke="#5c554c" stroke-width="15" stroke-linecap="round" />
+   <path d="M30 130 Q20 70 100 64 Q170 50 220 76 Q250 92 248 130 Q244 170 206 176 L70 176 Q34 172 30 130 Z" fill="#8a8174" />
+   <path d="M34 148 Q50 176 70 176 L206 176 Q240 170 246 140 Q200 160 140 158 Q80 158 34 148 Z" fill="#5c554c" />
+   <path d="M86 70 Q110 60 136 64 Q120 74 96 80 Z" fill="#a39a8a" />
+   <g fill="#f3ead6">
+    <path d="M92 104 H116 L104 124 Z M104 124 L116 144 H92 Z" />
+    <circle cx="104" cy="96" r="5" />
+   </g>
+   <g fill="#f3ead6">
+    <circle cx="140" cy="100" r="3" />
+    <circle cx="152" cy="108" r="3" />
+    <circle cx="164" cy="100" r="3" />
+    <circle cx="176" cy="108" r="3" />
+    <circle cx="188" cy="100" r="3" />
+   </g>
+   <path d="M130 130 L150 120 L170 132 L190 122" fill="none" stroke="#6ff2b0" stroke-width="7" opacity=".3" stroke-linecap="round" />
+   <path d="M130 130 L150 120 L170 132 L190 122" fill="none" stroke="#6ff2b0" stroke-width="2.6" stroke-linecap="round" />
+   <path d="M30 130 Q20 70 100 64 Q170 50 220 76 Q250 92 248 130 Q244 170 206 176 L70 176 Q34 172 30 130 Z" fill="none" stroke="#1c1016" stroke-width="5" stroke-linejoin="round" />
+   <path d="M34 118 Q12 110 10 88" fill="none" stroke="#1c1016" stroke-width="8" stroke-linecap="round" />
+   <path d="M34 118 Q12 110 10 88" fill="none" stroke="#8a8174" stroke-width="4" stroke-linecap="round" />
+   <path d="M212 88 Q268 80 286 118 Q290 150 262 158 Q236 160 222 144 Z" fill="#8a8174" stroke="#1c1016" stroke-width="5" stroke-linejoin="round" />
+   <path d="M262 158 Q240 160 226 146 L240 134 Q256 146 276 142 Z" fill="#5c554c" />
+   <path d="M232 88 Q222 50 196 44 Q218 38 238 60 Q246 70 246 88 Z" fill="#efe3c8" stroke="#1c1016" stroke-width="4" stroke-linejoin="round" />
+   <path d="M258 90 Q276 54 302 54 Q284 64 276 90 Z" fill="#efe3c8" stroke="#1c1016" stroke-width="4" stroke-linejoin="round" />
+   <circle cx="254" cy="110" r="14" fill="url(#gJade)" />
+   <circle cx="254" cy="110" r="5" fill="#b8ffd9" stroke="#1c1016" stroke-width="2" />
+   <circle cx="280" cy="136" r="3" fill="#1c1016" />
+   <path d="M172 164 L168 220 M214 160 L222 216" stroke="#1c1016" stroke-width="24" stroke-linecap="round" />
+   <path d="M172 164 L168 220 M214 160 L222 216" stroke="#7d7468" stroke-width="15" stroke-linecap="round" />
+  </g>
+ </g>
+</svg>

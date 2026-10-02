@@ -1,0 +1,22 @@
+<svg viewBox="18.551 17.391 121.739 162.609" width="105" height="140.25" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <radialGradient id="rEye" cx="50%" cy="50%" r="50%">
+   <stop offset="0" stop-color="#ffe0f0" />
+   <stop offset=".38" stop-color="#ff4fa0" />
+   <stop offset="1" stop-color="#ff4fa0" stop-opacity="0" />
+  </radialGradient>
+  <radialGradient id="rBell" cx="42%" cy="34%" r="70%">
+   <stop offset="0" stop-color="#4a5aa0" />
+   <stop offset=".6" stop-color="#24305a" />
+   <stop offset="1" stop-color="#141c3a" />
+  </radialGradient>
+ </defs>
+ <ellipse cx="80" cy="174" rx="30" ry="4" fill="#000" opacity=".3" />
+ <path d="M52 100 Q42 130 56 160 M70 104 Q62 136 74 168 M90 104 Q100 136 88 166 M108 100 Q120 128 106 156" fill="none" stroke="#101826" stroke-width="7" stroke-linecap="round" />
+ <path d="M52 100 Q42 130 56 160 M70 104 Q62 136 74 168 M90 104 Q100 136 88 166 M108 100 Q120 128 106 156" fill="none" stroke="#5b6ab8" stroke-width="3.5" stroke-linecap="round" />
+ <path d="M24 92 Q24 24 80 22 Q136 24 136 92 Q120 104 106 96 Q94 108 80 98 Q66 108 54 96 Q40 104 24 92 Z" fill="url(#rBell)" stroke="#101826" stroke-width="4" stroke-linejoin="round" />
+ <path d="M44 52 Q54 34 74 30" fill="none" stroke="#9ab4ff" stroke-width="3" stroke-linecap="round" opacity=".8" />
+ <ellipse cx="80" cy="62" rx="28" ry="20" fill="url(#rEye)" />
+ <ellipse cx="80" cy="62" rx="14" ry="11" fill="#ffe0f0" stroke="#101826" stroke-width="3" />
+ <ellipse cx="80" cy="62" rx="3.5" ry="8.5" fill="#101826" />
+</svg>

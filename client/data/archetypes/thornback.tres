@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ArchetypeDef" format=3]
+
+[ext_resource type="Script" path="res://core/archetypes/archetype_def.gd" id="1_s"]
+
+[resource]
+script = ExtResource("1_s")
+id = &"thornback"
+role = 1
+max_hp = 150
+move_speed = 42.0
+contact_damage = 16
+hitbox_radius = 26.0
+meat_drop = 6
+spirit_chance = 0.3
+budget_cost = 5
+first_grove = 2

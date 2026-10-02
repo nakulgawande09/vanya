@@ -1,0 +1,27 @@
+{
+  "source": "Asset Bible v1.1 \u00b7 11 Rigs and export",
+  "frames": 14,
+  "cell_size_px": [
+    162.0,
+    117.82
+  ],
+  "cell_stride_px": 164.0,
+  "density": 3,
+  "clips": {
+    "run": {
+      "start": 0,
+      "count": 6,
+      "loop": true
+    },
+    "lunge": {
+      "start": 6,
+      "count": 3,
+      "loop": false
+    },
+    "death": {
+      "start": 9,
+      "count": 5,
+      "loop": false
+    }
+  }
+}

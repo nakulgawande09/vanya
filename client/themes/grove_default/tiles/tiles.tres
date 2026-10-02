@@ -1,0 +1,36 @@
+[gd_resource type="TileSet" format=3]
+
+[ext_resource type="Texture2D" path="res://themes/grove_default/tiles/floor.svg" id="1_floor"]
+[ext_resource type="Texture2D" path="res://themes/grove_default/tiles/grass.svg" id="2_grass"]
+[ext_resource type="Texture2D" path="res://themes/grove_default/tiles/canopy_wall.svg" id="3_canopy_wall"]
+[ext_resource type="Texture2D" path="res://themes/grove_default/tiles/canopy_edge.svg" id="4_canopy_edge"]
+
+[sub_resource type="TileSetAtlasSource" id="src_floor"]
+texture = ExtResource("1_floor")
+texture_region_size = Vector2i(96, 96)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="src_grass"]
+texture = ExtResource("2_grass")
+texture_region_size = Vector2i(96, 96)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="src_canopy_wall"]
+texture = ExtResource("3_canopy_wall")
+texture_region_size = Vector2i(96, 96)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-48, -48, 48, -48, 48, 48, -48, 48)
+
+[sub_resource type="TileSetAtlasSource" id="src_canopy_edge"]
+texture = ExtResource("4_canopy_edge")
+texture_region_size = Vector2i(96, 96)
+0:0/0 = 0
+
+[resource]
+tile_size = Vector2i(96, 96)
+physics_layer_0/collision_layer = 64
+physics_layer_0/collision_mask = 0
+sources/0 = SubResource("src_floor")
+sources/1 = SubResource("src_grass")
+sources/2 = SubResource("src_canopy_wall")
+sources/3 = SubResource("src_canopy_edge")

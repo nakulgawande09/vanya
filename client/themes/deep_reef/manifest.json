@@ -1,0 +1,105 @@
+{
+  "pack_version": "0.1.0",
+  "schema_version": 2,
+  "min_client": "0.2.0",
+  "max_client": "",
+  "signature": "",
+  "title_key": "THEME_TITLE",
+  "theme_id": "deep_reef",
+  "inherits": "grove_default",
+  "ui_theme": "res://themes/deep_reef/ui_theme.tres",
+  "translations": [
+    "res://themes/deep_reef/strings/strings.en.translation",
+    "res://themes/deep_reef/strings/strings.hi.translation",
+    "res://themes/deep_reef/strings/strings.mr.translation"
+  ],
+  "palette": {
+    "night_ink": "#101826",
+    "deep_grove": "#0A1C2A",
+    "canopy": "#2F6B4F",
+    "trail_clay": "#C9A76B",
+    "geru_earth": "#E0644A",
+    "rice_white": "#F4EFE4",
+    "skin_umber": "#7A4A2F",
+    "spirit_jade": "#7FE8FF",
+    "meat_amber": "#F4EFE4",
+    "torch_gold": "#FFC54A",
+    "blight_violet": "#5A1F48",
+    "blight_glow": "#FF4FA0",
+    "storm_sky": "#8FD3FF",
+    "kumkum_red": "#E0644A",
+    "panel": "#12283A",
+    "panel_edge": "#2F6B4F",
+    "text": "#F4EFE4",
+    "text_muted": "#A9C2CF",
+    "primary": "#7FE8FF",
+    "primary_text": "#08202C",
+    "reward": "#F4EFE4",
+    "reward_text": "#101826",
+    "secondary": "#1B3A4E",
+    "locked": "#36404A",
+    "darkness": "#0A1C2A",
+    "friend_glow": "#7FE8FF",
+    "foe_glow": "#FF4FA0",
+    "light": "#FFC54A",
+    "health": "#E0644A"
+  },
+  "lighting": {
+    "darkness": "#0A1C2A",
+    "darkness_strength": 0.7,
+    "light": "#FFC54A"
+  },
+  "archetypes": {
+    "rotling": {
+      "role": "SWARM",
+      "name_key": "ENEMY_SWARM_NAME",
+      "visual": "res://themes/deep_reef/rigs/piranha.tscn"
+    },
+    "thornback": {
+      "role": "TANK",
+      "name_key": "ENEMY_TANK_NAME",
+      "visual": "res://themes/deep_reef/rigs/crab.tscn"
+    },
+    "wisp": {
+      "role": "RANGED",
+      "name_key": "ENEMY_RANGED_NAME",
+      "visual": "res://themes/deep_reef/rigs/jelly.tscn"
+    },
+    "rotheart": {
+      "role": "BOSS",
+      "name_key": "ENEMY_BOSS_NAME",
+      "visual": "res://themes/deep_reef/rigs/angler.tscn"
+    },
+    "cage_bird": {
+      "role": "CAGE_TARGET",
+      "name_key": "CAGE_NAME",
+      "visual": "res://themes/deep_reef/props/net.tscn"
+    },
+    "cage_hare": {
+      "role": "CAGE_TARGET",
+      "name_key": "CAGE_NAME",
+      "visual": "res://themes/deep_reef/props/net.tscn"
+    },
+    "meat": {
+      "role": "CURRENCY_A",
+      "name_key": "CURRENCY_A_NAME",
+      "visual": "res://themes/deep_reef/fx/pearl_drop.tscn"
+    },
+    "spirit": {
+      "role": "CURRENCY_B",
+      "name_key": "CURRENCY_B_NAME",
+      "visual": "res://themes/deep_reef/fx/bubble_drop.tscn"
+    },
+    "torch": {
+      "role": "LIGHT_SOURCE",
+      "name_key": "LIGHT_NAME",
+      "visual": "res://themes/deep_reef/props/coral.tscn"
+    }
+  },
+  "props": {},
+  "icons": {
+    "meat": "res://themes/deep_reef/icons/pearl.svg",
+    "spirit": "res://themes/deep_reef/icons/bubble.svg"
+  },
+  "files": []
+}

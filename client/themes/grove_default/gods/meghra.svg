@@ -1,0 +1,29 @@
+<svg viewBox="26.296 -17.407 187.407 337.778" width="253" height="456" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <linearGradient id="gCloud" x1="0" y1="0" x2="1" y2="1">
+   <stop offset="0" stop-color="#bfe6ff" />
+   <stop offset="1" stop-color="#5f9ccc" />
+  </linearGradient>
+ </defs>
+ <g>
+  <g transform="translate(0 0) scale(1) translate(0 0)">
+   <g>
+    <path d="M58 70 L30 14 L50 18 L36 -14 L62 34 L44 30 Z" fill="#fff3b0" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+    <path d="M182 70 L210 14 L190 18 L204 -14 L178 34 L196 30 Z" fill="#fff3b0" stroke="#1c1016" stroke-width="3.5" stroke-linejoin="round" />
+    <path d="M82 104 L56 64 M158 104 L184 64" stroke="#1c1016" stroke-width="15" stroke-linecap="round" />
+    <path d="M82 104 L56 64 M158 104 L184 64" stroke="#5f9ccc" stroke-width="8" stroke-linecap="round" />
+    <path d="M70 100 Q64 90 76 86 Q80 76 94 80 Q104 72 116 80 Q128 72 140 80 Q154 76 160 86 Q174 88 170 100 L120 176 Z" fill="url(#gCloud)" stroke="#1c1016" stroke-width="4" stroke-linejoin="round" />
+    <path d="M120 176 L166 250 Q170 262 156 262 Q148 272 136 264 Q128 272 118 264 Q108 272 100 264 Q90 272 82 262 Q70 262 74 250 Z" fill="url(#gCloud)" stroke="#1c1016" stroke-width="4" stroke-linejoin="round" />
+    <path d="M96 234 L92 252 M112 222 L108 250 M128 222 L124 250 M144 234 L140 252" stroke="#1c1016" stroke-width="3" stroke-linecap="round" />
+    <path d="M100 118 L110 108 L120 118 L130 108 L140 118" fill="none" stroke="#f3ead6" stroke-width="3" stroke-linejoin="round" />
+    <path d="M108 272 L100 300 L112 296 L104 318" fill="none" stroke="#fff3b0" stroke-width="4" stroke-linejoin="round" />
+    <path d="M120 58 L120 78" stroke="#1c1016" stroke-width="12" />
+    <path d="M86 44 Q70 30 82 14 Q92 2 108 10 Q118 -4 136 6 Q156 0 160 20 Q176 30 160 46 Z" fill="#bfe6ff" stroke="#1c1016" stroke-width="4" stroke-linejoin="round" />
+    <circle cx="120" cy="46" r="24" fill="#5f9ccc" stroke="#1c1016" stroke-width="4" />
+    <path d="M108 46 Q112 50 116 46 M124 46 Q128 50 132 46" fill="none" stroke="#1c1016" stroke-width="2.6" stroke-linecap="round" />
+    <path d="M110 34 H130" stroke="#f3ead6" stroke-width="2.6" stroke-linecap="round" />
+    <circle cx="120" cy="58" r="2.4" fill="#fff3b0" />
+   </g>
+  </g>
+ </g>
+</svg>

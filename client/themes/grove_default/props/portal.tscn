@@ -1,0 +1,41 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://themes/grove_default/props/portal.svg" id="1_portal"]
+
+[sub_resource type="Animation" id="Animation_idle"]
+resource_name = "idle"
+length = 6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.2832]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_main"]
+_data = {
+&"idle": SubResource("Animation_idle")
+}
+
+[node name="Portal" type="Node2D"]
+
+[node name="Body" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="Body"]
+texture = ExtResource("1_portal")
+centered = false
+position = Vector2(-26.6667, -19.6667)
+scale = Vector2(0.3333, 0.3333)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_main")
+}
+autoplay = &"idle"

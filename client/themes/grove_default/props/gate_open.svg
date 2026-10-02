@@ -1,0 +1,16 @@
+<svg viewBox="0 0 64 64" width="192" height="192" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <radialGradient id="wJade" cx="50%" cy="50%" r="50%">
+   <stop offset="0" stop-color="#6ff2b0" stop-opacity=".5" />
+   <stop offset="1" stop-color="#6ff2b0" stop-opacity="0" />
+  </radialGradient>
+ </defs>
+ <rect width="64" height="64" fill="#142a20" />
+ <path d="M8 64 V18 Q32 -2 56 18 V64" fill="#07040a" stroke="#1c1016" stroke-width="3" />
+ <circle cx="32" cy="50" r="26" fill="url(#wJade)" />
+ <path d="M20 58 L32 44 L44 58" fill="none" stroke="#6ff2b0" stroke-width="3" stroke-linejoin="round" />
+ <path d="M4 64 V16 M60 64 V16" stroke="#1c1016" stroke-width="8" stroke-linecap="round" />
+ <path d="M4 64 V16 M60 64 V16" stroke="#8a8174" stroke-width="5" stroke-linecap="round" />
+ <path d="M0 14 Q32 -8 64 14" fill="none" stroke="#1c1016" stroke-width="8" />
+ <path d="M0 14 Q32 -8 64 14" fill="none" stroke="#9b3b1f" stroke-width="4" />
+</svg>

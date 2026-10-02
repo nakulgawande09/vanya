@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://bwitifnnxrlt"
+
+[deps]
+
+files=["res://themes/grove_default/strings/strings.en.translation", "res://themes/grove_default/strings/strings.hi.translation", "res://themes/grove_default/strings/strings.mr.translation"]
+
+source_file="res://themes/grove_default/strings/strings.csv"
+dest_files=["res://themes/grove_default/strings/strings.en.translation", "res://themes/grove_default/strings/strings.hi.translation", "res://themes/grove_default/strings/strings.mr.translation"]
+
+[params]
+
+compress=0
+delimiter=0
+unescape_keys=false
+unescape_translations=true

@@ -1,0 +1,12 @@
+<svg viewBox="8.667 9.333 46.667 52.933" width="350" height="397" xmlns="http://www.w3.org/2000/svg">
+ <g fill="#f3ead6" opacity=".55">
+  <circle cx="32" cy="12" r="2.4" />
+  <circle cx="52" cy="24" r="2.4" />
+  <circle cx="52" cy="42" r="2.4" />
+  <circle cx="32" cy="54" r="2.4" />
+  <circle cx="12" cy="42" r="2.4" />
+  <circle cx="12" cy="24" r="2.4" />
+  <path d="M29 15 H35 L32 20 Z M32 20 L35 25 H29 Z M49 27 H55 L52 32 Z M52 32 L55 37 H49 Z M49 45 H55 L52 50 Z M29 57 H35 L32 62 Z M9 45 H15 L12 50 Z M9 27 H15 L12 32 Z M12 32 L15 37 H9 Z" />
+ </g>
+ <circle cx="32" cy="34" r="17" fill="none" stroke="#f3ead6" stroke-width="1.2" stroke-dasharray="2 3" opacity=".45" />
+</svg>

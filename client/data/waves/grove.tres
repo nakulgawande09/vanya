@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="WaveDef" format=3]
+
+[ext_resource type="Script" path="res://core/waves/wave_def.gd" id="1_s"]
+
+[resource]
+script = ExtResource("1_s")
+budget_base = 10
+budget_per_grove = 4
+wave_shares = PackedFloat32Array(0.25, 0.35, 0.4)
+wave_spacing = 5.0
+mix_weights = Dictionary[StringName, float]({
+&"rotling": 6.0,
+&"thornback": 1.5,
+&"wisp": 2.0
+})
+boss_every = 5
+boss_id = &"rotheart"
+boss_escort_share = 0.35
