@@ -1,37 +1,114 @@
 class_name Player
 extends CharacterBody2D
-## Placeholder hunter: moves toward the held touch point. The floating joystick and
-## auto-aim bow replace this when the prototype is ported.
+## The hunter. Moves with the floating joystick (or arrow keys / WASD on desktop), and the
+## auto-aim bow looses at the nearest beast in range at the equipped tier's rate.
+## Drives the cut-out rig's idle / run / shoot / hurt / down / revive clips.
 
-@export var move_speed: float = 260.0
-@export var visual_scale: float = 2.0
+signal shot
+signal hurt(amount: int)
 
-var _target: Vector2 = Vector2.ZERO
-var _moving: bool = false
+const IFRAMES: float = 0.6
+const TWIN_SPREAD: float = 0.12
 
+@export var hitbox_radius: float = 14.0
 
-func _ready() -> void:
-	var scene: PackedScene = ThemeRegistry.visual_for(Ids.HUNTER) as PackedScene
-	if scene != null:
-		var visual: Node2D = scene.instantiate() as Node2D
-		visual.scale = Vector2.ONE * visual_scale
-		add_child(visual)
-
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventScreenTouch:
-		var touch: InputEventScreenTouch = event
-		_moving = touch.pressed
-		_target = get_canvas_transform().affine_inverse() * touch.position
-	elif event is InputEventScreenDrag:
-		var drag: InputEventScreenDrag = event
-		_target = get_canvas_transform().affine_inverse() * drag.position
+var speed: float = 150.0
+var arrow: ArrowDef
+var world: CombatWorld
+var light_scale: float = 1.0
+var input_vector: Vector2 = Vector2.ZERO
+var downed: bool = false
+var _visual: Node2D
+var _anim: AnimationPlayer
+var _glow: Node2D
+var _fire_t: float = 0.0
+var _iframe_t: float = 0.0
+var _facing: float = 1.0
+var _shooting_t: float = 0.0
 
 
-func _physics_process(_delta: float) -> void:
-	var to_target: Vector2 = _target - global_position
-	if _moving and to_target.length() > 6.0:
-		velocity = to_target.normalized() * move_speed
-	else:
-		velocity = Vector2.ZERO
+func setup(arrow_def: ArrowDef, move_speed: float, emissive_layer: Node) -> void:
+	arrow = arrow_def
+	speed = move_speed
+	if _visual == null:
+		_visual = ThemeRegistry.visual_for(Ids.HUNTER).instantiate() as Node2D
+		add_child(_visual)
+		_anim = _visual.get_node("AnimationPlayer") as AnimationPlayer
+		_glow = Emissive.lift(_visual, emissive_layer)
+
+
+func set_move_input(v: Vector2) -> void:
+	input_vector = v.limit_length(1.0)
+
+
+func is_invulnerable() -> bool:
+	return _iframe_t > 0.0 or downed
+
+
+## Applies damage with i-frames; returns the damage the run should take.
+func receive_damage(amount: int) -> int:
+	if amount <= 0 or is_invulnerable():
+		return 0
+	_iframe_t = IFRAMES
+	_play(&"hurt")
+	hurt.emit(amount)
+	return amount
+
+
+func knock_down() -> void:
+	downed = true
+	velocity = Vector2.ZERO
+	_play(&"down")
+
+
+func revive() -> void:
+	downed = false
+	_iframe_t = 2.0
+	_play(&"revive")
+
+
+## Movement + bow. Called by the run in its fixed tick (not _physics_process).
+func tick(delta: float) -> void:
+	_iframe_t = maxf(0.0, _iframe_t - delta)
+	_shooting_t = maxf(0.0, _shooting_t - delta)
+	if downed:
+		return
+	var v: Vector2 = input_vector
+	if v == Vector2.ZERO:
+		v = Input.get_vector(&"move_left", &"move_right", &"move_up", &"move_down")
+	velocity = v * speed
 	move_and_slide()
+	if absf(v.x) > 0.1 and _shooting_t <= 0.0:
+		_facing = signf(v.x)
+	_visual.scale.x = _facing
+	modulate.a = 0.55 if _iframe_t > 0.0 and int(_iframe_t * 20.0) % 2 == 0 else 1.0
+	_fire_t -= delta
+	if _fire_t <= 0.0 and world != null:
+		var target: int = world.nearest_enemy(global_position, arrow.aim_range)
+		if target >= 0:
+			_loose(world.handle_position(target))
+			_fire_t = arrow.fire_interval
+	if _shooting_t <= 0.0 and (_anim.current_animation != &"hurt" or not _anim.is_playing()):
+		_play(&"run" if v.length() > 0.1 else &"idle")
+
+
+func _loose(at: Vector2) -> void:
+	var from: Vector2 = global_position + Vector2(0, -36)
+	var dir: Vector2 = (at - from).normalized()
+	_facing = 1.0 if dir.x >= 0.0 else -1.0
+	var dmg: int = Damage.arrow(arrow, world.damage_bonus)
+	if arrow.twin_shot:
+		world.projectiles.fire_arrow(from, dir.rotated(-TWIN_SPREAD), arrow.speed, dmg, arrow.pierce)
+		world.projectiles.fire_arrow(from, dir.rotated(TWIN_SPREAD), arrow.speed, dmg, arrow.pierce)
+	else:
+		world.projectiles.fire_arrow(from, dir, arrow.speed, dmg, arrow.pierce)
+	_shooting_t = 6.0 / 14.0
+	_play(&"shoot", true)
+	shot.emit()
+
+
+func _play(anim: StringName, restart: bool = false) -> void:
+	if _anim == null:
+		return
+	if restart or _anim.current_animation != anim:
+		_anim.play(anim)

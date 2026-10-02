@@ -68,6 +68,9 @@ jobs:
             echo "GODOT_ANDROID_KEYSTORE_DEBUG_PASSWORD=android"
           } >> "$GITHUB_ENV"
 
+      - name: Render launcher icons from the bible's Play icon
+        run: ${{ steps.godot.outputs.bin }} --headless --path client -s ../tools/render_icons.gd
+
       - name: Import project
         run: ${{ steps.godot.outputs.bin }} --headless --path client --import
 

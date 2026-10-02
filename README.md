@@ -4,10 +4,11 @@ A Warli-inspired 2D action roguelite for Android (iOS later), built with **Godot
 
 | Path | What | Status |
 |---|---|---|
-| `client/` | Godot project (`project.godot`) | Week-1 skeleton: autoloads, services, quality ladder, placeholder theme, camp and grove screens, Android export |
-| `server/`, `pipelines/`, `shared/`, `infra/` | Backend, asset/theme-pack pipelines, shared schemas, Azure infra | Placeholders |
+| `client/` | Godot project (`project.godot`) | First playable: Asset Bible art (forest + Deep Reef test theme), hunter rig, swarm/enemies/boss, waves, cages, gods, guides, camp shop and shrine, HUD, defeat/revive, Android export |
+| `pipelines/asset/` | Asset Bible boards → theme SVGs, rigs and scenes | Working (see its README) |
+| `server/`, `shared/`, `infra/` | Backend, shared schemas, Azure infra | Placeholders |
 | `docs/` | `standards.md` (engineering standards), `dev-plan.md` (cross-platform plan), `adr/`, `art-bible/` | |
-| `tools/` | `setup_godot.sh`, `lint_deps.py`, `check_16kb.sh` | |
+| `tools/` | `setup_godot.sh`, `lint_deps.py`, `check_scripts.gd`, `check_16kb.sh`, `render_icons.gd`, `svg_bounds.gd`, visual QA (`theme_preview.gd`, `screenshot_tour.gd`) | |
 
 ## Quick start
 
@@ -17,7 +18,7 @@ python3 tools/lint_deps.py           # dependency rules
 just client-test                     # import + GdUnit4 tests (or see the justfile for the raw commands)
 ```
 
-Open `client/project.godot` in the Godot 4.7.2 editor to work on scenes. The main scene is `ui/screens/main.tscn`.
+Open `client/project.godot` in the Godot 4.7.2 editor. The main scene is the camp (`ui/screens/main.tscn`), and a run is `gameplay/run/grove_run.tscn`. On desktop, move with WASD; on a phone, use the floating joystick. Provisional balance is documented in [docs/gdd/first-playable.md](docs/gdd/first-playable.md).
 
 ## Android
 

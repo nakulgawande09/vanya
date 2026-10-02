@@ -59,6 +59,16 @@ def main() -> int:
         if path.is_file() and path.suffix in FORBIDDEN_THEME_EXT:
             errors.append(f"{path.relative_to(CLIENT).as_posix()}: theme packs may not contain scripts or native code")
 
+    # Art imports: SVGs rasterize Lossless with no mipmaps (standards §B.4); theme strings stay
+    # uncompressed so ThemeRegistry can merge them.
+    for imp in (CLIENT / "themes").rglob("*.svg.import"):
+        text = imp.read_text(encoding="utf-8")
+        if "compress/mode=0" not in text or "mipmaps/generate=false" not in text:
+            errors.append(f"{imp.relative_to(CLIENT).as_posix()}: SVG must import Lossless with mipmaps off")
+    for imp in (CLIENT / "themes").rglob("*.csv.import"):
+        if "compress=0" not in imp.read_text(encoding="utf-8"):
+            errors.append(f"{imp.relative_to(CLIENT).as_posix()}: theme strings must import with compress=0")
+
     project = (CLIENT / "project.godot").read_text(encoding="utf-8")
     autoload_section = re.search(r"^\[autoload\]\n(.*?)(?=^\[|\Z)", project, re.M | re.S)
     autoloads = [l for l in (autoload_section.group(1) if autoload_section else "").splitlines() if "=" in l]

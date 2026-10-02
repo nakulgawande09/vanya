@@ -1,0 +1,61 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://gameplay/run/grove_run.gd" id="1_run"]
+[ext_resource type="PackedScene" path="res://gameplay/player/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://ui/hud/hud.tscn" id="3_hud"]
+[ext_resource type="PackedScene" path="res://ui/screens/defeat.tscn" id="4_defeat"]
+
+[node name="GroveRun" type="Node2D"]
+script = ExtResource("1_run")
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="Floor" type="TileMapLayer" parent="World"]
+unique_name_in_owner = true
+z_index = -10
+scale = Vector2(0.333333, 0.333333)
+
+[node name="Decals" type="Node2D" parent="World"]
+unique_name_in_owner = true
+z_index = -5
+
+[node name="Entities" type="Node2D" parent="World"]
+unique_name_in_owner = true
+y_sort_enabled = true
+
+[node name="Player" parent="World/Entities" instance=ExtResource("2_player")]
+unique_name_in_owner = true
+
+[node name="Camera" type="Camera2D" parent="World/Entities/Player"]
+unique_name_in_owner = true
+position = Vector2(0, -40)
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
+
+[node name="Emissive" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+layer = 2
+follow_viewport_enabled = true
+
+[node name="HudLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="Hud" parent="HudLayer" instance=ExtResource("3_hud")]
+unique_name_in_owner = true
+
+[node name="Fade" type="ColorRect" parent="HudLayer"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.0784, 0.051, 0.1098, 0)
+
+[node name="DefeatLayer" type="CanvasLayer" parent="."]
+layer = 20
+
+[node name="Defeat" parent="DefeatLayer" instance=ExtResource("4_defeat")]
+unique_name_in_owner = true
+visible = false

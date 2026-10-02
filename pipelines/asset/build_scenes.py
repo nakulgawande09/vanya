@@ -35,20 +35,26 @@ PALETTES = {
         "meat_amber": "#E0913F", "torch_gold": "#FFC54A", "blight_violet": "#4A1F5E", "blight_glow": "#E56BFF",
         "storm_sky": "#8FD3FF", "kumkum_red": "#C8372D",
         # UI roles (Screens board)
-        "panel": "#1E2F28", "panel_edge": "#2F5A44", "text": "#F3EAD6", "text_muted": "#B7C4B8",
-        "primary": "#6FF2B0", "primary_text": "#0F2A1C", "reward": "#E0913F", "reward_text": "#2A1606",
-        "secondary": "#2A3F36", "locked": "#3A3A3A", "darkness": "#1C1016", "friend_glow": "#6FF2B0",
-        "foe_glow": "#E56BFF", "light": "#FFC54A", "health": "#C8372D",
+        "panel": "#140D1C", "card": "#2A1C3A", "pill": "#0C0812", "text": "#F3EAD6", "text_muted": "#B7A6C9",
+        "primary": "#6FF2B0", "primary_edge": "#1F9A66", "primary_text": "#0F2A1C",
+        "reward": "#E0913F", "reward_edge": "#8A4F1C", "reward_text": "#2A1305",
+        "secondary": "#3A2A4F", "secondary_edge": "#241733", "locked": "#241733", "locked_text": "#8D7FA0",
+        "grove_pill": "#9B3B1F", "grove_pill_edge": "#5E200F", "bar_bg": "#3A1420", "health": "#E0463A",
+        "health_edge": "#B8322A", "god_ready": "#8FD3FF", "god_cooling": "#3D6A4A",
+        "darkness": "#1C1016", "friend_glow": "#6FF2B0", "foe_glow": "#E56BFF", "light": "#FFC54A",
     },
     "deep_reef": {
         "night_ink": "#101826", "deep_grove": "#0A1C2A", "canopy": "#2F6B4F", "trail_clay": "#C9A76B",
         "geru_earth": "#E0644A", "rice_white": "#F4EFE4", "skin_umber": "#7A4A2F", "spirit_jade": "#7FE8FF",
         "meat_amber": "#F4EFE4", "torch_gold": "#FFC54A", "blight_violet": "#5A1F48", "blight_glow": "#FF4FA0",
         "storm_sky": "#8FD3FF", "kumkum_red": "#E0644A",
-        "panel": "#12283A", "panel_edge": "#2F6B4F", "text": "#F4EFE4", "text_muted": "#A9C2CF",
-        "primary": "#7FE8FF", "primary_text": "#08202C", "reward": "#F4EFE4", "reward_text": "#101826",
-        "secondary": "#1B3A4E", "locked": "#36404A", "darkness": "#0A1C2A", "friend_glow": "#7FE8FF",
-        "foe_glow": "#FF4FA0", "light": "#FFC54A", "health": "#E0644A",
+        "panel": "#0B1726", "card": "#15304A", "pill": "#06101A", "text": "#F4EFE4", "text_muted": "#A9C2CF",
+        "primary": "#7FE8FF", "primary_edge": "#2B9BB5", "primary_text": "#08202C",
+        "reward": "#F4EFE4", "reward_edge": "#9A8F7C", "reward_text": "#101826",
+        "secondary": "#1F3D5C", "secondary_edge": "#12263A", "locked": "#12263A", "locked_text": "#6F8AA3",
+        "grove_pill": "#E0644A", "grove_pill_edge": "#8A3220", "bar_bg": "#2A1420", "health": "#E0644A",
+        "health_edge": "#A8402A", "god_ready": "#7FE8FF", "god_cooling": "#2F6B4F",
+        "darkness": "#0A1C2A", "friend_glow": "#7FE8FF", "foe_glow": "#FF4FA0", "light": "#FFC54A",
     },
 }
 GLOW_PAINTS = {"eyeGlow": "foe", "kEye": "foe", "rEye": "foe", "wEye": "foe", "kHeart": "foe",
@@ -447,82 +453,82 @@ def build_fonts() -> None:
             encoding="utf-8")
 
 
-def stylebox(id_: str, bg: str, border: str | None = None, bw: int = 0, radius: int = 18,
+def stylebox(id_: str, bg: str, edge: str | None = None, edge_w: int = 5, radius: int = 18,
              margin: tuple[int, int] = (20, 12), shadow: str | None = None) -> list[str]:
+    """A flat box with the UI kit's solid bottom edge (CSS `box-shadow: 0 5px 0 <edge>`)."""
     props = [f'[sub_resource type="StyleBoxFlat" id="{id_}"]',
              f"content_margin_left = {margin[0]}.0", f"content_margin_top = {margin[1]}.0",
-             f"content_margin_right = {margin[0]}.0", f"content_margin_bottom = {margin[1]}.0",
+             f"content_margin_right = {margin[0]}.0", f"content_margin_bottom = {margin[1] + (edge_w if edge else 0)}.0",
              f"bg_color = {bg}"]
-    if border:
-        props += [f"border_width_left = {bw}", f"border_width_top = {bw}", f"border_width_right = {bw}",
-                  f"border_width_bottom = {bw + 2}", f"border_color = {border}"]
+    if edge:
+        props += [f"border_width_bottom = {edge_w}", f"border_color = {edge}"]
     props += [f"corner_radius_top_left = {radius}", f"corner_radius_top_right = {radius}",
               f"corner_radius_bottom_right = {radius}", f"corner_radius_bottom_left = {radius}",
               "anti_aliasing_size = 1.0"]
     if shadow:
-        props += [f"shadow_color = {shadow}", "shadow_size = 10"]
+        props += [f"shadow_color = {shadow}", "shadow_size = 12"]
     return props + [""]
 
 
 def build_ui_theme(theme: str) -> None:
     p = PALETTES[theme]
-    ink = color(p["night_ink"])
+    c = color
     fonts = "res://themes/grove_default/fonts"
     lines = ['[gd_resource type="Theme" format=3]', "",
              f'[ext_resource type="FontVariation" path="{fonts}/baloo_extrabold.tres" id="1_display"]',
              f'[ext_resource type="FontVariation" path="{fonts}/baloo_bold.tres" id="2_bold"]',
              f'[ext_resource type="FontFile" path="{fonts}/hind_medium.ttf" id="3_body"]', ""]
-    lines += stylebox("primary", color(p["primary"]), ink, 3, shadow=color(p["primary"], 0.35))
-    lines += stylebox("primary_hover", color(p["primary"], 0.9), ink, 3)
-    lines += stylebox("primary_pressed", color(p["primary"], 0.75), ink, 3)
-    lines += stylebox("reward", color(p["reward"]), ink, 3)
-    lines += stylebox("reward_pressed", color(p["reward"], 0.8), ink, 3)
-    lines += stylebox("secondary", color(p["secondary"]), color(p["panel_edge"]), 2)
-    lines += stylebox("secondary_pressed", color(p["panel_edge"]), color(p["panel_edge"]), 2)
-    lines += stylebox("locked", color(p["locked"]), color(p["locked"]), 2)
-    lines += stylebox("focus", "Color(0, 0, 0, 0)", color(p["torch_gold"]), 3)
-    lines += stylebox("panel", color(p["panel"], 0.94), color(p["panel_edge"]), 2, radius=22, margin=(18, 16))
-    lines += stylebox("card", color(p["secondary"], 0.9), None, 0, radius=16, margin=(14, 12))
-    lines += stylebox("hud_pill", color(p["night_ink"], 0.72), None, 0, radius=999, margin=(12, 4))
-    lines += stylebox("bar_bg", color(p["night_ink"], 0.8), ink, 2, radius=8, margin=(0, 0))
-    lines += stylebox("bar_fill", color(p["health"]), None, 0, radius=6, margin=(0, 0))
-    lines += ["[resource]", 'default_font = ExtResource("3_body")', "default_font_size = 17",
-              # Buttons: Baloo bold, primary spirit jade
-              'Button/fonts/font = ExtResource("2_bold")', "Button/font_sizes/font_size = 22",
-              f"Button/colors/font_color = {color(p['primary_text'])}",
-              f"Button/colors/font_hover_color = {color(p['primary_text'])}",
-              f"Button/colors/font_pressed_color = {color(p['primary_text'])}",
-              f"Button/colors/font_focus_color = {color(p['primary_text'])}",
-              f"Button/colors/font_disabled_color = {color(p['text_muted'])}",
-              'Button/styles/normal = SubResource("primary")', 'Button/styles/hover = SubResource("primary_hover")',
-              'Button/styles/pressed = SubResource("primary_pressed")', 'Button/styles/disabled = SubResource("locked")',
-              'Button/styles/focus = SubResource("focus")',
-              # Variations
-              'RewardButton/base_type = &"Button"', f"RewardButton/colors/font_color = {color(p['reward_text'])}",
-              f"RewardButton/colors/font_pressed_color = {color(p['reward_text'])}",
-              f"RewardButton/colors/font_hover_color = {color(p['reward_text'])}",
-              'RewardButton/styles/normal = SubResource("reward")', 'RewardButton/styles/hover = SubResource("reward")',
-              'RewardButton/styles/pressed = SubResource("reward_pressed")',
-              'SecondaryButton/base_type = &"Button"', f"SecondaryButton/colors/font_color = {color(p['text'])}",
-              f"SecondaryButton/colors/font_hover_color = {color(p['text'])}",
-              f"SecondaryButton/colors/font_pressed_color = {color(p['text'])}",
-              'SecondaryButton/font_sizes/font_size = 18',
-              'SecondaryButton/styles/normal = SubResource("secondary")', 'SecondaryButton/styles/hover = SubResource("secondary")',
-              'SecondaryButton/styles/pressed = SubResource("secondary_pressed")',
-              # Labels
-              f"Label/colors/font_color = {color(p['text'])}", f"Label/colors/font_outline_color = {ink}",
-              'TitleLabel/base_type = &"Label"', 'TitleLabel/fonts/font = ExtResource("1_display")',
-              "TitleLabel/font_sizes/font_size = 34",
+    lines += stylebox("primary", c(p["primary"]), c(p["primary_edge"]), radius=16)
+    lines += stylebox("primary_pressed", c(p["primary_edge"]), c(p["primary_edge"]), 1, radius=16)
+    lines += stylebox("reward", c(p["reward"]), c(p["reward_edge"]), radius=16)
+    lines += stylebox("reward_pressed", c(p["reward_edge"]), c(p["reward_edge"]), 1, radius=16)
+    lines += stylebox("secondary", c(p["secondary"]), c(p["secondary_edge"]), radius=16)
+    lines += stylebox("secondary_pressed", c(p["secondary_edge"]), c(p["secondary_edge"]), 1, radius=16)
+    lines += stylebox("locked", c(p["locked"]), None, radius=16)
+    lines += stylebox("focus", "Color(0, 0, 0, 0)", None, radius=16)
+    lines += stylebox("panel", c(p["panel"]), None, radius=26, margin=(16, 18), shadow="Color(0, 0, 0, 0.5)")
+    lines += stylebox("card", c(p["card"]), None, radius=16, margin=(14, 10))
+    lines += stylebox("card_pressed", c(p["secondary"]), None, radius=16, margin=(14, 10))
+    lines += stylebox("hud_pill", c(p["pill"], 0.72), None, radius=999, margin=(10, 3))
+    lines += stylebox("grove_pill", c(p["grove_pill"]), c(p["grove_pill_edge"]), 3, radius=999, margin=(14, 2))
+    lines += stylebox("price_pill", c(p["reward"]), c(p["reward_edge"]), 3, radius=999, margin=(10, 1))
+    lines += stylebox("bar_bg", c(p["bar_bg"]), None, radius=6, margin=(0, 0))
+    lines += stylebox("bar_fill", c(p["health"]), c(p["health_edge"]), 3, radius=6, margin=(0, 0))
+    btn = lambda name, normal, pressed, text: [  # noqa: E731
+        f'{name}/styles/normal = SubResource("{normal}")', f'{name}/styles/hover = SubResource("{normal}")',
+        f'{name}/styles/pressed = SubResource("{pressed}")', f'{name}/styles/focus = SubResource("focus")',
+        f'{name}/styles/disabled = SubResource("locked")',
+        *[f"{name}/colors/{k} = {c(text)}" for k in ("font_color", "font_hover_color", "font_pressed_color", "font_focus_color")],
+        f"{name}/colors/font_disabled_color = {c(p['locked_text'])}"]
+    lines += ["[resource]", 'default_font = ExtResource("3_body")', "default_font_size = 15",
+              'Button/fonts/font = ExtResource("2_bold")', "Button/font_sizes/font_size = 20",
+              *btn("Button", "primary", "primary_pressed", p["primary_text"]),
+              'RewardButton/base_type = &"Button"', *btn("RewardButton", "reward", "reward_pressed", p["reward_text"]),
+              'SecondaryButton/base_type = &"Button"', "SecondaryButton/font_sizes/font_size = 18",
+              *btn("SecondaryButton", "secondary", "secondary_pressed", p["text"]),
+              'CardButton/base_type = &"Button"', 'CardButton/styles/normal = SubResource("card")',
+              'CardButton/styles/hover = SubResource("card")', 'CardButton/styles/pressed = SubResource("card_pressed")',
+              'CardButton/styles/disabled = SubResource("card")', 'CardButton/styles/focus = SubResource("focus")',
+              f"Label/colors/font_color = {c(p['text'])}", f"Label/colors/font_outline_color = {c(p['night_ink'])}",
+              'TitleLabel/base_type = &"Label"', 'TitleLabel/fonts/font = ExtResource("2_bold")',
+              "TitleLabel/font_sizes/font_size = 17",
+              'HeadingLabel/base_type = &"Label"', 'HeadingLabel/fonts/font = ExtResource("1_display")',
+              "HeadingLabel/font_sizes/font_size = 30",
               'DisplayLabel/base_type = &"Label"', 'DisplayLabel/fonts/font = ExtResource("1_display")',
-              "DisplayLabel/font_sizes/font_size = 72",
+              "DisplayLabel/font_sizes/font_size = 64", "DisplayLabel/constants/outline_size = 10",
+              f"DisplayLabel/colors/font_outline_color = {c(p['geru_earth'])}",
               'NumberLabel/base_type = &"Label"', 'NumberLabel/fonts/font = ExtResource("1_display")',
-              "NumberLabel/font_sizes/font_size = 22", "NumberLabel/constants/outline_size = 6",
-              'MutedLabel/base_type = &"Label"', f"MutedLabel/colors/font_color = {color(p['text_muted'])}",
-              "MutedLabel/font_sizes/font_size = 14",
-              # Panels
+              "NumberLabel/font_sizes/font_size = 17", "NumberLabel/constants/outline_size = 6",
+              'FrenzyLabel/base_type = &"Label"', 'FrenzyLabel/fonts/font = ExtResource("1_display")',
+              "FrenzyLabel/font_sizes/font_size = 22", f"FrenzyLabel/colors/font_color = {c(p['meat_amber'])}",
+              "FrenzyLabel/constants/outline_size = 6",
+              'MutedLabel/base_type = &"Label"', f"MutedLabel/colors/font_color = {c(p['text_muted'])}",
+              "MutedLabel/font_sizes/font_size = 13",
               'PanelContainer/styles/panel = SubResource("panel")', 'Panel/styles/panel = SubResource("panel")',
               'CardPanel/base_type = &"PanelContainer"', 'CardPanel/styles/panel = SubResource("card")',
               'HudPill/base_type = &"PanelContainer"', 'HudPill/styles/panel = SubResource("hud_pill")',
+              'GrovePill/base_type = &"PanelContainer"', 'GrovePill/styles/panel = SubResource("grove_pill")',
+              'PricePill/base_type = &"PanelContainer"', 'PricePill/styles/panel = SubResource("price_pill")',
               'ProgressBar/styles/background = SubResource("bar_bg")', 'ProgressBar/styles/fill = SubResource("bar_fill")',
               "ProgressBar/font_sizes/font_size = 1", ""]
     (THEMES / theme / "ui_theme.tres").write_text("\n".join(lines), encoding="utf-8")

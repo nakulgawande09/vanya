@@ -1,0 +1,220 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://ui/hud/hud.gd" id="1_hud"]
+[ext_resource type="Script" path="res://ui/hud/joystick.gd" id="2_joy"]
+
+[node name="Hud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_hud")
+
+[node name="Flash" type="ColorRect" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Joystick" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_joy")
+
+[node name="Top" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 120.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 14
+
+[node name="Rows" type="VBoxContainer" parent="Top"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="Row1" type="HBoxContainer" parent="Top/Rows"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="HealthPill" type="PanelContainer" parent="Top/Rows/Row1"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_type_variation = &"HudPill"
+
+[node name="Box" type="HBoxContainer" parent="Top/Rows/Row1/HealthPill"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="HeartIcon" type="TextureRect" parent="Top/Rows/Row1/HealthPill/Box"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HealthBar" type="ProgressBar" parent="Top/Rows/Row1/HealthPill/Box"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+mouse_filter = 2
+value = 100.0
+show_percentage = false
+
+[node name="HealthLabel" type="Label" parent="Top/Rows/Row1/HealthPill/Box"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+theme_type_variation = &"NumberLabel"
+text = "100"
+horizontal_alignment = 2
+
+[node name="GrovePill" type="PanelContainer" parent="Top/Rows/Row1"]
+layout_mode = 2
+mouse_filter = 2
+theme_type_variation = &"GrovePill"
+
+[node name="GroveLabel" type="Label" parent="Top/Rows/Row1/GrovePill"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"NumberLabel"
+text = "Grove 1"
+
+[node name="Row2" type="HBoxContainer" parent="Top/Rows"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="MeatPill" type="PanelContainer" parent="Top/Rows/Row2"]
+layout_mode = 2
+mouse_filter = 2
+theme_type_variation = &"HudPill"
+
+[node name="Box" type="HBoxContainer" parent="Top/Rows/Row2/MeatPill"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MeatIcon" type="TextureRect" parent="Top/Rows/Row2/MeatPill/Box"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MeatLabel" type="Label" parent="Top/Rows/Row2/MeatPill/Box"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"NumberLabel"
+text = "0"
+
+[node name="SpiritPill" type="PanelContainer" parent="Top/Rows/Row2"]
+layout_mode = 2
+mouse_filter = 2
+theme_type_variation = &"HudPill"
+
+[node name="Box" type="HBoxContainer" parent="Top/Rows/Row2/SpiritPill"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="SpiritIcon" type="TextureRect" parent="Top/Rows/Row2/SpiritPill/Box"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SpiritLabel" type="Label" parent="Top/Rows/Row2/SpiritPill/Box"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"NumberLabel"
+text = "0"
+
+[node name="GuidePill" type="PanelContainer" parent="Top/Rows/Row2"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_type_variation = &"HudPill"
+
+[node name="Box" type="HBoxContainer" parent="Top/Rows/Row2/GuidePill"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="GuideIcon" type="TextureRect" parent="Top/Rows/Row2/GuidePill/Box"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(22, 18)
+layout_mode = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="GuideLabel" type="Label" parent="Top/Rows/Row2/GuidePill/Box"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"TitleLabel"
+text = "Pira"
+
+[node name="Spacer" type="Control" parent="Top/Rows/Row2"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="FrenzyLabel" type="Label" parent="Top/Rows/Row2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"FrenzyLabel"
+text = "×6 frenzy"
+
+[node name="WaveLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 150.0
+offset_bottom = 190.0
+grow_horizontal = 2
+theme_type_variation = &"HeadingLabel"
+text = "Wave 1 / 3"
+horizontal_alignment = 1
+
+[node name="Gods" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -96.0
+offset_right = -14.0
+offset_bottom = -36.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = 10
+alignment = 2

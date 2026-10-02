@@ -32,6 +32,9 @@ jobs:
       - name: Import project
         run: ${{ steps.godot.outputs.bin }} --headless --path client --import
 
+      - name: Compile every script (strict typing)
+        run: ${{ steps.godot.outputs.bin }} --headless --path client -s ../tools/check_scripts.gd
+
       - name: Smoke boot (no script or scene errors)
         run: |
           ${{ steps.godot.outputs.bin }} --headless --path client --quit-after 120 2>&1 | tee smoke.log
@@ -42,6 +45,18 @@ jobs:
           ${{ steps.godot.outputs.bin }} --headless --path client -s -d
           --remote-debug tcp://127.0.0.1:0
           res://addons/gdUnit4/bin/GdUnitCmdTool.gd --ignoreHeadlessMode -a res://tests
+
+      - name: Benchmark (swarm of 40, CPU only)
+        run: |
+          ${{ steps.godot.outputs.bin }} --headless --path client res://bench/bench_swarm_40.tscn 2>&1 | tee bench.log
+          grep '^{' bench.log > bench_swarm_40.json
+          cat bench_swarm_40.json
+
+      - name: Upload benchmark
+        uses: actions/upload-artifact@v4
+        with:
+          name: bench
+          path: bench_swarm_40.json
 
       - name: Upload test report
         if: always()

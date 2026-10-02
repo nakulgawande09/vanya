@@ -1,6 +1,6 @@
 # Art bible: palette, type and asset rules
 
-Extracted from the *Vanya Asset Bible v1* (style guide board). The full boards (Hunter, Blight beasts, Rotheart, Gods and the shrine, Guides and cages, Grove tiles, Screens and UI kit, Store assets) will be exported later. These tokens are already in `client/themes/grove_default/manifest.json` (`palette`) and `ui_theme.tres`.
+From the *Vanya Asset Bible v1.1* style guide board. All 11 boards are imported into `client/themes/` by `pipelines/asset/` (see its README and ADR-0005). These tokens live in `client/themes/grove_default/manifest.json` (`palette`) and `ui_theme.tres`; the UI-kit colours (plum panels, button edges, HUD pills) are in `pipelines/asset/build_scenes.py`.
 
 ## Palette
 
@@ -25,7 +25,7 @@ Extracted from the *Vanya Asset Bible v1* (style guide board). The full boards (
 - **Baloo 2 ExtraBold:** titles, numbers, buttons, banners (has Devanagari for hi/mr)
 - **Hind Medium:** body copy, descriptions, tooltips, store copy (has Devanagari)
 
-The fonts are not in the repo yet. Add them under `client/themes/grove_default/fonts/` through Git LFS and wire them into `ui_theme.tres`.
+Both fonts are in `client/themes/grove_default/fonts/` (OFL) and wired into the UI theme.
 
 ## Rules for every asset
 1. Build figures from triangles, circles and lines, the Warli vocabulary. Never copy a specific painting.

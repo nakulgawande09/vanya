@@ -1,0 +1,118 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://ui/screens/defeat.gd" id="1_defeat"]
+
+[node name="Defeat" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_defeat")
+
+[node name="Backdrop" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0784, 0.051, 0.1098, 1)
+
+[node name="Art" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Sheet" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -320.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Box" type="VBoxContainer" parent="Sheet"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Title" type="Label" parent="Sheet/Box"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"HeadingLabel"
+text = "DEFEAT_TITLE"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Summary" type="Label" parent="Sheet/Box"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"MutedLabel"
+text = "Grove 7 · 58 beasts cleansed · 4 animals freed"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Gains" type="HBoxContainer" parent="Sheet/Box"]
+layout_mode = 2
+theme_override_constants/separation = 22
+alignment = 1
+
+[node name="MeatIcon" type="TextureRect" parent="Sheet/Box/Gains"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MeatGain" type="Label" parent="Sheet/Box/Gains"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"HeadingLabel"
+text = "+64"
+
+[node name="SpiritIcon" type="TextureRect" parent="Sheet/Box/Gains"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SpiritGain" type="Label" parent="Sheet/Box/Gains"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"HeadingLabel"
+text = "+12"
+
+[node name="ReviveButton" type="Button" parent="Sheet/Box"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+theme_type_variation = &"RewardButton"
+text = "WATCH_AD_REVIVE"
+
+[node name="ReviveCaption" type="Label" parent="Sheet/Box"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"MutedLabel"
+text = "REVIVE_CAPTION"
+horizontal_alignment = 1
+
+[node name="CampButton" type="Button" parent="Sheet/Box"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_type_variation = &"SecondaryButton"
+text = "BACK_TO_CAMP"

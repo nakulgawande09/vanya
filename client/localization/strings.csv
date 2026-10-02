@@ -3,4 +3,28 @@ APP_TITLE,VANYA,वन्या,वन्या
 APP_SUBTITLE,Guardians of the Grove,उपवन के रक्षक,वनाचे रक्षक
 ENTER_GROVE,Enter the grove,उपवन में प्रवेश करें,वनात प्रवेश करा
 BACK_TO_CAMP,Back to camp,शिविर में लौटें,छावणीत परत जा
-GROVE_PLACEHOLDER_HINT,Drag to move,चलने के लिए खींचें,हलवण्यासाठी ओढा
+ARROWS_TITLE,Arrows,तीर,बाण
+PAID_IN,paid in %s,%s से भुगतान,%s ने भरा
+SHRINE_TITLE,Shrine of the elder gods,प्राचीन देवों का मंदिर,प्राचीन देवांचे देऊळ
+SHRINE_NEXT,next,अगला,पुढील
+SHRINE_MAX,max,अधिकतम,कमाल
+EQUIPPED,Equipped,लगा हुआ,लावलेला
+EQUIP,Equip,लगाएँ,लावा
+ARROW_STONE,Stone arrows,पत्थर के तीर,दगडी बाण
+ARROW_FLINT,Flint arrows,चकमक के तीर,गारगोटी बाण
+ARROW_BONE,Bone arrows,हड्डी के तीर,हाडाचे बाण
+ARROW_RAPID,Rapid bow,तेज़ धनुष,जलद धनुष्य
+ARROW_DESC,%d damage,%d क्षति,%d नुकसान
+ARROW_DESC_PIERCE,%d damage · pierces one beast,%d क्षति · एक जानवर को भेदता है,%d नुकसान · एका पशूला भेदतो
+ARROW_DESC_TWIN,%d damage · twin shot,%d क्षति · दोहरा वार,%d नुकसान · दुहेरी बाण
+SHRINE_DAMAGE,+%d%% damage,+%d%% क्षति,+%d%% नुकसान
+SHRINE_HEALTH,+%d health,+%d स्वास्थ्य,+%d आरोग्य
+SHRINE_SPEED,+%d%% speed,+%d%% गति,+%d%% वेग
+SHRINE_LIGHT,"+%d%% light, reach","+%d%% रोशनी, पहुँच","+%d%% प्रकाश, पोहोच"
+THEME_BUTTON,World: %s,दुनिया: %s,जग: %s
+HUD_GROVE,Grove %d,उपवन %d,वन %d
+HUD_FRENZY,×%d frenzy,×%d उन्माद,×%d उन्माद
+HUD_WAVE,Wave %d / %d,लहर %d / %d,लाट %d / %d
+DEFEAT_SUMMARY,Grove %d · %d beasts cleansed · %d animals freed,उपवन %d · %d जानवर शुद्ध · %d जीव मुक्त,वन %d · %d पशू शुद्ध · %d प्राणी मुक्त
+WATCH_AD_REVIVE,Watch ad to rise again,फिर उठने के लिए विज्ञापन देखें,पुन्हा उठण्यासाठी जाहिरात पाहा
+REVIVE_CAPTION,Revive once per grove · rewarded ad,हर उपवन में एक बार · पुरस्कृत विज्ञापन,प्रत्येक वनात एकदा · बक्षीस जाहिरात

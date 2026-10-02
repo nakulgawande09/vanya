@@ -70,3 +70,16 @@ func test_contacts_reported_and_rooted_units_stay() -> void:
 	var before: Vector2 = sim.pos[i]
 	_run(sim, grid, 30, Vector2(600, 800))
 	assert_float(sim.pos[i].distance_to(before)).is_less(2.0)
+
+
+func test_separation_ignores_foreign_handles_in_shared_grid() -> void:
+	var sim: SwarmSim = SwarmSim.new(4, 14.0, 72.0, BOUNDS)
+	var i: int = sim.spawn(Vector2(300, 300), 30)
+	sim.state[i] = SwarmSim.State.RUN
+	var grid: SpatialHash = SpatialHash.new(BOUNDS, 64.0, 8)
+	grid.clear()
+	grid.insert(i, sim.pos[i], sim.radius)
+	grid.insert(1003, Vector2(305, 300), 26.0)  # a scene enemy handle (CombatWorld.SCENE_BASE + 3)
+	grid.commit()
+	sim.tick(1.0 / 30.0, Vector2(600, 600), 14.0, grid)
+	assert_bool(sim.is_active(i)).is_true()

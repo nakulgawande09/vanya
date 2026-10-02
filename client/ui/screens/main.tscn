@@ -1,7 +1,6 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://ui/screens/main.gd" id="1_main"]
-[ext_resource type="Texture2D" path="res://icon.svg" id="2_icon"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -20,68 +19,156 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.0863, 0.1412, 0.1216, 1)
+color = Color(0.0784, 0.051, 0.1098, 1)
 
-[node name="Margin" type="MarginContainer" parent="."]
+[node name="Art" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 300.0
+grow_horizontal = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 58.0
+offset_bottom = 140.0
+grow_horizontal = 2
+theme_type_variation = &"DisplayLabel"
+text = "APP_TITLE"
+horizontal_alignment = 1
+
+[node name="Currencies" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
+offset_top = 16.0
+offset_right = -14.0
+offset_bottom = 46.0
+grow_horizontal = 0
+theme_override_constants/separation = 8
+alignment = 2
+
+[node name="MeatPill" type="PanelContainer" parent="Currencies"]
+layout_mode = 2
+theme_type_variation = &"HudPill"
+
+[node name="Box" type="HBoxContainer" parent="Currencies/MeatPill"]
+layout_mode = 2
+
+[node name="MeatIcon" type="TextureRect" parent="Currencies/MeatPill/Box"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MeatLabel" type="Label" parent="Currencies/MeatPill/Box"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"NumberLabel"
+text = "0"
+
+[node name="SpiritPill" type="PanelContainer" parent="Currencies"]
+layout_mode = 2
+theme_type_variation = &"HudPill"
+
+[node name="Box" type="HBoxContainer" parent="Currencies/SpiritPill"]
+layout_mode = 2
+
+[node name="SpiritIcon" type="TextureRect" parent="Currencies/SpiritPill/Box"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SpiritLabel" type="Label" parent="Currencies/SpiritPill/Box"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"NumberLabel"
+text = "0"
+
+[node name="Sheet" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 284.0
+offset_right = -6.0
+offset_bottom = -6.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 48
-theme_override_constants/margin_top = 96
-theme_override_constants/margin_right = 48
-theme_override_constants/margin_bottom = 96
 
-[node name="Column" type="VBoxContainer" parent="Margin"]
+[node name="Scroll" type="ScrollContainer" parent="Sheet"]
 layout_mode = 2
-theme_override_constants/separation = 24
+horizontal_scroll_mode = 0
 
-[node name="Currencies" type="HBoxContainer" parent="Margin/Column"]
+[node name="Box" type="VBoxContainer" parent="Sheet/Scroll"]
 layout_mode = 2
-theme_override_constants/separation = 32
-alignment = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
 
-[node name="MeatLabel" type="Label" parent="Margin/Column/Currencies"]
+[node name="EnterButton" type="Button" parent="Sheet/Scroll/Box"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 58)
 layout_mode = 2
-text = "CURRENCY_MEAT"
-
-[node name="SpiritLabel" type="Label" parent="Margin/Column/Currencies"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "CURRENCY_SPIRIT"
-
-[node name="TopSpacer" type="Control" parent="Margin/Column"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Emblem" type="TextureRect" parent="Margin/Column"]
-custom_minimum_size = Vector2(0, 280)
-layout_mode = 2
-texture = ExtResource("2_icon")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Title" type="Label" parent="Margin/Column"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 96
-text = "APP_TITLE"
-horizontal_alignment = 1
-
-[node name="Subtitle" type="Label" parent="Margin/Column"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 34
-text = "APP_SUBTITLE"
-horizontal_alignment = 1
-
-[node name="BottomSpacer" type="Control" parent="Margin/Column"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="EnterButton" type="Button" parent="Margin/Column"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 112)
-layout_mode = 2
+theme_override_font_sizes/font_size = 22
 text = "ENTER_GROVE"
+
+[node name="ArrowsHeader" type="HBoxContainer" parent="Sheet/Scroll/Box"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Sheet/Scroll/Box/ArrowsHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"TitleLabel"
+text = "ARROWS_TITLE"
+
+[node name="ArrowsPaid" type="Label" parent="Sheet/Scroll/Box/ArrowsHeader"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"MutedLabel"
+text = "paid in meat"
+
+[node name="ArrowList" type="VBoxContainer" parent="Sheet/Scroll/Box"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ShrineHeader" type="HBoxContainer" parent="Sheet/Scroll/Box"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Sheet/Scroll/Box/ShrineHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"TitleLabel"
+text = "SHRINE_TITLE"
+
+[node name="ShrinePaid" type="Label" parent="Sheet/Scroll/Box/ShrineHeader"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"MutedLabel"
+text = "paid in spirit"
+
+[node name="ShrineGrid" type="GridContainer" parent="Sheet/Scroll/Box"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="ThemeButton" type="Button" parent="Sheet/Scroll/Box"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_type_variation = &"SecondaryButton"
+text = "THEME_BUTTON"

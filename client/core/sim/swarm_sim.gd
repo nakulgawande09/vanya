@@ -168,8 +168,8 @@ func _separation(i: int, grid: SpatialHash) -> Vector2:
 	var n: int = grid.query_circle(pos[i], radius, _neighbours)
 	for k: int in n:
 		var j: int = _neighbours[k]
-		if j == i:
-			continue
+		if j == i or j >= capacity:
+			continue  # self, or a non-swarm handle sharing the broadphase
 		var away: Vector2 = pos[i] - pos[j]
 		var d: float = away.length()
 		if d > 0.001:

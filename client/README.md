@@ -5,19 +5,18 @@ The Godot 4.7.2 project. Its layout follows [docs/standards.md §A.2](../docs/st
 | Folder | Contents |
 |---|---|
 | `autoload/` | The 6 autoloads: `Boot`, `EventBus`, `Services`, `AdaptiveQuality`, `ThemeRegistry`, `SceneRouter` |
-| `core/` | Pure logic: archetype IDs and defs, `SeededRng`, CRC32, typed conversions. Later: combat math and swarm sim |
-| `gameplay/` | Nodes that use `core/`: player, enemies, swarm, projectiles, room, fx, lighting. Today only the placeholder player, grove room and fake light exist |
+| `core/` | Pure logic: archetype/arrow/god/shrine/wave defs, `SpatialHash`, `SwarmSim`, `RunState`, `Profile` economy, `WavePlanner`, `SeededRng`, CRC32 |
+| `gameplay/` | The run (`run/grove_run`), `combat/CombatWorld` (fixed-order tick), swarm MultiMesh flipbook, projectiles, scene enemies + Rotheart, pickups, fx, gods, guides, room layout/waves/cages, darkness veil + emissives |
 | `pcg/`, `dda/` | Room generator and difficulty adjustment (empty) |
-| `ui/` | Screens, widgets, HUD, accessibility. Today only the camp screen stub |
+| `ui/` | Camp (shop + shrine + theme toggle), defeat/revive, HUD (pills, frenzy, joystick, god buttons) |
 | `services/` | Interfaces and fake adapters: ads, iap, analytics, thermal; the real `SaveService` |
-| `data/` | Typed `.tres` data: the quality ladder; archetype defs come later |
-| `themes/grove_default/` | Bundled default theme: manifest, placeholder Warli-shape rigs, UI theme |
+| `data/` | Typed `.tres` data: archetypes, arrows, gods, shrine, waves, quality ladder |
+| `themes/` | `grove_default` (the Asset Bible) and `deep_reef` (test theme, inherits the rest): SVG art, generated scenes, manifest v2, strings |
 | `localization/` | `strings.csv` (en/hi/mr) |
 | `platform/` | Android/iOS native plugin notes (ADPF thermal, Game State) |
-| `bench/` | Headless benchmark scenes (empty) |
+| `bench/` | `bench_swarm_40.tscn`: headless CPU benchmark |
 | `tests/` | GdUnit4 suites: `unit/`, `scene/`, `golden/` |
 | `addons/` | Third-party plugins. `gdUnit4` is installed by `tools/setup_godot.sh` and gitignored |
 
-## Where the prototypes and art go
-- Prototype gameplay ports into `gameplay/` and `core/`, behind the typing and dependency rules.
-- Exported Asset Bible art replaces the placeholder `themes/grove_default/rigs/*.tscn` scenes. Keep the same archetype IDs and paths so no code changes are needed. Raster files need Git LFS (see `.gitattributes`).
+## Where the prototypes go
+Port prototype logic into `gameplay/` and `core/`, keeping the typing and dependency rules. The first-playable systems are deliberately small, so they can be swapped piece by piece. Art changes go through `pipelines/asset/`, never by hand-editing the generated theme scenes.
