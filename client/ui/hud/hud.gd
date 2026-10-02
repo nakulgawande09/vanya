@@ -30,6 +30,9 @@ signal skip_pressed
 @onready var _skip: Button = %SkipButton
 
 var flash_intensity: float = 1.0
+var tuning: FeelTuning = FeelTuning.new()
+## Debug builds only: the feel-test overlay (3-finger tap or F3).
+var overlay: FeelOverlay
 var _buttons: Dictionary[StringName, GodButton] = {}
 var _vignette: TextureRect
 var _vignette_t: float = 0.0
@@ -41,6 +44,9 @@ var _pointer_t: float = 0.0
 var _flash_t: float = 0.0
 var _guide: StringName = &"-"
 var _frenzy: int = -1
+var _vj: VirtualJoystick
+var _insets: Vector4 = Vector4.ZERO
+var _base_offsets: Dictionary[Control, Vector4] = {}
 
 
 func _ready() -> void:
@@ -67,6 +73,15 @@ func _ready() -> void:
 		Ids.VAYLI: ThemeRegistry.color(&"spirit_jade"),
 	}
 	_build_vignette()
+	for c: Control in [get_node("Top") as Control, _gods, _tip, _wave_label, _joystick]:
+		_base_offsets[c] = SafeArea.base_of(c)
+	_apply_safe_area()
+	get_viewport().size_changed.connect(_apply_safe_area)
+	if OS.is_debug_build() or OS.has_feature("feeltest"):
+		overlay = FeelOverlay.new()
+		overlay.name = "FeelOverlay"
+		add_child(overlay)
+		overlay.tuning_changed.connect(func() -> void: apply_tuning(tuning))
 	for i: int in 12:
 		var f: TextureRect = TextureRect.new()
 		f.custom_minimum_size = Vector2(18, 18)
@@ -113,8 +128,31 @@ func point_at(screen_pos: Vector2) -> void:
 
 
 func joystick_rest() -> Vector2:
-	return _joystick.position + Vector2(70.0 if not _joystick.left_handed else _joystick.size.x - 70.0,
-			_joystick.size.y - 80.0 - FloatingJoystick.RADIUS - 8.0)
+	return _joystick.position + Vector2(FloatingJoystick.REST_X if not _joystick.left_handed else _joystick.size.x - FloatingJoystick.REST_X,
+			_joystick.size.y - FloatingJoystick.REST_Y - _joystick.radius() - 8.0)
+
+
+## Joystick feel from FeelTuning; `joystick_builtin` swaps in Godot's VirtualJoystick for A/B tests.
+func apply_tuning(t: FeelTuning) -> void:
+	tuning = t
+	_joystick.set_tuning(t)
+	_joystick.visible = not t.joystick_builtin
+	if t.joystick_builtin:
+		if _vj == null:
+			_vj = VirtualJoystick.new()
+			_vj.name = "VirtualJoystick"
+			_vj.action_left = &"move_left"
+			_vj.action_right = &"move_right"
+			_vj.action_up = &"move_up"
+			_vj.action_down = &"move_down"
+			add_child(_vj)
+			move_child(_vj, _joystick.get_index())
+		_vj.visible = true
+		_layout_builtin_stick()
+	elif _vj != null:
+		_vj.visible = false
+	if overlay != null:
+		overlay.tuning = t
 
 
 func god_button_position(god: StringName) -> Vector2:
@@ -195,6 +233,35 @@ func fly_pickup(kind: StringName, from_screen: Vector2) -> void:
 
 func set_left_handed(value: bool) -> void:
 	_joystick.left_handed = value
+	_joystick.refresh_rest()
+	if _vj != null and _vj.visible:
+		_layout_builtin_stick()
+
+
+func _layout_builtin_stick() -> void:
+	var view: Vector2 = size
+	var zone: Rect2 = Rect2(view.x * (0.4 if _joystick.left_handed else 0.0), view.y * 0.35, view.x * 0.6,
+			view.y * 0.65 - 4.0 - _insets.w)
+	_vj.position = zone.position
+	_vj.size = zone.size
+	var modes: Array[VirtualJoystick.JoystickMode] = [VirtualJoystick.JOYSTICK_FIXED, VirtualJoystick.JOYSTICK_DYNAMIC,
+			VirtualJoystick.JOYSTICK_FOLLOWING]
+	_vj.joystick_mode = modes[tuning.joystick_mode]
+	_vj.joystick_size = tuning.joystick_radius * 2.0
+	_vj.tip_size = FloatingJoystick.KNOB * 2.0
+	_vj.deadzone_ratio = tuning.joystick_deadzone
+	_vj.clampzone_ratio = 1.0
+	var rest_x: float = (zone.size.x - FloatingJoystick.REST_X) if _joystick.left_handed else FloatingJoystick.REST_X
+	_vj.initial_offset_ratio = Vector2(rest_x / zone.size.x, (zone.size.y + 4.0 - FloatingJoystick.REST_Y) / zone.size.y)
+	_vj.visibility_mode = VirtualJoystick.VISIBILITY_ALWAYS if tuning.joystick_mode == FeelTuning.JoystickMode.FIXED \
+			else VirtualJoystick.VISIBILITY_WHEN_TOUCHED
+
+
+## Keeps the top rows, tips and god buttons clear of notches and the gesture bar.
+func _apply_safe_area() -> void:
+	_insets = SafeArea.insets(get_viewport())
+	for c: Control in _base_offsets:
+		SafeArea.shift(c, _base_offsets[c], _insets)
 
 
 func _build_vignette() -> void:

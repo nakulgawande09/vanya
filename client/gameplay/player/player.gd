@@ -79,7 +79,8 @@ func tick(delta: float) -> void:
 		return
 	var v: Vector2 = input_vector
 	if v == Vector2.ZERO:
-		v = Input.get_vector(&"move_left", &"move_right", &"move_up", &"move_down")
+		# Keys, or the built-in VirtualJoystick when it is on (it applies its own dead zone).
+		v = Input.get_vector(&"move_left", &"move_right", &"move_up", &"move_down", 0.05)
 	var pace: float = speed * (world.field.speed_factor(global_position) if world != null else 1.0)
 	velocity = v * pace
 	move_and_slide()

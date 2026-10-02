@@ -25,6 +25,7 @@ stream = SubResource("AudioStreamRandomizer_pimyi")
 poly = 3
 pan = true
 cooldown_ms = 40
+bytes = 41808
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ry6v4"]
 random_pitch = 1.06
@@ -42,6 +43,7 @@ tier = 3
 poly = 3
 pan = true
 cooldown_ms = 60
+bytes = 25272
 
 [resource]
 script = ExtResource("9_exwcx")

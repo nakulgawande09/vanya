@@ -58,3 +58,35 @@ export-android-debug:
     {{godot}} --headless --path client --import
     mkdir -p out/android
     {{godot}} --headless --path client --install-android-build-template --export-debug "Android Debug" ../out/android/vanya-debug.apk
+
+# --- Real-phone feel test (docs/feel-test/feel-test-plan.md) ---------------------------------
+
+package := "com.curiosapien.vanya"
+
+# Install the debug APK on the connected phone and launch it
+deploy apk="out/android/vanya-debug.apk":
+    adb install -r {{apk}}
+    adb shell monkey -p {{package}} -c android.intent.category.LAUNCHER 1
+
+# Connect to a phone over Wi-Fi (pair first: adb pair IP:PORT CODE), then deploy
+deploy-wifi address apk="out/android/vanya-debug.apk":
+    adb connect {{address}}
+    just deploy {{apk}}
+
+# Tail Godot's log on the phone
+logcat:
+    adb logcat -s godot:V
+
+# Copy the overlay's feeltest_*.csv files off the phone (debug builds; uses run-as)
+pull-feeltest:
+    mkdir -p out/feeltest
+    for f in $(adb exec-out run-as {{package}} ls files | tr -d '\r' | grep '^feeltest_'); do adb exec-out run-as {{package}} cat files/$f > out/feeltest/$f; echo "pulled $f"; done
+
+# Log battery and thermal state from the computer every 10 s (cross-check for the overlay)
+phone-stats out="out/feeltest/phone_stats.log":
+    mkdir -p out/feeltest
+    while true; do date +%T | tee -a {{out}}; adb shell dumpsys battery | grep -E 'level|temperature' | tee -a {{out}}; adb shell dumpsys thermalservice | grep -iE 'headroom|status' | head -n 4 | tee -a {{out}}; sleep 10; done
+
+# Summarise a feel-test CSV for the results template
+feeltest-report csv:
+    python3 tools/feeltest_report.py {{csv}}

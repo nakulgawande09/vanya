@@ -85,6 +85,11 @@ func play(e: AudioEntry, at: Vector2, pitch: float, volume_db: float, now_ms: in
 	return slot
 
 
+## True while `e` may not start again yet (checked before any other work).
+func cooling(e: AudioEntry, now_ms: int) -> bool:
+	return e.cooldown_ms > 0 and _last_start.has(e.id) and now_ms - _last_start[e.id] < e.cooldown_ms
+
+
 func stop(voice: int) -> void:
 	if voice < 0 or voice >= _players.size():
 		return
@@ -125,8 +130,9 @@ func voices_of(id: StringName) -> int:
 func _start(slot: int, e: AudioEntry, at: Vector2, pitch: float, volume_db: float) -> void:
 	var p: Node = _players[slot]
 	p.call(&"stop")
-	p.set(&"stream", e.stream)
-	p.set(&"bus", e.bus)
+	if _entry[slot] != e:
+		p.set(&"stream", e.stream)
+		p.set(&"bus", e.bus)
 	p.set(&"pitch_scale", pitch)
 	p.set(&"volume_db", volume_db)
 	if p is AudioStreamPlayer2D:

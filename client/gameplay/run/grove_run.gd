@@ -154,6 +154,7 @@ func _ready() -> void:
 	_hud.set_currencies(run.meat, run.spirit)
 	_hud.flash_intensity = settings.flash_intensity
 	_hud.set_left_handed(settings.left_handed)
+	_hud.apply_tuning(tuning)
 	_hud.pause_pressed.connect(open_pause)
 	_pause.resume_pressed.connect(resume)
 	_pause.settings_pressed.connect(func() -> void:

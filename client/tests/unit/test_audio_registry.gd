@@ -70,5 +70,7 @@ func test_deep_reef_overrides_rotling_and_inherits_the_rest() -> void:
 func test_resident_audio_fits_the_low_tier_budget() -> void:
 	var a: GodotAudio = _audio()
 	a.music_context(&"run")
-	assert_float(a.resident_bytes / 1048576.0).is_less(10.5)
+	var mb: float = a.resident_bytes / 1048576.0
+	assert_float(mb).is_greater(2.0)
+	assert_float(mb).is_less(10.5)
 	a.music_context(&"")

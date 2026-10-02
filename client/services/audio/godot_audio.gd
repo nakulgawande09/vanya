@@ -92,6 +92,9 @@ func play(id: StringName, at: Vector2 = NO_POS, pitch: float = 1.0) -> void:
 	var e: AudioEntry = resolve(id)
 	if e == null or e.loop:
 		return
+	if pool.cooling(e, Time.get_ticks_msec()):
+		pool.cooldown_skips += 1
+		return
 	var vol: float = 0.0
 	if at.is_finite() and e.pan and not _on_screen(at):
 		if e.tier > AudioEntry.Tier.P2:

@@ -38,6 +38,7 @@ Room budget = 10 + 4 × (grove − 1), multiplied by the DDA scale (0.75–1.25;
 - **First-run tutorial grove:** move → bow → free the bird → call Meghra → gate, with a Skip button.
 
 ## Deliberate gaps (next)
-- Audio: no SFX or music yet (the bible has no audio). This is the biggest remaining feel gap.
+- Audio: placeholder SFX (91 IDs), adaptive music (grove/boss stems, camp, stingers) and ambience are synthesised by `pipelines/audio` and play through `Services.audio` (Audio Bible, `docs/audio/audio-bible.md`; ADR-0007). They are deliberately simple stand-ins for composed audio. Haptics follow the Bible's map.
+- Feel is tuned on a real phone with the debug overlay and the protocol in `docs/feel-test/feel-test-plan.md`. Every knob lives in `client/data/feel/feel_tuning.tres`.
 - Re-fitting the DDA constants from playtest `room_result` data; the server-side Python mirror of the generator.
 - Real AdMob, billing, Firebase and the ADPF thermal bridge (fakes are wired through `Services`).

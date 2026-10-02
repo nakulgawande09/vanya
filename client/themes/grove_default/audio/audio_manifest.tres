@@ -204,6 +204,7 @@ stream = SubResource("AudioStreamRandomizer_1qu63")
 bus = &"Ambience"
 tier = 4
 loop = true
+bytes = 325654
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_x4bhw"]
 playback_mode = 1
@@ -217,6 +218,7 @@ stream = SubResource("AudioStreamRandomizer_x4bhw")
 bus = &"Ambience"
 tier = 4
 loop = true
+bytes = 832568
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rn6uf"]
 random_pitch = 1.03
@@ -237,6 +239,7 @@ bus = &"Ambience"
 tier = 4
 poly = 2
 pan = true
+bytes = 114931
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_isay3"]
 playback_mode = 1
@@ -251,6 +254,7 @@ stream = SubResource("AudioStreamRandomizer_isay3")
 tier = 1
 pan = true
 loop = true
+bytes = 17864
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_c7lh5"]
 playback_mode = 1
@@ -263,6 +267,7 @@ script = ExtResource("1_pjmi0")
 id = &"sfx.boss.rotheart.death"
 stream = SubResource("AudioStreamRandomizer_c7lh5")
 tier = 0
+bytes = 43532
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ldq5d"]
 playback_mode = 1
@@ -276,6 +281,7 @@ id = &"sfx.boss.rotheart.heart_loop"
 stream = SubResource("AudioStreamRandomizer_ldq5d")
 tier = 1
 loop = true
+bytes = 8952
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gdbac"]
 random_pitch = 1.06
@@ -291,6 +297,7 @@ id = &"sfx.boss.rotheart.hurt"
 stream = SubResource("AudioStreamRandomizer_gdbac")
 poly = 2
 cooldown_ms = 120
+bytes = 16128
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fvaqx"]
 random_pitch = 1.06
@@ -306,6 +313,7 @@ id = &"sfx.boss.rotheart.stalk"
 stream = SubResource("AudioStreamRandomizer_fvaqx")
 pan = true
 cooldown_ms = 600
+bytes = 37080
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_mbcvc"]
 playback_mode = 1
@@ -319,6 +327,7 @@ id = &"sfx.boss.rotheart.stunned"
 stream = SubResource("AudioStreamRandomizer_mbcvc")
 tier = 1
 loop = true
+bytes = 35720
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1r53r"]
 playback_mode = 1
@@ -331,6 +340,7 @@ script = ExtResource("1_pjmi0")
 id = &"sfx.boss.rotheart.summon"
 stream = SubResource("AudioStreamRandomizer_1r53r")
 tier = 1
+bytes = 14915
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xyxmj"]
 playback_mode = 1
@@ -343,6 +353,7 @@ script = ExtResource("1_pjmi0")
 id = &"sfx.boss.rotheart.telegraph"
 stream = SubResource("AudioStreamRandomizer_xyxmj")
 tier = 0
+bytes = 17864
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_q1ag2"]
 playback_mode = 1
@@ -357,6 +368,7 @@ id = &"sfx.boss.rotheart.wall_hit"
 stream = SubResource("AudioStreamRandomizer_q1ag2")
 tier = 0
 haptic = &"slam"
+bytes = 12528
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_o8dr2"]
 playback_mode = 1
@@ -371,6 +383,7 @@ stream = SubResource("AudioStreamRandomizer_o8dr2")
 tier = 4
 pan = true
 loop = true
+bytes = 15773
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_spi06"]
 playback_mode = 1
@@ -385,6 +398,7 @@ stream = SubResource("AudioStreamRandomizer_spi06")
 tier = 4
 pan = true
 loop = true
+bytes = 5891
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_wwcfc"]
 random_pitch = 1.06
@@ -401,6 +415,7 @@ stream = SubResource("AudioStreamRandomizer_wwcfc")
 tier = 3
 pan = true
 cooldown_ms = 150
+bytes = 5400
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_anvni"]
 random_pitch = 1.06
@@ -418,6 +433,7 @@ tier = 3
 poly = 2
 pan = true
 cooldown_ms = 250
+bytes = 16128
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ugfcr"]
 random_pitch = 1.06
@@ -435,6 +451,7 @@ tier = 3
 poly = 3
 pan = true
 cooldown_ms = 100
+bytes = 10752
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ah0om"]
 random_pitch = 1.06
@@ -451,6 +468,7 @@ stream = SubResource("AudioStreamRandomizer_ah0om")
 poly = 3
 pan = true
 cooldown_ms = 40
+bytes = 19896
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_g34jo"]
 random_pitch = 1.06
@@ -468,6 +486,7 @@ tier = 3
 poly = 3
 pan = true
 cooldown_ms = 60
+bytes = 7584
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ehcmx"]
 random_pitch = 1.06
@@ -485,6 +504,7 @@ tier = 4
 poly = 2
 pan = true
 cooldown_ms = 400
+bytes = 19056
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qx43v"]
 random_pitch = 1.06
@@ -502,6 +522,7 @@ stream = SubResource("AudioStreamRandomizer_qx43v")
 poly = 2
 pan = true
 cooldown_ms = 50
+bytes = 8704
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jjetf"]
 random_pitch = 1.06
@@ -516,6 +537,7 @@ id = &"sfx.enemy.thornback.death"
 stream = SubResource("AudioStreamRandomizer_jjetf")
 tier = 1
 pan = true
+bytes = 37033
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_d6qic"]
 random_pitch = 1.06
@@ -532,6 +554,7 @@ tier = 1
 pan = true
 cooldown_ms = 300
 haptic = &"slam"
+bytes = 21472
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hc6jn"]
 random_pitch = 1.06
@@ -548,6 +571,7 @@ stream = SubResource("AudioStreamRandomizer_hc6jn")
 tier = 3
 pan = true
 cooldown_ms = 180
+bytes = 13488
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_yc82q"]
 random_pitch = 1.06
@@ -563,6 +587,7 @@ stream = SubResource("AudioStreamRandomizer_yc82q")
 tier = 1
 pan = true
 cooldown_ms = 300
+bytes = 25056
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ql1pq"]
 random_pitch = 1.06
@@ -577,6 +602,7 @@ id = &"sfx.enemy.wisp.death"
 stream = SubResource("AudioStreamRandomizer_ql1pq")
 poly = 2
 pan = true
+bytes = 21830
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_f0gx7"]
 playback_mode = 1
@@ -592,6 +618,7 @@ tier = 4
 poly = 2
 pan = true
 loop = true
+bytes = 20350
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fgjqy"]
 random_pitch = 1.06
@@ -609,6 +636,7 @@ tier = 3
 poly = 2
 pan = true
 cooldown_ms = 60
+bytes = 8112
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_oxbb5"]
 random_pitch = 1.06
@@ -624,6 +652,7 @@ stream = SubResource("AudioStreamRandomizer_oxbb5")
 poly = 3
 pan = true
 cooldown_ms = 60
+bytes = 7168
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_g7ulg"]
 random_pitch = 1.06
@@ -640,6 +669,7 @@ stream = SubResource("AudioStreamRandomizer_g7ulg")
 poly = 3
 pan = true
 cooldown_ms = 80
+bytes = 10752
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_pyjir"]
 random_pitch = 1.06
@@ -656,6 +686,7 @@ stream = SubResource("AudioStreamRandomizer_pyjir")
 tier = 4
 poly = 2
 cooldown_ms = 60
+bytes = 1704
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fsqs4"]
 playback_mode = 1
@@ -669,6 +700,7 @@ id = &"sfx.fb.frenzy.tier1"
 stream = SubResource("AudioStreamRandomizer_fsqs4")
 tier = 1
 haptic = &"frenzy"
+bytes = 14672
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_168eu"]
 playback_mode = 1
@@ -682,6 +714,7 @@ id = &"sfx.fb.frenzy.tier2"
 stream = SubResource("AudioStreamRandomizer_168eu")
 tier = 1
 haptic = &"frenzy"
+bytes = 15728
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_b8nus"]
 playback_mode = 1
@@ -695,6 +728,7 @@ id = &"sfx.fb.frenzy.tier3"
 stream = SubResource("AudioStreamRandomizer_b8nus")
 tier = 1
 haptic = &"frenzy"
+bytes = 16808
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_omi1e"]
 playback_mode = 1
@@ -708,6 +742,7 @@ id = &"sfx.fb.frenzy.tier4"
 stream = SubResource("AudioStreamRandomizer_omi1e")
 tier = 1
 haptic = &"frenzy"
+bytes = 17864
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_n1xrg"]
 playback_mode = 1
@@ -721,6 +756,7 @@ id = &"sfx.fb.frenzy.tier5"
 stream = SubResource("AudioStreamRandomizer_n1xrg")
 tier = 1
 haptic = &"frenzy"
+bytes = 12196
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_yh75c"]
 random_pitch = 1.06
@@ -736,6 +772,7 @@ id = &"sfx.fb.hitstop.crunch"
 stream = SubResource("AudioStreamRandomizer_yh75c")
 tier = 1
 cooldown_ms = 80
+bytes = 5400
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_e1yek"]
 playback_mode = 1
@@ -749,6 +786,7 @@ id = &"sfx.fb.lowhp.heartbeat_loop"
 stream = SubResource("AudioStreamRandomizer_e1yek")
 tier = 1
 loop = true
+bytes = 17864
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_mxowj"]
 random_pitch = 1.06
@@ -763,6 +801,7 @@ id = &"sfx.fb.shake.rumble"
 stream = SubResource("AudioStreamRandomizer_mxowj")
 tier = 3
 cooldown_ms = 200
+bytes = 10752
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4a02w"]
 playback_mode = 1
@@ -775,6 +814,7 @@ script = ExtResource("1_pjmi0")
 id = &"sfx.god.dhoru.aftermath"
 stream = SubResource("AudioStreamRandomizer_4a02w")
 tier = 3
+bytes = 13881
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_iy11o"]
 random_pitch = 1.06
@@ -789,6 +829,7 @@ id = &"sfx.god.dhoru.impact"
 stream = SubResource("AudioStreamRandomizer_iy11o")
 tier = 0
 haptic = &"god"
+bytes = 28576
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_oifrm"]
 playback_mode = 1
@@ -801,6 +842,7 @@ script = ExtResource("1_pjmi0")
 id = &"sfx.god.dhoru.telegraph"
 stream = SubResource("AudioStreamRandomizer_oifrm")
 tier = 1
+bytes = 12528
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7i471"]
 playback_mode = 1
@@ -813,6 +855,7 @@ script = ExtResource("1_pjmi0")
 id = &"sfx.god.meghra.aftermath"
 stream = SubResource("AudioStreamRandomizer_7i471")
 tier = 3
+bytes = 18388
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1btxn"]
 random_pitch = 1.06
@@ -828,6 +871,7 @@ id = &"sfx.god.meghra.impact"
 stream = SubResource("AudioStreamRandomizer_1btxn")
 tier = 0
 haptic = &"god"
+bytes = 32208
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_66xr6"]
 playback_mode = 1
@@ -840,6 +884,7 @@ script = ExtResource("1_pjmi0")
 id = &"sfx.god.meghra.telegraph"
 stream = SubResource("AudioStreamRandomizer_66xr6")
 tier = 1
+bytes = 14288
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3gow7"]
 random_volume_offset_db = 2.0
@@ -852,6 +897,7 @@ script = ExtResource("1_pjmi0")
 id = &"sfx.god.vayli.heal"
 stream = SubResource("AudioStreamRandomizer_3gow7")
 tier = 1
+bytes = 23337
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_voqrk"]
 random_pitch = 1.06
@@ -864,6 +910,7 @@ stream_1/stream = ExtResource("93_p6tdu")
 script = ExtResource("1_pjmi0")
 id = &"sfx.god.vayli.root"
 stream = SubResource("AudioStreamRandomizer_voqrk")
+bytes = 17904
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hroym"]
 playback_mode = 1
@@ -876,6 +923,7 @@ script = ExtResource("1_pjmi0")
 id = &"sfx.god.vayli.telegraph"
 stream = SubResource("AudioStreamRandomizer_hroym")
 tier = 1
+bytes = 10736
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5cwpn"]
 random_pitch = 1.06
@@ -892,6 +940,7 @@ stream = SubResource("AudioStreamRandomizer_5cwpn")
 tier = 3
 poly = 2
 cooldown_ms = 30
+bytes = 6528
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_utwxb"]
 playback_mode = 1
@@ -905,6 +954,7 @@ id = &"sfx.pickup.spirit.collect"
 stream = SubResource("AudioStreamRandomizer_utwxb")
 tier = 3
 poly = 3
+bytes = 11800
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_lyh7a"]
 playback_mode = 1
@@ -919,6 +969,7 @@ id = &"sfx.pickup.spirit.magnet"
 stream = SubResource("AudioStreamRandomizer_lyh7a")
 tier = 4
 cooldown_ms = 300
+bytes = 5376
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_eyx4h"]
 random_pitch = 1.06
@@ -936,6 +987,7 @@ stream = SubResource("AudioStreamRandomizer_eyx4h")
 poly = 4
 pan = true
 cooldown_ms = 30
+bytes = 10816
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_yhbke"]
 random_pitch = 1.06
@@ -953,6 +1005,7 @@ stream = SubResource("AudioStreamRandomizer_yhbke")
 poly = 4
 pan = true
 cooldown_ms = 30
+bytes = 10816
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xiy22"]
 random_pitch = 1.06
@@ -970,6 +1023,7 @@ stream = SubResource("AudioStreamRandomizer_xiy22")
 poly = 4
 pan = true
 cooldown_ms = 30
+bytes = 8704
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_37fq4"]
 random_pitch = 1.06
@@ -987,6 +1041,7 @@ stream = SubResource("AudioStreamRandomizer_37fq4")
 poly = 4
 pan = true
 cooldown_ms = 30
+bytes = 8704
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_s64os"]
 random_pitch = 1.06
@@ -1002,6 +1057,7 @@ id = &"sfx.player.bow.draw"
 stream = SubResource("AudioStreamRandomizer_s64os")
 tier = 3
 cooldown_ms = 150
+bytes = 11832
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gv1b7"]
 random_pitch = 1.06
@@ -1019,6 +1075,7 @@ stream = SubResource("AudioStreamRandomizer_gv1b7")
 poly = 3
 pan = true
 cooldown_ms = 40
+bytes = 17984
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hfvuv"]
 random_pitch = 1.06
@@ -1036,6 +1093,7 @@ stream = SubResource("AudioStreamRandomizer_hfvuv")
 poly = 3
 pan = true
 cooldown_ms = 40
+bytes = 17984
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ykc8v"]
 random_pitch = 1.06
@@ -1053,6 +1111,7 @@ stream = SubResource("AudioStreamRandomizer_ykc8v")
 poly = 3
 pan = true
 cooldown_ms = 40
+bytes = 21504
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_dmf8l"]
 random_pitch = 1.06
@@ -1070,6 +1129,7 @@ stream = SubResource("AudioStreamRandomizer_dmf8l")
 poly = 3
 pan = true
 cooldown_ms = 40
+bytes = 21504
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_e78wr"]
 playback_mode = 1
@@ -1082,6 +1142,7 @@ script = ExtResource("1_pjmi0")
 id = &"sfx.player.death"
 stream = SubResource("AudioStreamRandomizer_e78wr")
 tier = 0
+bytes = 27379
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_cvjow"]
 random_pitch = 1.06
@@ -1099,6 +1160,7 @@ stream = SubResource("AudioStreamRandomizer_cvjow")
 tier = 0
 cooldown_ms = 120
 haptic = &"hurt"
+bytes = 17984
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ljj31"]
 playback_mode = 1
@@ -1111,6 +1173,7 @@ script = ExtResource("1_pjmi0")
 id = &"sfx.player.revive"
 stream = SubResource("AudioStreamRandomizer_ljj31")
 tier = 0
+bytes = 20239
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_g4pos"]
 random_pitch = 1.06
@@ -1130,6 +1193,7 @@ stream = SubResource("AudioStreamRandomizer_g4pos")
 tier = 4
 poly = 2
 cooldown_ms = 90
+bytes = 13056
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1sgpw"]
 random_pitch = 1.06
@@ -1149,6 +1213,7 @@ stream = SubResource("AudioStreamRandomizer_1sgpw")
 tier = 4
 poly = 2
 cooldown_ms = 90
+bytes = 15168
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_71l76"]
 random_pitch = 1.06
@@ -1168,6 +1233,7 @@ stream = SubResource("AudioStreamRandomizer_71l76")
 tier = 4
 poly = 2
 cooldown_ms = 90
+bytes = 16224
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_horn7"]
 random_volume_offset_db = 2.0
@@ -1180,6 +1246,7 @@ script = ExtResource("1_pjmi0")
 id = &"sfx.player.tier_up"
 stream = SubResource("AudioStreamRandomizer_horn7")
 tier = 1
+bytes = 20316
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_v3tq6"]
 random_pitch = 1.06
@@ -1194,6 +1261,7 @@ id = &"sfx.rescue.cage.break"
 stream = SubResource("AudioStreamRandomizer_v3tq6")
 tier = 1
 haptic = &"cage"
+bytes = 14320
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bxteh"]
 random_pitch = 1.06
@@ -1209,6 +1277,7 @@ id = &"sfx.rescue.cage.creak"
 stream = SubResource("AudioStreamRandomizer_bxteh")
 tier = 3
 cooldown_ms = 300
+bytes = 16128
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_irgrb"]
 playback_mode = 1
@@ -1221,6 +1290,7 @@ script = ExtResource("1_pjmi0")
 id = &"sfx.rescue.freed.hare"
 stream = SubResource("AudioStreamRandomizer_irgrb")
 tier = 1
+bytes = 9036
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fe4my"]
 playback_mode = 1
@@ -1233,6 +1303,7 @@ script = ExtResource("1_pjmi0")
 id = &"sfx.rescue.freed.jugnu"
 stream = SubResource("AudioStreamRandomizer_fe4my")
 tier = 1
+bytes = 11082
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qcxfe"]
 playback_mode = 1
@@ -1245,6 +1316,7 @@ script = ExtResource("1_pjmi0")
 id = &"sfx.rescue.freed.pira"
 stream = SubResource("AudioStreamRandomizer_qcxfe")
 tier = 1
+bytes = 9702
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_q6rog"]
 playback_mode = 1
@@ -1257,6 +1329,7 @@ script = ExtResource("1_pjmi0")
 id = &"sfx.shrine.anjor.purchase"
 stream = SubResource("AudioStreamRandomizer_q6rog")
 tier = 1
+bytes = 15066
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_od274"]
 playback_mode = 1
@@ -1269,6 +1342,7 @@ script = ExtResource("1_pjmi0")
 id = &"sfx.shrine.kaja.purchase"
 stream = SubResource("AudioStreamRandomizer_od274")
 tier = 1
+bytes = 13701
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_64foy"]
 playback_mode = 1
@@ -1281,6 +1355,7 @@ script = ExtResource("1_pjmi0")
 id = &"sfx.shrine.suryak.purchase"
 stream = SubResource("AudioStreamRandomizer_64foy")
 tier = 1
+bytes = 9433
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_e660m"]
 playback_mode = 1
@@ -1293,6 +1368,7 @@ script = ExtResource("1_pjmi0")
 id = &"sfx.shrine.tamba.purchase"
 stream = SubResource("AudioStreamRandomizer_e660m")
 tier = 1
+bytes = 12774
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_n83uv"]
 playback_mode = 1
@@ -1306,6 +1382,7 @@ id = &"sfx.world.gate.open"
 stream = SubResource("AudioStreamRandomizer_n83uv")
 tier = 0
 haptic = &"gate"
+bytes = 21895
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2ikrw"]
 playback_mode = 1
@@ -1319,6 +1396,7 @@ id = &"sfx.world.gate.seal_hum"
 stream = SubResource("AudioStreamRandomizer_2ikrw")
 tier = 4
 loop = true
+bytes = 17809
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_m8tgy"]
 playback_mode = 1
@@ -1333,6 +1411,7 @@ stream = SubResource("AudioStreamRandomizer_m8tgy")
 tier = 3
 poly = 2
 pan = true
+bytes = 12528
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_aj4mb"]
 playback_mode = 1
@@ -1348,6 +1427,7 @@ tier = 4
 poly = 2
 pan = true
 loop = true
+bytes = 40384
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_s7hpx"]
 playback_mode = 1
@@ -1361,6 +1441,7 @@ id = &"sfx.world.portal.open"
 stream = SubResource("AudioStreamRandomizer_s7hpx")
 poly = 2
 pan = true
+bytes = 17864
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_wlh5c"]
 playback_mode = 1
@@ -1376,6 +1457,7 @@ tier = 4
 poly = 2
 pan = true
 loop = true
+bytes = 68145
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ar8tf"]
 playback_mode = 1
@@ -1390,6 +1472,7 @@ stream = SubResource("AudioStreamRandomizer_ar8tf")
 bus = &"UI"
 tier = 1
 haptic = &"purchase"
+bytes = 9536
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_43l0d"]
 playback_mode = 1
@@ -1402,6 +1485,7 @@ script = ExtResource("1_pjmi0")
 id = &"ui.back"
 stream = SubResource("AudioStreamRandomizer_43l0d")
 bus = &"UI"
+bytes = 2704
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qoosk"]
 playback_mode = 1
@@ -1414,6 +1498,7 @@ script = ExtResource("1_pjmi0")
 id = &"ui.confirm"
 stream = SubResource("AudioStreamRandomizer_qoosk")
 bus = &"UI"
+bytes = 7344
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_g7j70"]
 playback_mode = 1
@@ -1426,6 +1511,7 @@ script = ExtResource("1_pjmi0")
 id = &"ui.error"
 stream = SubResource("AudioStreamRandomizer_g7j70")
 bus = &"UI"
+bytes = 3944
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hr8rv"]
 playback_mode = 1
@@ -1440,6 +1526,7 @@ stream = SubResource("AudioStreamRandomizer_hr8rv")
 bus = &"UI"
 tier = 1
 haptic = &"purchase"
+bytes = 10236
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_mr22e"]
 playback_mode = 1
@@ -1454,6 +1541,7 @@ stream = SubResource("AudioStreamRandomizer_mr22e")
 bus = &"UI"
 tier = 1
 haptic = &"purchase"
+bytes = 17688
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_edkah"]
 random_pitch = 1.06
@@ -1467,6 +1555,7 @@ script = ExtResource("1_pjmi0")
 id = &"ui.tab"
 stream = SubResource("AudioStreamRandomizer_edkah")
 bus = &"UI"
+bytes = 1840
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_21pyw"]
 random_pitch = 1.06
@@ -1481,6 +1570,7 @@ id = &"ui.tap"
 stream = SubResource("AudioStreamRandomizer_21pyw")
 bus = &"UI"
 poly = 2
+bytes = 2896
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_r0e4f"]
 playback_mode = 1
@@ -1493,6 +1583,7 @@ script = ExtResource("1_pjmi0")
 id = &"ui.upgrade"
 stream = SubResource("AudioStreamRandomizer_r0e4f")
 bus = &"UI"
+bytes = 16808
 
 [sub_resource type="Resource" id="Resource_4vvoc"]
 script = ExtResource("190_eyocj")
@@ -1503,6 +1594,8 @@ stem_names = PackedStringArray("bed", "perc", "melody", "tension")
 stem_paths = PackedStringArray("res://themes/grove_default/audio/music/boss_bed.ogg", "res://themes/grove_default/audio/music/boss_perc.ogg", "res://themes/grove_default/audio/music/boss_melody.ogg", "res://themes/grove_default/audio/music/boss_tension.ogg")
 low_stem_paths = PackedStringArray("res://themes/grove_default/audio/music/boss_bed.ogg", "res://themes/grove_default/audio/music/boss_melody.ogg", "res://themes/grove_default/audio/music/boss_low_drive.ogg")
 playlist_paths = PackedStringArray()
+bytes = 937163
+low_bytes = 745154
 
 [sub_resource type="Resource" id="Resource_fs4ri"]
 script = ExtResource("190_eyocj")
@@ -1513,6 +1606,7 @@ stem_names = PackedStringArray()
 stem_paths = PackedStringArray()
 low_stem_paths = PackedStringArray()
 playlist_paths = PackedStringArray("res://themes/grove_default/audio/music/camp_a.ogg", "res://themes/grove_default/audio/music/camp_b.ogg")
+bytes = 2520893
 
 [sub_resource type="Resource" id="Resource_mbknc"]
 script = ExtResource("190_eyocj")
@@ -1522,6 +1616,7 @@ stem_paths = PackedStringArray()
 low_stem_paths = PackedStringArray()
 playlist_paths = PackedStringArray()
 path = "res://themes/grove_default/audio/music/defeat.ogg"
+bytes = 27552
 
 [sub_resource type="Resource" id="Resource_c02bc"]
 script = ExtResource("190_eyocj")
@@ -1532,6 +1627,8 @@ stem_names = PackedStringArray("bed", "perc", "melody", "tension", "frenzy")
 stem_paths = PackedStringArray("res://themes/grove_default/audio/music/grove_bed.ogg", "res://themes/grove_default/audio/music/grove_perc.ogg", "res://themes/grove_default/audio/music/grove_melody.ogg", "res://themes/grove_default/audio/music/grove_tension.ogg", "res://themes/grove_default/audio/music/grove_frenzy.ogg")
 low_stem_paths = PackedStringArray("res://themes/grove_default/audio/music/grove_bed.ogg", "res://themes/grove_default/audio/music/grove_melody.ogg", "res://themes/grove_default/audio/music/grove_low_drive.ogg")
 playlist_paths = PackedStringArray()
+bytes = 1492592
+low_bytes = 960620
 
 [sub_resource type="Resource" id="Resource_l6vyf"]
 script = ExtResource("190_eyocj")
@@ -1541,6 +1638,7 @@ stem_paths = PackedStringArray()
 low_stem_paths = PackedStringArray()
 playlist_paths = PackedStringArray()
 path = "res://themes/grove_default/audio/music/victory.ogg"
+bytes = 36302
 
 [resource]
 script = ExtResource("191_kvpfw")

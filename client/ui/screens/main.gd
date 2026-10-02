@@ -5,8 +5,13 @@ extends Control
 const GROVE_SCENE: String = "res://gameplay/run/grove_run.tscn"
 const CAMP_SCENE: String = "res://ui/screens/main.tscn"
 const PIPS: int = 5
+## Android back at camp: a second press within this window quits (feel-test #20).
+const BACK_WINDOW: float = 2.0
 
 var profile: Profile
+var _back_t: float = -1.0
+var _toast: Label
+var _bases: Dictionary[Control, Vector4] = {}
 
 @onready var _art: TextureRect = %Art
 @onready var _meat_icon: TextureRect = %MeatIcon
@@ -46,9 +51,29 @@ func _ready() -> void:
 			SceneRouter.change_to(CAMP_SCENE))
 	_refresh()
 	UiSounds.wire(self)
+	for c: Node in get_children():
+		if c is Control and c != _art and c.name != &"Background" and c != _settings_screen:
+			_bases[c as Control] = SafeArea.base_of(c as Control)
+	_apply_safe_area()
+	get_viewport().size_changed.connect(_apply_safe_area)
 	Services.audio.music_context(&"camp")
 	Services.audio.ambience(&"", 0.0)
 	_enter_button.grab_focus()
+
+
+## Back once shows a toast, twice within BACK_WINDOW quits; with settings open it closes them.
+func _notification(what: int) -> void:
+	if what != NOTIFICATION_WM_GO_BACK_REQUEST or not is_inside_tree():
+		return
+	if _settings_screen.visible:
+		_settings_screen.visible = false
+		return
+	var now: float = Time.get_ticks_msec() / 1000.0
+	if _back_t >= 0.0 and now - _back_t <= BACK_WINDOW:
+		get_tree().quit()
+		return
+	_back_t = now
+	_show_toast(tr(&"BACK_AGAIN"))
 
 
 func _refresh() -> void:
@@ -201,6 +226,30 @@ func _save_and_refresh() -> void:
 	Services.save.set_value("profile", profile.to_dict())
 	Services.save.save_game()
 	_refresh()
+
+
+func _show_toast(text: String) -> void:
+	if _toast == null:
+		_toast = Label.new()
+		_toast.theme_type_variation = &"TitleLabel"
+		_toast.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		_toast.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
+		_toast.offset_top = -140.0
+		_toast.offset_bottom = -110.0
+		_toast.offset_left = -170.0
+		_toast.offset_right = 170.0
+		add_child(_toast)
+	_toast.text = text
+	_toast.modulate.a = 1.0
+	var tw: Tween = create_tween()
+	tw.tween_interval(1.2)
+	tw.tween_property(_toast, "modulate:a", 0.0, 0.6)
+
+
+func _apply_safe_area() -> void:
+	var inset: Vector4 = SafeArea.insets(get_viewport())
+	for c: Control in _bases:
+		SafeArea.shift(c, _bases[c], inset)
 
 
 ## A run the OS killed mid-grove still banks what it carried at its last cleared room.

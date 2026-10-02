@@ -56,6 +56,8 @@ const OVERRIDE_PATH: String = "user://feel_tuning.tres"
 
 @export_group("Joystick")
 @export var joystick_mode: JoystickMode = JoystickMode.DYNAMIC
+## A/B Godot 4.7's built-in VirtualJoystick (same modes, dead zone and size) against our stick.
+@export var joystick_builtin: bool = false
 ## Fraction of the radius ignored at rest (no drift).
 @export_range(0.0, 0.5) var joystick_deadzone: float = 0.12
 ## Clamp radius in px: the knob never travels further.

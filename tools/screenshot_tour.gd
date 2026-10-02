@@ -1,6 +1,6 @@
 extends SceneTree
-## Visual QA tour for one theme: camp → tutorial tip → generated grove → fight → pause →
-## settings (in Hindi) → defeat. Needs a renderer (Xvfb):
+## Visual QA tour for one theme: camp → tutorial tip → generated grove → fight → feel-test
+## overlay → pause → settings (in Hindi) → defeat. Needs a renderer (Xvfb):
 ##   godot --path client -s ../tools/screenshot_tour.gd -- <out_dir> [theme_id]
 
 var _out: String
@@ -45,19 +45,25 @@ func _process(_delta: float) -> bool:
 			(_run.get("gods") as Object).call("try_cast", &"meghra")
 		336:
 			_shot("fight")
+			var hud: Object = _run.call("hud")
+			((hud.get("overlay") as Object).get("_tune_box") as CanvasItem).visible = true
+			(hud.get("overlay") as Object).call("toggle")
+		410:
+			_shot("overlay")
+			((_run.call("hud") as Object).get("overlay") as Object).call("toggle")
 			_run.call("open_pause")
-		342:
+		416:
 			_shot("pause")
 			(_run.get_node("%Settings") as Object).call("open")
 			TranslationServer.set_locale("hi")
 			(_run.get_node("%Settings") as Object).call("_build")
-		350:
+		424:
 			_shot("settings_hi")
 			TranslationServer.set_locale("en")
 			(_run.get_node("%Settings") as CanvasItem).visible = false
 			_run.call("resume")
 			(_run.get("run") as Object).call("take_damage", 999)
-		440:
+		514:
 			_shot("defeat")
 			return true
 	return false
