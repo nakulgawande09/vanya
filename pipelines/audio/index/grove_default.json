@@ -1,0 +1,1449 @@
+{
+ "music": {
+  "boss": {
+   "bar_beats": 4,
+   "bars": 16,
+   "bpm": 120,
+   "files": [
+    "res://themes/grove_default/audio/music/boss_bed.ogg",
+    "res://themes/grove_default/audio/music/boss_perc.ogg",
+    "res://themes/grove_default/audio/music/boss_melody.ogg",
+    "res://themes/grove_default/audio/music/boss_tension.ogg"
+   ],
+   "low_files": [
+    "res://themes/grove_default/audio/music/boss_bed.ogg",
+    "res://themes/grove_default/audio/music/boss_melody.ogg",
+    "res://themes/grove_default/audio/music/boss_low_drive.ogg"
+   ],
+   "low_stems": [
+    "bed",
+    "melody",
+    "drive"
+   ],
+   "stems": [
+    "bed",
+    "perc",
+    "melody",
+    "tension"
+   ]
+  },
+  "camp": {
+   "bar_beats": 4,
+   "bars": 32,
+   "bpm": 72,
+   "playlist": [
+    "res://themes/grove_default/audio/music/camp_a.ogg",
+    "res://themes/grove_default/audio/music/camp_b.ogg"
+   ]
+  },
+  "defeat": {
+   "file": "res://themes/grove_default/audio/music/defeat.ogg"
+  },
+  "grove": {
+   "bar_beats": 4,
+   "bars": 16,
+   "bpm": 96,
+   "files": [
+    "res://themes/grove_default/audio/music/grove_bed.ogg",
+    "res://themes/grove_default/audio/music/grove_perc.ogg",
+    "res://themes/grove_default/audio/music/grove_melody.ogg",
+    "res://themes/grove_default/audio/music/grove_tension.ogg",
+    "res://themes/grove_default/audio/music/grove_frenzy.ogg"
+   ],
+   "low_files": [
+    "res://themes/grove_default/audio/music/grove_bed.ogg",
+    "res://themes/grove_default/audio/music/grove_melody.ogg",
+    "res://themes/grove_default/audio/music/grove_low_drive.ogg"
+   ],
+   "low_stems": [
+    "bed",
+    "melody",
+    "drive"
+   ],
+   "stems": [
+    "bed",
+    "perc",
+    "melody",
+    "tension",
+    "frenzy"
+   ]
+  },
+  "victory": {
+   "file": "res://themes/grove_default/audio/music/victory.ogg"
+  }
+ },
+ "sfx": {
+  "amb.blight.bed": {
+   "bus": "Ambience",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/amb/amb_blight_bed.ogg"
+   ],
+   "haptic": "",
+   "loop": true,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.0,
+   "random_volume_db": 0.0,
+   "tier": 4
+  },
+  "amb.grove.default.bed": {
+   "bus": "Ambience",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/amb/amb_grove_default_bed.ogg"
+   ],
+   "haptic": "",
+   "loop": true,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.0,
+   "random_volume_db": 0.0,
+   "tier": 4
+  },
+  "amb.grove.default.detail": {
+   "bus": "Ambience",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/amb_grove_default_detail_01.ogg",
+    "res://themes/grove_default/audio/sfx/amb_grove_default_detail_02.ogg",
+    "res://themes/grove_default/audio/sfx/amb_grove_default_detail_03.ogg",
+    "res://themes/grove_default/audio/sfx/amb_grove_default_detail_04.ogg",
+    "res://themes/grove_default/audio/sfx/amb_grove_default_detail_05.ogg",
+    "res://themes/grove_default/audio/sfx/amb_grove_default_detail_06.ogg"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": true,
+   "poly": 2,
+   "random_pitch": 1.03,
+   "random_volume_db": 2.0,
+   "tier": 4
+  },
+  "sfx.boss.rotheart.charge_loop": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_boss_rotheart_charge_loop_01.wav"
+   ],
+   "haptic": "",
+   "loop": true,
+   "pan": true,
+   "poly": 1,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 1
+  },
+  "sfx.boss.rotheart.death": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_boss_rotheart_death_01.ogg"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 0
+  },
+  "sfx.boss.rotheart.heart_loop": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_boss_rotheart_heart_loop_01.wav"
+   ],
+   "haptic": "",
+   "loop": true,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 1
+  },
+  "sfx.boss.rotheart.hurt": {
+   "bus": "SFX",
+   "cooldown_ms": 120,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_boss_rotheart_hurt_01.wav",
+    "res://themes/grove_default/audio/sfx/sfx_boss_rotheart_hurt_02.wav",
+    "res://themes/grove_default/audio/sfx/sfx_boss_rotheart_hurt_03.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": false,
+   "poly": 2,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 2
+  },
+  "sfx.boss.rotheart.stalk": {
+   "bus": "SFX",
+   "cooldown_ms": 600,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_boss_rotheart_stalk_01.wav",
+    "res://themes/grove_default/audio/sfx/sfx_boss_rotheart_stalk_02.wav",
+    "res://themes/grove_default/audio/sfx/sfx_boss_rotheart_stalk_03.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": true,
+   "poly": 1,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 2
+  },
+  "sfx.boss.rotheart.stunned": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_boss_rotheart_stunned_01.wav"
+   ],
+   "haptic": "",
+   "loop": true,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 1
+  },
+  "sfx.boss.rotheart.summon": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_boss_rotheart_summon_01.ogg"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 1
+  },
+  "sfx.boss.rotheart.telegraph": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_boss_rotheart_telegraph_01.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 0
+  },
+  "sfx.boss.rotheart.wall_hit": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_boss_rotheart_wall_hit_01.wav"
+   ],
+   "haptic": "slam",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 0
+  },
+  "sfx.companion.jugnu.shimmer_loop": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_companion_jugnu_shimmer_loop_01.ogg"
+   ],
+   "haptic": "",
+   "loop": true,
+   "pan": true,
+   "poly": 1,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 4
+  },
+  "sfx.companion.pira.chirp_loop": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_companion_pira_chirp_loop_01.ogg"
+   ],
+   "haptic": "",
+   "loop": true,
+   "pan": true,
+   "poly": 1,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 4
+  },
+  "sfx.companion.pira.peck": {
+   "bus": "SFX",
+   "cooldown_ms": 150,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_companion_pira_peck_01.wav",
+    "res://themes/grove_default/audio/sfx/sfx_companion_pira_peck_02.wav",
+    "res://themes/grove_default/audio/sfx/sfx_companion_pira_peck_03.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": true,
+   "poly": 1,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 3
+  },
+  "sfx.enemy.rotling.alert": {
+   "bus": "SFX",
+   "cooldown_ms": 250,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_enemy_rotling_alert_01.wav",
+    "res://themes/grove_default/audio/sfx/sfx_enemy_rotling_alert_02.wav",
+    "res://themes/grove_default/audio/sfx/sfx_enemy_rotling_alert_03.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": true,
+   "poly": 2,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 3
+  },
+  "sfx.enemy.rotling.attack": {
+   "bus": "SFX",
+   "cooldown_ms": 100,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_enemy_rotling_attack_01.wav",
+    "res://themes/grove_default/audio/sfx/sfx_enemy_rotling_attack_02.wav",
+    "res://themes/grove_default/audio/sfx/sfx_enemy_rotling_attack_03.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": true,
+   "poly": 3,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 3
+  },
+  "sfx.enemy.rotling.death": {
+   "bus": "SFX",
+   "cooldown_ms": 40,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_enemy_rotling_death_01.wav",
+    "res://themes/grove_default/audio/sfx/sfx_enemy_rotling_death_02.wav",
+    "res://themes/grove_default/audio/sfx/sfx_enemy_rotling_death_03.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": true,
+   "poly": 3,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 2
+  },
+  "sfx.enemy.rotling.hurt": {
+   "bus": "SFX",
+   "cooldown_ms": 60,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_enemy_rotling_hurt_01.wav",
+    "res://themes/grove_default/audio/sfx/sfx_enemy_rotling_hurt_02.wav",
+    "res://themes/grove_default/audio/sfx/sfx_enemy_rotling_hurt_03.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": true,
+   "poly": 3,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 3
+  },
+  "sfx.enemy.rotling.idle": {
+   "bus": "SFX",
+   "cooldown_ms": 400,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_enemy_rotling_idle_01.wav",
+    "res://themes/grove_default/audio/sfx/sfx_enemy_rotling_idle_02.wav",
+    "res://themes/grove_default/audio/sfx/sfx_enemy_rotling_idle_03.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": true,
+   "poly": 2,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 4
+  },
+  "sfx.enemy.thornback.armor_hit": {
+   "bus": "SFX",
+   "cooldown_ms": 50,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_enemy_thornback_armor_hit_01.wav",
+    "res://themes/grove_default/audio/sfx/sfx_enemy_thornback_armor_hit_02.wav",
+    "res://themes/grove_default/audio/sfx/sfx_enemy_thornback_armor_hit_03.wav",
+    "res://themes/grove_default/audio/sfx/sfx_enemy_thornback_armor_hit_04.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": true,
+   "poly": 2,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 2
+  },
+  "sfx.enemy.thornback.death": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_enemy_thornback_death_01.ogg",
+    "res://themes/grove_default/audio/sfx/sfx_enemy_thornback_death_02.ogg"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": true,
+   "poly": 1,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 1
+  },
+  "sfx.enemy.thornback.slam": {
+   "bus": "SFX",
+   "cooldown_ms": 300,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_enemy_thornback_slam_01.wav",
+    "res://themes/grove_default/audio/sfx/sfx_enemy_thornback_slam_02.wav"
+   ],
+   "haptic": "slam",
+   "loop": false,
+   "pan": true,
+   "poly": 1,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 1
+  },
+  "sfx.enemy.thornback.stomp": {
+   "bus": "SFX",
+   "cooldown_ms": 180,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_enemy_thornback_stomp_01.wav",
+    "res://themes/grove_default/audio/sfx/sfx_enemy_thornback_stomp_02.wav",
+    "res://themes/grove_default/audio/sfx/sfx_enemy_thornback_stomp_03.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": true,
+   "poly": 1,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 3
+  },
+  "sfx.enemy.thornback.windup": {
+   "bus": "SFX",
+   "cooldown_ms": 300,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_enemy_thornback_windup_01.wav",
+    "res://themes/grove_default/audio/sfx/sfx_enemy_thornback_windup_02.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": true,
+   "poly": 1,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 1
+  },
+  "sfx.enemy.wisp.death": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_enemy_wisp_death_01.ogg",
+    "res://themes/grove_default/audio/sfx/sfx_enemy_wisp_death_02.ogg"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": true,
+   "poly": 2,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 2
+  },
+  "sfx.enemy.wisp.float_loop": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_enemy_wisp_float_loop_01.ogg"
+   ],
+   "haptic": "",
+   "loop": true,
+   "pan": true,
+   "poly": 2,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 4
+  },
+  "sfx.enemy.wisp.hurt": {
+   "bus": "SFX",
+   "cooldown_ms": 60,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_enemy_wisp_hurt_01.wav",
+    "res://themes/grove_default/audio/sfx/sfx_enemy_wisp_hurt_02.wav",
+    "res://themes/grove_default/audio/sfx/sfx_enemy_wisp_hurt_03.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": true,
+   "poly": 2,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 3
+  },
+  "sfx.enemy.wisp.orb_impact": {
+   "bus": "SFX",
+   "cooldown_ms": 60,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_enemy_wisp_orb_impact_01.wav",
+    "res://themes/grove_default/audio/sfx/sfx_enemy_wisp_orb_impact_02.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": true,
+   "poly": 3,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 2
+  },
+  "sfx.enemy.wisp.spit": {
+   "bus": "SFX",
+   "cooldown_ms": 80,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_enemy_wisp_spit_01.wav",
+    "res://themes/grove_default/audio/sfx/sfx_enemy_wisp_spit_02.wav",
+    "res://themes/grove_default/audio/sfx/sfx_enemy_wisp_spit_03.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": true,
+   "poly": 3,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 2
+  },
+  "sfx.fb.dmgnum.tick": {
+   "bus": "SFX",
+   "cooldown_ms": 60,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_fb_dmgnum_tick_01.wav",
+    "res://themes/grove_default/audio/sfx/sfx_fb_dmgnum_tick_02.wav",
+    "res://themes/grove_default/audio/sfx/sfx_fb_dmgnum_tick_03.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": false,
+   "poly": 2,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 4
+  },
+  "sfx.fb.frenzy.tier1": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_fb_frenzy_tier1_01.wav"
+   ],
+   "haptic": "frenzy",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 1
+  },
+  "sfx.fb.frenzy.tier2": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_fb_frenzy_tier2_01.wav"
+   ],
+   "haptic": "frenzy",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 1
+  },
+  "sfx.fb.frenzy.tier3": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_fb_frenzy_tier3_01.wav"
+   ],
+   "haptic": "frenzy",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 1
+  },
+  "sfx.fb.frenzy.tier4": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_fb_frenzy_tier4_01.wav"
+   ],
+   "haptic": "frenzy",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 1
+  },
+  "sfx.fb.frenzy.tier5": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_fb_frenzy_tier5_01.ogg"
+   ],
+   "haptic": "frenzy",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 1
+  },
+  "sfx.fb.hitstop.crunch": {
+   "bus": "SFX",
+   "cooldown_ms": 80,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_fb_hitstop_crunch_01.wav",
+    "res://themes/grove_default/audio/sfx/sfx_fb_hitstop_crunch_02.wav",
+    "res://themes/grove_default/audio/sfx/sfx_fb_hitstop_crunch_03.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 1
+  },
+  "sfx.fb.lowhp.heartbeat_loop": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_fb_lowhp_heartbeat_loop_01.wav"
+   ],
+   "haptic": "",
+   "loop": true,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 1
+  },
+  "sfx.fb.shake.rumble": {
+   "bus": "SFX",
+   "cooldown_ms": 200,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_fb_shake_rumble_01.wav",
+    "res://themes/grove_default/audio/sfx/sfx_fb_shake_rumble_02.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 3
+  },
+  "sfx.god.dhoru.aftermath": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_god_dhoru_aftermath_01.ogg"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 3
+  },
+  "sfx.god.dhoru.impact": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_god_dhoru_impact_01.wav",
+    "res://themes/grove_default/audio/sfx/sfx_god_dhoru_impact_02.wav"
+   ],
+   "haptic": "god",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 0
+  },
+  "sfx.god.dhoru.telegraph": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_god_dhoru_telegraph_01.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 1
+  },
+  "sfx.god.meghra.aftermath": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_god_meghra_aftermath_01.ogg"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 3
+  },
+  "sfx.god.meghra.impact": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_god_meghra_impact_01.wav",
+    "res://themes/grove_default/audio/sfx/sfx_god_meghra_impact_02.wav",
+    "res://themes/grove_default/audio/sfx/sfx_god_meghra_impact_03.wav"
+   ],
+   "haptic": "god",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 0
+  },
+  "sfx.god.meghra.telegraph": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_god_meghra_telegraph_01.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 1
+  },
+  "sfx.god.vayli.heal": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_god_vayli_heal_01.ogg",
+    "res://themes/grove_default/audio/sfx/sfx_god_vayli_heal_02.ogg"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 1
+  },
+  "sfx.god.vayli.root": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_god_vayli_root_01.wav",
+    "res://themes/grove_default/audio/sfx/sfx_god_vayli_root_02.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 2
+  },
+  "sfx.god.vayli.telegraph": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_god_vayli_telegraph_01.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 1
+  },
+  "sfx.pickup.meat.collect": {
+   "bus": "SFX",
+   "cooldown_ms": 30,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_pickup_meat_collect_01.wav",
+    "res://themes/grove_default/audio/sfx/sfx_pickup_meat_collect_02.wav",
+    "res://themes/grove_default/audio/sfx/sfx_pickup_meat_collect_03.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": false,
+   "poly": 2,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 3
+  },
+  "sfx.pickup.spirit.collect": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_pickup_spirit_collect_01.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": false,
+   "poly": 3,
+   "random_pitch": 1.0,
+   "random_volume_db": 1.0,
+   "tier": 3
+  },
+  "sfx.pickup.spirit.magnet": {
+   "bus": "SFX",
+   "cooldown_ms": 300,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_pickup_spirit_magnet_01.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 4
+  },
+  "sfx.player.arrow.impact.armor": {
+   "bus": "SFX",
+   "cooldown_ms": 30,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_player_arrow_impact_armor_01.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_arrow_impact_armor_02.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_arrow_impact_armor_03.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_arrow_impact_armor_04.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": true,
+   "poly": 4,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 2
+  },
+  "sfx.player.arrow.impact.bark": {
+   "bus": "SFX",
+   "cooldown_ms": 30,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_player_arrow_impact_bark_01.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_arrow_impact_bark_02.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_arrow_impact_bark_03.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_arrow_impact_bark_04.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": true,
+   "poly": 4,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 2
+  },
+  "sfx.player.arrow.impact.flesh": {
+   "bus": "SFX",
+   "cooldown_ms": 30,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_player_arrow_impact_flesh_01.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_arrow_impact_flesh_02.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_arrow_impact_flesh_03.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_arrow_impact_flesh_04.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": true,
+   "poly": 4,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 2
+  },
+  "sfx.player.arrow.impact.stone": {
+   "bus": "SFX",
+   "cooldown_ms": 30,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_player_arrow_impact_stone_01.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_arrow_impact_stone_02.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_arrow_impact_stone_03.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_arrow_impact_stone_04.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": true,
+   "poly": 4,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 2
+  },
+  "sfx.player.bow.draw": {
+   "bus": "SFX",
+   "cooldown_ms": 150,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_player_bow_draw_01.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_bow_draw_02.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_bow_draw_03.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 3
+  },
+  "sfx.player.bow.release.t1": {
+   "bus": "SFX",
+   "cooldown_ms": 40,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_player_bow_release_t1_01.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_bow_release_t1_02.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_bow_release_t1_03.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_bow_release_t1_04.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": true,
+   "poly": 3,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 2
+  },
+  "sfx.player.bow.release.t2": {
+   "bus": "SFX",
+   "cooldown_ms": 40,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_player_bow_release_t2_01.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_bow_release_t2_02.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_bow_release_t2_03.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_bow_release_t2_04.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": true,
+   "poly": 3,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 2
+  },
+  "sfx.player.bow.release.t3": {
+   "bus": "SFX",
+   "cooldown_ms": 40,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_player_bow_release_t3_01.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_bow_release_t3_02.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_bow_release_t3_03.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_bow_release_t3_04.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": true,
+   "poly": 3,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 2
+  },
+  "sfx.player.bow.release.t4": {
+   "bus": "SFX",
+   "cooldown_ms": 40,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_player_bow_release_t4_01.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_bow_release_t4_02.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_bow_release_t4_03.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_bow_release_t4_04.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": true,
+   "poly": 3,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 2
+  },
+  "sfx.player.death": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_player_death_01.ogg"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 0
+  },
+  "sfx.player.hurt": {
+   "bus": "SFX",
+   "cooldown_ms": 120,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_player_hurt_01.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_hurt_02.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_hurt_03.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_hurt_04.wav"
+   ],
+   "haptic": "hurt",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 0
+  },
+  "sfx.player.revive": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_player_revive_01.ogg"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 0
+  },
+  "sfx.player.step.earth": {
+   "bus": "SFX",
+   "cooldown_ms": 90,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_player_step_earth_01.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_step_earth_02.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_step_earth_03.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_step_earth_04.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_step_earth_05.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_step_earth_06.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": false,
+   "poly": 2,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 4
+  },
+  "sfx.player.step.grass": {
+   "bus": "SFX",
+   "cooldown_ms": 90,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_player_step_grass_01.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_step_grass_02.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_step_grass_03.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_step_grass_04.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_step_grass_05.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_step_grass_06.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": false,
+   "poly": 2,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 4
+  },
+  "sfx.player.step.water": {
+   "bus": "SFX",
+   "cooldown_ms": 90,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_player_step_water_01.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_step_water_02.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_step_water_03.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_step_water_04.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_step_water_05.wav",
+    "res://themes/grove_default/audio/sfx/sfx_player_step_water_06.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": false,
+   "poly": 2,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 4
+  },
+  "sfx.player.tier_up": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_player_tier_up_01.ogg",
+    "res://themes/grove_default/audio/sfx/sfx_player_tier_up_02.ogg"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 1
+  },
+  "sfx.rescue.cage.break": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_rescue_cage_break_01.wav",
+    "res://themes/grove_default/audio/sfx/sfx_rescue_cage_break_02.wav"
+   ],
+   "haptic": "cage",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 1
+  },
+  "sfx.rescue.cage.creak": {
+   "bus": "SFX",
+   "cooldown_ms": 300,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_rescue_cage_creak_01.wav",
+    "res://themes/grove_default/audio/sfx/sfx_rescue_cage_creak_02.wav",
+    "res://themes/grove_default/audio/sfx/sfx_rescue_cage_creak_03.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 3
+  },
+  "sfx.rescue.freed.hare": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_rescue_freed_hare_01.ogg"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 1
+  },
+  "sfx.rescue.freed.jugnu": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_rescue_freed_jugnu_01.ogg"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 1
+  },
+  "sfx.rescue.freed.pira": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_rescue_freed_pira_01.ogg"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 1
+  },
+  "sfx.shrine.anjor.purchase": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_shrine_anjor_purchase_01.ogg"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 1
+  },
+  "sfx.shrine.kaja.purchase": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_shrine_kaja_purchase_01.ogg"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 1
+  },
+  "sfx.shrine.suryak.purchase": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_shrine_suryak_purchase_01.ogg"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 1
+  },
+  "sfx.shrine.tamba.purchase": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_shrine_tamba_purchase_01.ogg"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 1
+  },
+  "sfx.world.gate.open": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_world_gate_open_01.ogg"
+   ],
+   "haptic": "gate",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 0
+  },
+  "sfx.world.gate.seal_hum": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_world_gate_seal_hum_01.ogg"
+   ],
+   "haptic": "",
+   "loop": true,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 4
+  },
+  "sfx.world.portal.close": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_world_portal_close_01.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": true,
+   "poly": 2,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 3
+  },
+  "sfx.world.portal.loop": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_world_portal_loop_01.ogg"
+   ],
+   "haptic": "",
+   "loop": true,
+   "pan": true,
+   "poly": 2,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 4
+  },
+  "sfx.world.portal.open": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_world_portal_open_01.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": true,
+   "poly": 2,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 2
+  },
+  "sfx.world.torch.loop": {
+   "bus": "SFX",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/sfx_world_torch_loop_01.ogg"
+   ],
+   "haptic": "",
+   "loop": true,
+   "pan": true,
+   "poly": 2,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 4
+  },
+  "ui.ad_reward": {
+   "bus": "UI",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/ui_ad_reward_01.ogg"
+   ],
+   "haptic": "purchase",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 1
+  },
+  "ui.back": {
+   "bus": "UI",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/ui_back_01.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 2
+  },
+  "ui.confirm": {
+   "bus": "UI",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/ui_confirm_01.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 2
+  },
+  "ui.error": {
+   "bus": "UI",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/ui_error_01.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 2
+  },
+  "ui.iap_success": {
+   "bus": "UI",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/ui_iap_success_01.ogg"
+   ],
+   "haptic": "purchase",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 1
+  },
+  "ui.purchase": {
+   "bus": "UI",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/ui_purchase_01.wav"
+   ],
+   "haptic": "purchase",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 1
+  },
+  "ui.tab": {
+   "bus": "UI",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/ui_tab_01.wav",
+    "res://themes/grove_default/audio/sfx/ui_tab_02.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 2
+  },
+  "ui.tap": {
+   "bus": "UI",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/ui_tap_01.wav",
+    "res://themes/grove_default/audio/sfx/ui_tap_02.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": false,
+   "poly": 2,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 2
+  },
+  "ui.upgrade": {
+   "bus": "UI",
+   "cooldown_ms": 0,
+   "files": [
+    "res://themes/grove_default/audio/sfx/ui_upgrade_01.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": false,
+   "poly": 1,
+   "random_pitch": 1.0,
+   "random_volume_db": 2.0,
+   "tier": 2
+  }
+ },
+ "theme_id": "grove_default"
+}

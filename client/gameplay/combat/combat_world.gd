@@ -5,14 +5,26 @@ extends Node2D
 ## Enemies are addressed by handle: swarm unit i → i, pooled scene enemy j → SCENE_BASE + j.
 
 signal enemy_killed(archetype: StringName, at: Vector2)
-signal shake_requested(amount: float)
-## A hit worth freezing a few frames for (elite or boss kill, boss stunned).
+## Camera shake: peak offset in px, decaying over `seconds` (FeelTuning).
+signal shake_requested(px: float, seconds: float)
+## A hit worth freezing a few frames for (kills, boss stunned); seconds from FeelTuning.
 signal impact(seconds: float)
 
 const SWARM_CAPACITY: int = 40
 const SCENE_BASE: int = 1000
 const POOL_SIZES: Dictionary[StringName, int] = {&"thornback": 6, &"wisp": 6, &"rotheart": 1}
 const SPAWN_JITTER: float = 18.0
+## Loop keys for Services.audio (fixed: one boss at a time).
+const LOOP_BOSS_HEART: int = 1001
+const LOOP_BOSS_CHARGE: int = 1002
+const LOOP_BOSS_STUNNED: int = 1003
+## Heart-loop playback rate per boss phase (STALK, TELEGRAPH, CHARGE, STUNNED, SUMMON).
+const HEART_RATE: Array[float] = [1.0, 1.35, 1.6, 0.8, 1.15]
+const LOOP_WISP: int = 1004
+## Rotling idle grunts: one of the nearest beasts every 4–9 s (A2: "2 nearest only").
+const IDLE_MIN: float = 4.0
+const IDLE_MAX: float = 9.0
+const IDLE_RANGE: float = 360.0
 
 var bounds: Rect2
 var run: RunState
@@ -27,6 +39,9 @@ var projectiles: ProjectileManager
 var pickups: PickupPool
 var fx: FxPool
 var numbers: DamageNumbers
+## Sounds go through here (Services.audio by default; tests and the bench may swap it).
+var audio: AudioService
+var tuning: FeelTuning = FeelTuning.new()
 var swarm: SwarmSim
 var swarm_renderer: SwarmRenderer
 ## Room pathing shared by every beast; rebuilt per room from the RoomPlan.
@@ -37,6 +52,8 @@ var _grid: SpatialHash
 var _rng: SeededRng
 var _quality: QualityProfile
 var _scratch: PackedInt32Array = PackedInt32Array()
+var _idle_t: float = IDLE_MIN
+var _wisp_loop: bool = false
 
 
 func setup(room_bounds: Rect2, layers: Dictionary, the_run: RunState, the_hunter: Player, bonus: float, run_seed: int) -> void:
@@ -45,6 +62,8 @@ func setup(room_bounds: Rect2, layers: Dictionary, the_run: RunState, the_hunter
 	hunter = the_hunter
 	damage_bonus = bonus
 	defs = GameData.archetypes()
+	if audio == null:
+		audio = Services.audio
 	_rng = SeededRng.new(run_seed, 0, &"combat")
 	_scratch.resize(48)
 	var emissive: Node = layers.get("emissive")
@@ -68,7 +87,7 @@ func setup(room_bounds: Rect2, layers: Dictionary, the_run: RunState, the_hunter
 			e.handle = SCENE_BASE + enemies.size()
 			e.died.connect(_on_scene_enemy_died)
 			if e is RotheartBoss:
-				(e as RotheartBoss).phase_changed.connect(_on_boss_phase)
+				(e as RotheartBoss).phase_changed.connect(_on_boss_phase.bind(e))
 			enemies.append(e)
 	projectiles = ProjectileManager.new()
 	projectiles.name = "Projectiles"
@@ -113,11 +132,17 @@ func spawn(id: StringName, at: Vector2) -> bool:
 		var ok: bool = swarm.spawn(at + jitter, defs[id].max_hp, _rng.next_float()) >= 0
 		if ok:
 			room_spawned += 1
+			audio.play(AudioIds.enemy(defs[id], &"alert"), at)
 		return ok
 	for e: SceneEnemy in enemies:
 		if not e.active and e.def.id == id and not e.visible:
 			e.activate(at + jitter)
 			room_spawned += 1
+			if e.def.role == ArchetypeDef.Role.BOSS:
+				audio.start_loop(AudioIds.enemy(e.def, &"heart_loop"), LOOP_BOSS_HEART)
+				audio.music_clip(&"boss")
+			elif e.def.role == ArchetypeDef.Role.TANK:
+				audio.play(AudioIds.enemy(e.def, &"stomp"), e.position)
 			return true
 	return false
 
@@ -195,15 +220,22 @@ func hit(handle: int, amount: int, direction: Vector2, kind: DamageNumbers.Kind 
 		return
 	var at: Vector2 = handle_position(handle)
 	var dealt: int = amount
+	var killed: bool = false
+	var def: ArchetypeDef
 	if handle < SCENE_BASE:
+		def = defs[Ids.ROTLING]
 		swarm.push(handle, direction * 140.0)
-		if swarm.damage(handle, amount):
+		killed = swarm.damage(handle, amount)
+		if killed:
 			_on_killed(Ids.ROTLING, swarm.pos[handle])
 	else:
 		var e: SceneEnemy = enemies[handle - SCENE_BASE]
+		def = e.def
 		if e is RotheartBoss and (e as RotheartBoss).is_stunned():
 			dealt = amount * Damage.WEAK_POINT_MULT
-		e.take_damage(amount, direction)
+		killed = e.take_damage(amount, direction)
+	if not killed:
+		audio.play(AudioIds.enemy(def, &"hurt"), at)
 	numbers.show_number(at + Vector2(0, -14), dealt, kind)
 	fx.play(&"hit_spark", at, 1.0)
 
@@ -222,9 +254,15 @@ func root(handle: int, seconds: float) -> void:
 		enemies[handle - SCENE_BASE].root(seconds)
 
 
-func shake(amount: float) -> void:
+## `v` = (px, seconds) from FeelTuning.
+func shake(v: Vector2) -> void:
 	if _quality == null or _quality.screen_shake:
-		shake_requested.emit(amount)
+		shake_requested.emit(v.x * tuning.shake_scale, v.y)
+
+
+## A sound at a world position (panned) for enemies and effects owned by this world.
+func sfx(id: StringName, at: Vector2 = AudioService.NO_POS) -> void:
+	audio.play(id, at)
 
 
 func clear() -> void:
@@ -240,6 +278,13 @@ func clear() -> void:
 	pickups.clear()
 	fx.clear()
 	numbers.clear()
+	if audio != null:
+		audio.stop_loop(LOOP_BOSS_HEART)
+		audio.stop_loop(LOOP_BOSS_CHARGE)
+		audio.stop_loop(LOOP_BOSS_STUNNED)
+		audio.stop_loop(LOOP_WISP)
+		audio.set_telegraph(false)
+	_wisp_loop = false
 	swarm_renderer.sync(hunter_position())
 
 
@@ -259,9 +304,13 @@ func tick(delta: float) -> int:
 	var contacts: int = swarm.tick(delta, hp, hunter_radius(), _grid)
 	if contacts > 0:
 		incoming += defs[Ids.ROTLING].contact_damage
+		audio.play(AudioIds.enemy(defs[Ids.ROTLING], &"attack"), hp)
+	var wisps: int = 0
 	for e: SceneEnemy in enemies:
 		if e.active:
 			incoming = maxi(incoming, e.tick(delta, self))
+			if e.def.role == ArchetypeDef.Role.RANGED:
+				wisps += 1
 		elif e.visible:
 			e.modulate.a -= delta * 3.0
 			if e.modulate.a <= 0.0:
@@ -271,7 +320,24 @@ func tick(delta: float) -> int:
 	fx.tick(delta)
 	numbers.tick(delta)
 	swarm_renderer.sync(hp)
+	_tick_ambient_sounds(delta, hp, wisps)
 	return incoming
+
+
+## Idle grunts from a nearby beast now and then, and one shared float loop while wisps drift.
+func _tick_ambient_sounds(delta: float, hp: Vector2, wisps: int) -> void:
+	_idle_t -= delta
+	if _idle_t <= 0.0:
+		_idle_t = IDLE_MIN + _rng.next_float() * (IDLE_MAX - IDLE_MIN)
+		var h: int = _grid.nearest(hp, IDLE_RANGE)
+		if h >= 0 and h < SCENE_BASE:
+			audio.play(AudioIds.enemy(defs[Ids.ROTLING], &"idle"), swarm.pos[h])
+	if (wisps > 0) != _wisp_loop:
+		_wisp_loop = wisps > 0
+		if _wisp_loop:
+			audio.start_loop(AudioIds.enemy(defs[Ids.WISP], &"float_loop"), LOOP_WISP)
+		else:
+			audio.stop_loop(LOOP_WISP)
 
 
 func _make_enemy(id: StringName) -> SceneEnemy:
@@ -286,21 +352,49 @@ func _make_enemy(id: StringName) -> SceneEnemy:
 
 
 func _on_arrow_hit(handle: int, amount: int, direction: Vector2) -> void:
+	if is_alive(handle):
+		var id: StringName = Ids.ROTLING if handle < SCENE_BASE else enemies[handle - SCENE_BASE].def.id
+		audio.play(AudioIds.impact(id), handle_position(handle))
 	hit(handle, amount, direction)
 
 
 func _on_scene_enemy_died(e: SceneEnemy) -> void:
 	_on_killed(e.def.id, e.position)
 	if e is RotheartBoss:
-		shake(10.0)
-		impact.emit(0.12)
+		shake(tuning.shake_boss)
+		impact.emit(tuning.hitstop_boss)
 	else:
-		impact.emit(0.05)
+		shake(tuning.shake_elite_kill)
+		impact.emit(tuning.hitstop_elite_kill)
+		audio.play(&"sfx.fb.hitstop.crunch")
+		if e.def.role == ArchetypeDef.Role.TANK:
+			Services.haptics.pulse(&"slam")
 
 
-func _on_boss_phase(phase: int) -> void:
-	if phase == RotheartBoss.Phase.STUNNED:
-		impact.emit(0.12)
+## Boss fight audio and feel (Audio Bible A2 boss rows, B4 values).
+func _on_boss_phase(phase: int, boss_enemy: RotheartBoss) -> void:
+	var def: ArchetypeDef = boss_enemy.def
+	audio.set_telegraph(phase == RotheartBoss.Phase.TELEGRAPH)
+	if phase != RotheartBoss.Phase.CHARGE:
+		audio.stop_loop(LOOP_BOSS_CHARGE)
+	if phase != RotheartBoss.Phase.STUNNED:
+		audio.stop_loop(LOOP_BOSS_STUNNED)
+	audio.set_loop_pitch(LOOP_BOSS_HEART, HEART_RATE[phase])
+	match phase:
+		RotheartBoss.Phase.STALK:
+			audio.play(AudioIds.enemy(def, &"stalk"), boss_enemy.position)
+		RotheartBoss.Phase.TELEGRAPH:
+			audio.play(AudioIds.enemy(def, &"telegraph"))
+		RotheartBoss.Phase.CHARGE:
+			audio.start_loop(AudioIds.enemy(def, &"charge_loop"), LOOP_BOSS_CHARGE)
+		RotheartBoss.Phase.STUNNED:
+			audio.play(AudioIds.enemy(def, &"wall_hit"))
+			audio.play(&"sfx.fb.hitstop.crunch")
+			audio.start_loop(AudioIds.enemy(def, &"stunned"), LOOP_BOSS_STUNNED)
+			shake(tuning.shake_boss)
+			impact.emit(tuning.hitstop_boss)
+		RotheartBoss.Phase.SUMMON:
+			audio.play(AudioIds.enemy(def, &"summon"))
 
 
 func _on_killed(id: StringName, at: Vector2) -> void:
@@ -313,6 +407,15 @@ func _on_killed(id: StringName, at: Vector2) -> void:
 	if def.meat_drop > meat_pickups:
 		run.add_meat(def.meat_drop - meat_pickups)
 	room_kills += 1
+	audio.play(AudioIds.enemy(def, &"death"), at)
+	if def.role == ArchetypeDef.Role.BOSS:
+		audio.stop_loop(LOOP_BOSS_HEART)
+		audio.stop_loop(LOOP_BOSS_CHARGE)
+		audio.stop_loop(LOOP_BOSS_STUNNED)
+		audio.set_telegraph(false)
+	elif def.role == ArchetypeDef.Role.SWARM:
+		impact.emit(tuning.hitstop_rotling_kill)
+		shake(tuning.shake_rotling_kill)
 	if _rng.chance(def.spirit_chance + extra_spirit_chance):
 		pickups.drop(Ids.SPIRIT, at, 1 if def.role != ArchetypeDef.Role.BOSS else 5)
 	enemy_killed.emit(id, at)

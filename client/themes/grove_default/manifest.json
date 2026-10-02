@@ -208,6 +208,7 @@
     "hit_spark": "res://themes/grove_default/fx/hit_spark.svg"
   },
   "tiles": "res://themes/grove_default/tiles/tiles.tres",
+  "audio_manifest": "res://themes/grove_default/audio/audio_manifest.tres",
   "screens": {
     "camp": "res://themes/grove_default/ui/camp_scene.svg",
     "defeat": "res://themes/grove_default/ui/defeat_scene.svg"

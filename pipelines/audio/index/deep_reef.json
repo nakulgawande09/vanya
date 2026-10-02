@@ -1,0 +1,38 @@
+{
+ "music": {},
+ "sfx": {
+  "sfx.enemy.rotling.death": {
+   "bus": "SFX",
+   "cooldown_ms": 40,
+   "files": [
+    "res://themes/deep_reef/audio/sfx/sfx_enemy_rotling_death_01.wav",
+    "res://themes/deep_reef/audio/sfx/sfx_enemy_rotling_death_02.wav",
+    "res://themes/deep_reef/audio/sfx/sfx_enemy_rotling_death_03.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": true,
+   "poly": 3,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 2
+  },
+  "sfx.enemy.rotling.hurt": {
+   "bus": "SFX",
+   "cooldown_ms": 60,
+   "files": [
+    "res://themes/deep_reef/audio/sfx/sfx_enemy_rotling_hurt_01.wav",
+    "res://themes/deep_reef/audio/sfx/sfx_enemy_rotling_hurt_02.wav",
+    "res://themes/deep_reef/audio/sfx/sfx_enemy_rotling_hurt_03.wav"
+   ],
+   "haptic": "",
+   "loop": false,
+   "pan": true,
+   "poly": 3,
+   "random_pitch": 1.06,
+   "random_volume_db": 2.0,
+   "tier": 3
+  }
+ },
+ "theme_id": "deep_reef"
+}

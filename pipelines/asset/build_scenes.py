@@ -645,6 +645,7 @@ def build_manifests() -> None:
         "textures": {f"arrow_{t}": _r(g, f"fx/arrow_{t}.svg") for t in ("stone", "flint", "bone", "rapid")}
         | {"wisp_orb": _r(g, "fx/wisp_orb.svg"), "hit_spark": _r(g, "fx/hit_spark.svg")},
         "tiles": _r(g, "tiles/tiles.tres"),
+        "audio_manifest": _r(g, "audio/audio_manifest.tres"),
         "screens": {"camp": _r(g, "ui/camp_scene.svg"), "defeat": _r(g, "ui/defeat_scene.svg")},
         "files": [],
     }
@@ -666,6 +667,7 @@ def build_manifests() -> None:
         },
         "props": {},
         "icons": {"meat": _r(r, "icons/pearl.svg"), "spirit": _r(r, "icons/bubble.svg")},
+        "audio_manifest": _r(r, "audio/audio_manifest.tres"),
         "files": [],
     }
     for theme, manifest in ((g, grove), (r, reef)):

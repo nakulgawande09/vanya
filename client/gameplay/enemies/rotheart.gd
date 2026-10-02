@@ -57,8 +57,7 @@ func _behave(delta: float, world: CombatWorld) -> Vector2:
 					or next.y < bounds.position.y + r or next.y > bounds.end.y - r \
 					or world.field.is_blocked(next + _charge_dir * r * 0.6)
 			if hit_wall:
-				world.shake(8.0)
-				_set_phase(Phase.STUNNED)
+				_set_phase(Phase.STUNNED)  # CombatWorld adds the wall-hit sound, shake and hit-stop
 				return Vector2.ZERO
 			if _t >= CHARGE_TIME:
 				_set_phase(Phase.STALK)

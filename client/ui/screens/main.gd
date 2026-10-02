@@ -45,6 +45,9 @@ func _ready() -> void:
 		if reload:
 			SceneRouter.change_to(CAMP_SCENE))
 	_refresh()
+	UiSounds.wire(self)
+	Services.audio.music_context(&"camp")
+	Services.audio.ambience(&"", 0.0)
 	_enter_button.grab_focus()
 
 
@@ -59,6 +62,8 @@ func _refresh() -> void:
 		_arrow_list.add_child(_arrow_card(GameData.arrow(id)))
 	for id: StringName in GameData.SHRINE:
 		_shrine_grid.add_child(_shrine_card(GameData.shrine(id)))
+	UiSounds.wire(_arrow_list)
+	UiSounds.wire(_shrine_grid)
 
 
 func _arrow_card(arrow: ArrowDef) -> Control:
@@ -172,17 +177,22 @@ func _shrine_effect(shrine: ShrineDef) -> String:
 
 func _buy(arrow: ArrowDef) -> void:
 	if profile.buy_arrow(arrow):
+		Services.audio.play(&"ui.purchase")
 		Services.analytics.log_event(&"arrow_bought", {"arrow": String(arrow.id), "cost": arrow.meat_cost})
 		_save_and_refresh()
+	else:
+		Services.audio.play(&"ui.error")
 
 
 func _equip(arrow: ArrowDef) -> void:
 	if profile.equip_arrow(arrow.id):
+		Services.audio.play(&"ui.confirm")
 		_save_and_refresh()
 
 
 func _level_up(shrine: ShrineDef) -> void:
 	if profile.level_up(shrine):
+		Services.audio.play(StringName("sfx.shrine.%s.purchase" % shrine.id))
 		Services.analytics.log_event(&"shrine_levelled", {"god": String(shrine.id), "level": profile.shrine_level(shrine.id)})
 		_save_and_refresh()
 
@@ -209,4 +219,5 @@ func _recover_checkpoint(data: Dictionary) -> void:
 
 func _on_enter_pressed() -> void:
 	_enter_button.disabled = true
+	Services.audio.play(&"ui.confirm")
 	SceneRouter.change_to(GROVE_SCENE)

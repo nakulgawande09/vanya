@@ -1,6 +1,7 @@
 # pipelines/ (placeholder)
 
-- `asset/`: SVG → PNG at 1×/0.75× → atlas pages (≤2048², 2 px pad and extrude), plus import presets.
+- `asset/`: extracts the Asset Bible boards into theme SVGs, scenes, tilesets, UI themes and manifests.
+- `audio/`: synthesises the placeholder SFX, music stems and ambience; writes licences and the theme audio index (see `audio/README.md`).
 - `theme_pack/`: builds, validates and signs (Ed25519) the script-free theme `.pck` files.
 - `ai_concepts/`: offline concept generation. Its output is never shipped raw.
 

@@ -8,6 +8,26 @@ var iap: IapService = FakeStore.new()
 var analytics: AnalyticsService = FakeAnalytics.new()
 var thermal: ThermalService = FakeThermal.new()
 var save: SaveService = SaveService.new()
+## Audio and haptics (ADR-0007): recording fakes by default; Boot installs GodotAudio / DeviceHaptics.
+var audio: AudioService = RecordingAudio.new()
+var haptics: HapticsService = FakeHaptics.new()
+
+
+func _ready() -> void:
+	audio.name = "Audio"
+	add_child(audio)
+
+
+## Installs another audio adapter and returns the previous one, detached but not freed
+## (tests swap a RecordingAudio in and restore the original afterwards).
+func swap_audio(impl: AudioService) -> AudioService:
+	var old: AudioService = audio
+	if old != null and old.get_parent() == self:
+		remove_child(old)
+	audio = impl
+	impl.name = "Audio"
+	add_child(impl)
+	return old
 
 
 func install(

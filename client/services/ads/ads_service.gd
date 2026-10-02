@@ -4,6 +4,8 @@ extends RefCounted
 ## Real adapter: Poing Studios AdMob v5.x (pinned, vendored under addons/admob), see docs/dev-plan.md §5.
 
 @warning_ignore_start("unused_signal")
+## A fullscreen ad is on screen: mute game audio and haptics until ad_closed / ad_failed.
+signal ad_opened(placement: StringName)
 signal rewarded_earned(placement: StringName)
 signal ad_closed(placement: StringName)
 signal ad_failed(placement: StringName, reason: String)

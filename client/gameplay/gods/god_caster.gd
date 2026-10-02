@@ -12,6 +12,11 @@ signal flash(color: Color)
 const BOLTS: int = 6
 const APPARITION_TIME: float = 1.1
 const RING_TIME: float = 0.5
+const SOUNDS: Dictionary[StringName, Array] = {
+	&"meghra": [&"sfx.god.meghra.impact", &"sfx.god.meghra.aftermath"],
+	&"dhoru": [&"sfx.god.dhoru.impact", &"sfx.god.dhoru.aftermath"],
+	&"vayli": [&"sfx.god.vayli.heal", &"sfx.god.vayli.root"],
+}
 
 var world: CombatWorld
 var defs: Dictionary[StringName, GodDef] = {}
@@ -77,8 +82,15 @@ func try_cast(id: StringName) -> bool:
 		GodDef.Effect.VINES:
 			_vines(def, at)
 	_show_apparition(id, at)
+	_cast_sounds(id)
 	cast.emit(id)
 	return true
+
+
+## Audio Bible A2 god rows: Meghra and Dhoru hit and leave an aftermath, Vayli heals and roots.
+func _cast_sounds(id: StringName) -> void:
+	for sound: StringName in SOUNDS.get(id, []):
+		world.sfx(sound)
 
 
 func tick(delta: float) -> void:
@@ -129,7 +141,7 @@ func _storm(def: GodDef, at: Vector2) -> void:
 		world.hit(targets[i], Damage.scaled(def.damage, world.damage_bonus), Vector2.DOWN, DamageNumbers.Kind.GOD)
 	_bolt_t = 0.35
 	flash.emit(Color(ThemeRegistry.color(&"storm_sky", Color("#8FD3FF")), 0.35))
-	world.shake(5.0)
+	_impact()
 
 
 func _stampede(def: GodDef, at: Vector2) -> void:
@@ -141,7 +153,7 @@ func _stampede(def: GodDef, at: Vector2) -> void:
 		world.push(h, dir * def.knockback)
 	world.projectiles.clear_orbs()
 	_start_ring(at, def.radius, ThemeRegistry.color(&"rice_white", Color.WHITE))
-	world.shake(7.0)
+	_impact()
 
 
 func _vines(def: GodDef, at: Vector2) -> void:
@@ -151,6 +163,12 @@ func _vines(def: GodDef, at: Vector2) -> void:
 	for k: int in n:
 		world.root(_near[k], def.root_time)
 	_start_ring(at, def.radius, ThemeRegistry.color(&"spirit_jade", Color("#6FF2B0")))
+
+
+## God impact feel (feel-test B4): 80 ms hit-stop and an 8 px / 0.3 s shake by default.
+func _impact() -> void:
+	world.shake(world.tuning.shake_god)
+	world.impact.emit(world.tuning.hitstop_god)
 
 
 func _start_ring(at: Vector2, radius: float, c: Color) -> void:

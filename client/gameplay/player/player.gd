@@ -16,6 +16,8 @@ var speed: float = 150.0
 var arrow: ArrowDef
 var world: CombatWorld
 var light_scale: float = 1.0
+## Auto-aim knobs (range scale, retarget delay) come from here.
+var tuning: FeelTuning = FeelTuning.new()
 var input_vector: Vector2 = Vector2.ZERO
 var downed: bool = false
 var _visual: Node2D
@@ -25,6 +27,8 @@ var _fire_t: float = 0.0
 var _iframe_t: float = 0.0
 var _facing: float = 1.0
 var _shooting_t: float = 0.0
+var _target: int = -1
+var _target_age: float = 0.0
 
 
 func setup(arrow_def: ArrowDef, move_speed: float, emissive_layer: Node) -> void:
@@ -84,8 +88,17 @@ func tick(delta: float) -> void:
 	_visual.scale.x = _facing
 	modulate.a = 0.55 if _iframe_t > 0.0 and int(_iframe_t * 20.0) % 2 == 0 else 1.0
 	_fire_t -= delta
+	_target_age += delta
 	if _fire_t <= 0.0 and world != null:
-		var target: int = world.nearest_enemy(global_position, arrow.aim_range)
+		var aim_range: float = arrow.aim_range * tuning.aim_range_scale
+		var target: int = world.nearest_enemy(global_position, aim_range)
+		# Retarget delay (feel-test #6): stay on the current beast for a moment while it lives.
+		if _target >= 0 and target != _target and _target_age < tuning.aim_retarget_delay and world.is_alive(_target) \
+				and world.handle_position(_target).distance_to(global_position) <= aim_range:
+			target = _target
+		if target != _target:
+			_target = target
+			_target_age = 0.0
 		if target >= 0:
 			_loose(world.handle_position(target))
 			_fire_t = arrow.fire_interval

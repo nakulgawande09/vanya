@@ -6,9 +6,19 @@ const RUN_SCENE: String = "res://gameplay/run/grove_run.tscn"
 const STEP: float = 1.0 / 60.0
 
 var _save_before: SaveService
+var _audio_before: AudioService
+var _haptics_before: HapticsService
+var _audio: RecordingAudio
+var _haptics: FakeHaptics
 
 
 func before_test() -> void:
+	_audio = RecordingAudio.new()
+	_audio_before = Services.swap_audio(_audio)
+	_haptics_before = Services.haptics
+	_haptics = FakeHaptics.new()
+	_haptics.configure(FeelTuning.new())
+	Services.haptics = _haptics
 	_save_before = Services.save
 	Services.save = SaveService.new("user://test_grove_run_%d/" % Time.get_ticks_usec())
 	Services.save.set_value("profile", {"meat": 0, "spirit": 0})
@@ -16,6 +26,8 @@ func before_test() -> void:
 
 func after_test() -> void:
 	Services.save = _save_before
+	Services.swap_audio(_audio_before).free()
+	Services.haptics = _haptics_before
 
 
 func _start(run_seed: int = 11, with_tutorial: bool = false) -> GroveRun:
@@ -211,3 +223,54 @@ func test_dda_rates_the_cleared_room() -> void:
 		guard += 1
 	assert_int(run.skill.rooms).is_equal(1)
 	assert_float(run.skill.rating).is_not_equal(SkillRating.START)
+
+
+func test_a_grove_sounds_like_the_audio_bible() -> void:
+	var run: GroveRun = _start()
+	_tough(run)
+	assert_str(String(_audio.context)).is_equal("run")
+	assert_str(String(_audio.bed)).is_equal("amb.grove.default.bed")
+	assert_bool(_audio.loops.values().has(&"sfx.world.gate.seal_hum")).is_true()
+	var guard: int = 0
+	while not run.gate_open and guard < 120:
+		_step(run, 1.0)
+		guard += 1
+	assert_int(_audio.count(&"sfx.player.bow.release.t1")).is_greater(0)
+	assert_int(_audio.count(&"sfx.player.arrow.impact.flesh")).is_greater(0)
+	assert_int(_audio.count(&"sfx.enemy.rotling.death")).is_greater_equal(8)
+	assert_int(_audio.count(&"sfx.world.portal.open")).is_greater(0)
+	assert_int(_audio.count(&"sfx.world.gate.open")).is_equal(1)
+	assert_bool(_audio.loops.values().has(&"sfx.world.gate.seal_hum")).is_false()
+	assert_int(_audio.phase).is_greater_equal(0)
+
+
+func test_spirit_pickups_climb_a_pentatonic_ladder() -> void:
+	var run: GroveRun = _start()
+	for i: int in 3:
+		run._on_pickup_collected(Ids.SPIRIT, 1, Vector2.ZERO)
+	var idx: int = _audio.played.rfind(&"sfx.pickup.spirit.collect")
+	assert_float(_audio.pitches[idx]).is_equal_approx(pow(2.0, 4.0 / 12.0), 0.001)
+	run._spirit_t = 0.0
+	run._on_pickup_collected(Ids.SPIRIT, 1, Vector2.ZERO)
+	assert_float(_audio.pitches[_audio.pitches.size() - 1]).is_equal_approx(1.0, 0.001)
+
+
+func test_hurt_plays_feedback_hitstop_and_low_hp_heartbeat() -> void:
+	var run: GroveRun = _start()
+	run.run.hp = 3
+	run._feed_dda(0.1, 0)
+	assert_bool(_audio.low_hp).is_true()
+	assert_bool(_audio.loops.values().has(&"sfx.fb.lowhp.heartbeat_loop")).is_true()
+	run._on_impact(run.tuning.hitstop_hurt)
+	assert_float(run._hitstop).is_equal_approx(0.06, 0.0001)
+
+
+func test_pause_ducks_music_and_death_plays_defeat() -> void:
+	var run: GroveRun = _start()
+	run.open_pause()
+	assert_bool(_audio.paused).is_true()
+	run.resume()
+	assert_bool(_audio.paused).is_false()
+	run.run.take_damage(run.run.hp)
+	assert_int(_audio.count(&"sfx.player.death")).is_equal(1)
+	assert_str(String(_audio.clip)).is_equal("defeat")

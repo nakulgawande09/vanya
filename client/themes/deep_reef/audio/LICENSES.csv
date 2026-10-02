@@ -1,0 +1,7 @@
+file,archetype_id,source,url,author,licence,attribution_required,modified,notes
+sfx/sfx_enemy_rotling_death_01.wav,sfx.enemy.rotling.death,original: pipelines/audio/synth.py,,Vanya team (procedural),CC0-1.0,false,false,seed=877599247
+sfx/sfx_enemy_rotling_death_02.wav,sfx.enemy.rotling.death,original: pipelines/audio/synth.py,,Vanya team (procedural),CC0-1.0,false,false,seed=877593824
+sfx/sfx_enemy_rotling_death_03.wav,sfx.enemy.rotling.death,original: pipelines/audio/synth.py,,Vanya team (procedural),CC0-1.0,false,false,seed=877602769
+sfx/sfx_enemy_rotling_hurt_01.wav,sfx.enemy.rotling.hurt,original: pipelines/audio/synth.py,,Vanya team (procedural),CC0-1.0,false,false,seed=431414909
+sfx/sfx_enemy_rotling_hurt_02.wav,sfx.enemy.rotling.hurt,original: pipelines/audio/synth.py,,Vanya team (procedural),CC0-1.0,false,false,seed=431407250
+sfx/sfx_enemy_rotling_hurt_03.wav,sfx.enemy.rotling.hurt,original: pipelines/audio/synth.py,,Vanya team (procedural),CC0-1.0,false,false,seed=431416227

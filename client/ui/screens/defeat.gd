@@ -25,6 +25,7 @@ func _ready() -> void:
 	_spirit.add_theme_color_override(&"font_color", ThemeRegistry.color(&"spirit_jade"))
 	_revive.pressed.connect(func() -> void: revive_pressed.emit())
 	_camp.pressed.connect(func() -> void: camp_pressed.emit())
+	UiSounds.wire(self)
 
 
 func show_summary(run: RunState, can_revive: bool) -> void:

@@ -17,11 +17,15 @@ func after_test() -> void:
 	AdaptiveQuality.apply_setting(GameSettings.Graphics.AUTO)
 
 
-func _button(root: Node, text: String) -> Button:
+## The first button with `text` (or the last one: "Low" is both a vibration and a graphics option).
+func _button(root: Node, text: String, last: bool = false) -> Button:
+	var found: Button = null
 	for b: Node in root.find_children("*", "Button", true, false):
 		if (b as Button).text == text:
-			return b as Button
-	return null
+			found = b as Button
+			if not last:
+				return found
+	return found
 
 
 func test_language_and_hand_choices_apply_and_persist() -> void:
@@ -45,7 +49,7 @@ func test_graphics_override_sets_the_quality_ceiling() -> void:
 	var screen: SettingsScreen = runner.scene() as SettingsScreen
 	screen.open()
 	await runner.simulate_frames(2)
-	_button(screen, "Low").pressed.emit()
+	_button(screen, "Low", true).pressed.emit()
 	assert_int(AdaptiveQuality.current_rung()).is_equal(QualityProfile.Rung.LOW)
 	_button(screen, "High").pressed.emit()
 	assert_int(AdaptiveQuality.current_rung()).is_equal(QualityProfile.Rung.HIGH)

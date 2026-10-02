@@ -43,6 +43,13 @@ SET_FULL,Full,पूरी,पूर्ण
 SET_HALF,Half,आधी,अर्धी
 SET_NUMBERS,Damage numbers,क्षति अंक,नुकसान अंक
 SET_HAPTICS,Vibration,कंपन,कंपन
+SET_LOW,Low,कम,कमी
+SET_MASTER,Volume,आवाज़,आवाज
+SET_MUSIC,Music,संगीत,संगीत
+SET_SFX,Effects,ध्वनि प्रभाव,ध्वनी परिणाम
+SET_UI_SOUNDS,Menu sounds,मेनू ध्वनि,मेनू आवाज
+SET_AMBIENCE,Forest sounds,जंगल की ध्वनि,जंगलाचे आवाज
+SET_LET_MUSIC,Let my music play,मेरा संगीत चलने दें,माझे संगीत चालू ठेवा
 SET_LANGUAGE,Language,भाषा,भाषा
 LANG_EN,English,English,English
 LANG_HI,हिन्दी,हिन्दी,हिन्दी

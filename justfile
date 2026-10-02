@@ -35,6 +35,19 @@ art boards:
     python3 pipelines/asset/extract_bible.py {{boards}} --godot {{godot}}
     python3 pipelines/asset/build_scenes.py
 
+# Re-render placeholder audio (needs numpy, scipy, ffmpeg) and rebuild the theme audio manifests
+audio:
+    python3 pipelines/audio/synth.py
+    {{godot}} --headless --path client --import
+    python3 pipelines/audio/import_flags.py
+    {{godot}} --headless --path client --import
+    {{godot}} --headless --path client -s ../tools/build_audio_manifest.gd
+
+# Audio memory budget per quality tier (after import) and loudness report
+audio-check: import
+    python3 tools/audio_budget.py
+    python3 pipelines/audio/synth.py --report
+
 # Boot the game headless for ~2 s to catch script and scene errors
 smoke: import
     {{godot}} --headless --path client --quit-after 120

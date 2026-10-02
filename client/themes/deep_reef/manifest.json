@@ -112,5 +112,6 @@
     "meat": "res://themes/deep_reef/icons/pearl.svg",
     "spirit": "res://themes/deep_reef/icons/bubble.svg"
   },
+  "audio_manifest": "res://themes/deep_reef/audio/audio_manifest.tres",
   "files": []
 }

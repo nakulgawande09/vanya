@@ -32,6 +32,9 @@ jobs:
       - name: Import project
         run: ${{ steps.godot.outputs.bin }} --headless --path client --import
 
+      - name: Audio memory budget (Audio Bible A5)
+        run: python3 tools/audio_budget.py
+
       - name: Compile every script (strict typing)
         run: ${{ steps.godot.outputs.bin }} --headless --path client -s ../tools/check_scripts.gd
 

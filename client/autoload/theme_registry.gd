@@ -147,6 +147,16 @@ func darkness() -> Color:
 	return c
 
 
+## AudioManifest paths along the chain, active theme first (Services.audio loads them).
+func audio_manifest_paths() -> PackedStringArray:
+	var out: PackedStringArray = PackedStringArray()
+	for manifest: Dictionary in _chain:
+		var p: String = str(manifest.get("audio_manifest", ""))
+		if p != "" and _is_allowed_path(p) and ResourceLoader.exists(p):
+			out.append(p)
+	return out
+
+
 func ui_theme() -> Theme:
 	return _load(_first_string("ui_theme")) as Theme
 

@@ -30,6 +30,7 @@ func _behave(delta: float, world: CombatWorld) -> Vector2:
 			glow.scale = Vector2.ONE * (1.0 + _t / def.tell_time)
 		if _t >= def.tell_time:
 			world.projectiles.fire_orb(position + Vector2(0, -def.hitbox_radius), dir, def.projectile_speed, def.projectile_damage)
+			world.sfx(AudioIds.enemy(def, &"spit"), position)
 			_phase = Phase.DRIFT
 			_cooldown = def.attack_cooldown
 			if glow != null:

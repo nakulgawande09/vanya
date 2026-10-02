@@ -25,6 +25,7 @@ func _start() -> void:
 	var settings: GameSettings = GameSettings.from_dict(_dict(saved))
 	TranslationServer.set_locale(settings.locale)
 	AdaptiveQuality.apply_setting(settings.graphics)
+	_install_audio(settings)
 	# TODO(week 11): UMP consent → (iOS) ATT → MobileAds.initialize(), only once consent allows ads.
 	Services.ads.initialize()
 	Services.iap.initialize()
@@ -32,6 +33,30 @@ func _start() -> void:
 	Services.thermal.start()
 	Services.analytics.log_event(&"app_started", {"quality_rung": AdaptiveQuality.current_rung()})
 	EventBus.boot_completed.emit()
+
+
+## Real audio and haptics adapters (ADR-0007), configured from settings and the feel tuning.
+func _install_audio(settings: GameSettings) -> void:
+	var tuning: FeelTuning = FeelTuning.load_active()
+	var haptics: HapticsService = DeviceHaptics.new()
+	haptics.configure(tuning)
+	Services.haptics = haptics
+	Services.ads.ad_opened.connect(func(_p: StringName) -> void: Services.haptics.suppressed = true)
+	Services.ads.ad_closed.connect(func(_p: StringName) -> void: Services.haptics.suppressed = false)
+	Services.ads.ad_failed.connect(func(_p: StringName, _r: String) -> void: Services.haptics.suppressed = false)
+	var audio: GodotAudio = GodotAudio.new()
+	audio.tuning = tuning
+	Services.swap_audio(audio).queue_free()
+	apply_audio_settings(settings)
+
+
+## Volumes, haptics level and "let my music play" (also called by the settings screen).
+static func apply_audio_settings(settings: GameSettings) -> void:
+	Services.audio.set_volumes(GameSettings.level(settings.master_vol), GameSettings.level(settings.music_vol),
+			GameSettings.level(settings.sfx_vol), GameSettings.level(settings.ui_vol), GameSettings.level(settings.amb_vol))
+	Services.audio.set_let_music_play(settings.let_my_music_play)
+	var haptics_level: int = settings.haptics
+	Services.haptics.level = haptics_level as HapticsService.Level
 
 
 static func _dict(v: Variant) -> Dictionary:

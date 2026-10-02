@@ -47,6 +47,7 @@ func _ready() -> void:
 	_heart.texture = ThemeRegistry.icon_for(&"health")
 	_pause.pressed.connect(func() -> void: pause_pressed.emit())
 	_skip.pressed.connect(func() -> void: skip_pressed.emit())
+	UiSounds.wire(self)
 	_pointer = Polygon2D.new()
 	_pointer.polygon = PackedVector2Array([Vector2(-12, -16), Vector2(12, -16), Vector2(0, 0)])
 	_pointer.color = ThemeRegistry.color(&"spirit_jade")

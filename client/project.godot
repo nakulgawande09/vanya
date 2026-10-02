@@ -19,6 +19,13 @@ boot_splash/bg_color=Color(0.0862745, 0.141176, 0.121569, 1)
 boot_splash/show_image=false
 config/icon="res://icon.svg"
 config/quit_on_go_back=false
+run/max_fps=60
+
+[audio]
+
+buses/default_bus_layout="res://audio/default_bus_layout.tres"
+general/2d_panning_strength=0.35
+driver/mix_rate=44100
 
 [autoload]
 
@@ -98,6 +105,7 @@ locale/fallback="en"
 
 [physics]
 
+common/physics_ticks_per_second=60
 common/physics_interpolation=true
 
 [rendering]

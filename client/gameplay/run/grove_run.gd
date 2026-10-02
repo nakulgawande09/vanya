@@ -12,6 +12,21 @@ const TORCH_LIGHT: float = 95.0
 const GATE_RANGE: float = 30.0
 const DEFEAT_DELAY: float = 1.1
 const CHECKPOINT_KEY: String = "run_checkpoint"
+## Loop keys for Services.audio.
+const LOOP_GATE: int = 2001
+const LOOP_TORCH: int = 2002
+const LOOP_PORTAL: int = 2003
+const LOOP_LOWHP: int = 2004
+const LOOP_COMPANION: int = 2005
+const STEP_INTERVAL: float = 0.32
+const LOW_HP: float = 0.25
+## Spirit pickups climb a pentatonic ladder inside a 0.6 s combo window (Audio Bible A2).
+const SPIRIT_COMBO: float = 0.6
+const PENTATONIC: Array[int] = [0, 2, 4, 7, 9, 12, 14, 16]
+const FRENZY_TIERS: Array[int] = [3, 6, 10, 15, 20]
+const FRENZY_SOUNDS: Array[StringName] = [&"sfx.fb.frenzy.tier1", &"sfx.fb.frenzy.tier2", &"sfx.fb.frenzy.tier3",
+		&"sfx.fb.frenzy.tier4", &"sfx.fb.frenzy.tier5"]
+const AMBIENCE_BED: StringName = &"amb.grove.default.bed"
 
 ## Fixed seed for tests and benchmarks; 0 picks a fresh one per run.
 @export var run_seed: int = 0
@@ -36,6 +51,8 @@ var cage: Cage
 var light_bonus: float = 0.0
 var gate_open: bool = false
 var in_transition: bool = false
+## Every feel knob (hit-stop, shake, haptics, joystick): data/feel/feel_tuning.tres.
+var tuning: FeelTuning
 
 @onready var _floor: TileMapLayer = %Floor
 @onready var _decals: Node2D = %Decals
@@ -54,7 +71,9 @@ var _builder: RoomBuilder
 var _next_plan: RoomPlan
 var _next_task: int = -1
 var _defeat_t: float = -1.0
-var _shake: float = 0.0
+var _shake_px: float = 0.0
+var _shake_t: float = 0.0
+var _shake_len: float = 0.0
 var _orbs: PackedVector2Array = PackedVector2Array()
 var _extra_lights: Array[Vector2] = []
 var _shake_rng: RandomNumberGenerator = RandomNumberGenerator.new()
@@ -69,6 +88,13 @@ var _room_near_deaths: int = 0
 var _room_rated: bool = false
 var _was_low: bool = false
 var _hitstop: float = 0.0
+var _since_stop: float = 1.0
+var _step_t: float = 0.0
+var _spirit_step: int = -1
+var _spirit_t: float = 0.0
+var _low_hp: bool = false
+var _frenzy_tier: int = 0
+var _arrow_tier: int = 0
 
 
 func _ready() -> void:
@@ -76,6 +102,7 @@ func _ready() -> void:
 		run_seed = int(Time.get_unix_time_from_system()) ^ Time.get_ticks_usec()
 	profile = Profile.from_dict(_saved_profile())
 	settings = GameSettings.from_dict(_saved_settings())
+	tuning = FeelTuning.load_active()
 	skill = SkillRating.from_dict(profile.skill)
 	rails.adaptive = settings.adaptive_challenge
 	_near.resize(48)
@@ -93,19 +120,21 @@ func _ready() -> void:
 	_player.hitbox_radius = hunter_def.hitbox_radius
 	world = CombatWorld.new()
 	world.name = "Combat"
+	world.tuning = tuning
 	add_child(world)
 	_builder = RoomBuilder.new(_emissive)
 	plan = RoomGenerator.generate(rules, run_seed, 1)
 	world.setup(plan.walkable_rect(), {"emissive": _emissive, "decals": _decals, "entities": _entities}, run, _player,
 			GameData.shrine_bonus(profile, ShrineDef.Stat.DAMAGE), run_seed)
 	world.projectiles.set_arrow_texture(ThemeRegistry.texture_for(GameData.arrow(profile.equipped_arrow).texture_id))
-	world.shake_requested.connect(func(a: float) -> void:
-		if settings.screen_shake:
-			_shake = maxf(_shake, a))
-	world.impact.connect(func(seconds: float) -> void: _hitstop = maxf(_hitstop, seconds))
+	world.shake_requested.connect(_on_shake)
+	world.impact.connect(_on_impact)
 	world.pickups.collected.connect(_on_pickup_collected)
 	world.numbers.enabled = settings.damage_numbers
 	_player.world = world
+	_player.tuning = tuning
+	_player.shot.connect(_on_shot)
+	_arrow_tier = maxi(0, GameData.ARROWS.find(profile.equipped_arrow))
 	gods = GodCaster.new()
 	gods.name = "Gods"
 	_emissive.add_child(gods)
@@ -139,6 +168,8 @@ func _ready() -> void:
 	_defeat.visible = false
 	EventBus.quality_changed.connect(_on_quality_changed)
 	AdaptiveQuality.set_combat(true)
+	Services.audio.music_context(&"run")
+	Services.audio.ambience(AMBIENCE_BED, 0.0)
 	EventBus.run_started.emit(run_seed)
 	Services.analytics.log_event(&"run_started", {"theme_id": String(ThemeRegistry.theme_id)})
 	_hud.skip_pressed.connect(skip_tutorial)
@@ -154,6 +185,10 @@ func _exit_tree() -> void:
 		WorkerThreadPool.wait_for_task_completion(_next_task)
 		_next_task = -1
 	AdaptiveQuality.set_combat(false)
+	Services.audio.stop_all_loops()
+	Services.audio.set_low_hp(false)
+	Services.audio.set_paused(false)
+	Services.audio.ambience(&"", 0.0)
 
 
 ## Backgrounding or Android back opens the pause menu and flushes a checkpoint (standards §B.4).
@@ -169,12 +204,14 @@ func open_pause() -> void:
 	if not is_inside_tree() or _pause == null or run == null or run.is_dead() or _settings_screen.visible:
 		return
 	get_tree().paused = true
+	Services.audio.set_paused(true)
 	_pause.open()
 
 
 func resume() -> void:
 	_pause.visible = false
 	get_tree().paused = false
+	Services.audio.set_paused(false)
 
 
 func _on_settings_closed(_needs_reload: bool) -> void:
@@ -188,6 +225,7 @@ func _apply_settings() -> void:
 	world.numbers.enabled = settings.damage_numbers
 	_hud.flash_intensity = settings.flash_intensity
 	_hud.set_left_handed(settings.left_handed)
+	Boot.apply_audio_settings(settings)
 
 
 ## The first-run tutorial: a fixed room, three Rotlings held until the hunter has moved.
@@ -247,6 +285,14 @@ func start_grove(grove: int, room: RoomPlan = null, fixed_waves: Array[Array] = 
 	director.room_cleared.connect(_on_room_cleared)
 	AdaptiveQuality.commit_pending()
 	_hud.set_grove(grove)
+	Services.audio.stop_loop(LOOP_PORTAL)
+	Services.audio.start_loop(&"sfx.world.gate.seal_hum", LOOP_GATE)
+	if _builder.torches.is_empty():
+		Services.audio.stop_loop(LOOP_TORCH)
+	else:
+		Services.audio.start_loop(&"sfx.world.torch.loop", LOOP_TORCH)
+	Services.audio.ambience(AMBIENCE_BED, 0.0)
+	Services.audio.music_clip(&"grove")
 
 
 func _physics_process(delta: float) -> void:
@@ -257,25 +303,31 @@ func _physics_process(delta: float) -> void:
 		_hitstop -= delta
 		_update_camera(delta)
 		return
+	_since_stop += delta
+	_spirit_t = maxf(0.0, _spirit_t - delta)
 	run.tick(delta)
 	_player.tick(delta)
+	_footsteps(delta)
 	var incoming: int = world.tick(delta)
 	if not in_transition and not run.is_dead():
 		var taken: int = _player.receive_damage(incoming)
 		if taken > 0:
 			run.take_damage(taken)
 			world.numbers.show_number(_player.global_position + Vector2(0, -90), taken, DamageNumbers.Kind.HURT)
-			world.shake(4.0)
+			world.shake(tuning.shake_hurt)
 			_hud.hurt()
-			_hitstop = maxf(_hitstop, 0.07)
-			if settings.haptics:
-				Input.vibrate_handheld(25)
+			_on_impact(tuning.hitstop_hurt)
+			Services.audio.play(&"sfx.player.hurt")
 		_feed_dda(delta, taken)
 		director.tick(delta, world)
 		if tutorial != null:
 			tutorial.tick()
-	if cage != null and cage.tick(delta, _player.global_position):
-		_on_cage_freed(cage)
+	if cage != null:
+		var was: float = cage.progress
+		if cage.tick(delta, _player.global_position):
+			_on_cage_freed(cage)
+		elif was <= 0.0 and cage.progress > 0.0:
+			Services.audio.play(&"sfx.rescue.cage.creak", cage.position)
 	guides.tick(delta, incoming > 0)
 	gods.tick(delta)
 	if gate_open and not in_transition and _player.global_position.distance_to(plan.gate_position() + Vector2(0, 12)) < GATE_RANGE:
@@ -295,6 +347,8 @@ func _physics_process(delta: float) -> void:
 
 ## Banks the run and returns to camp.
 func end_run() -> void:
+	Services.audio.stop_all_loops()
+	Services.audio.set_low_hp(false)
 	profile.bank_run(run)
 	Services.save.set_value("profile", profile.to_dict())
 	Services.save.set_value(CHECKPOINT_KEY, null)
@@ -347,15 +401,63 @@ func _update_hud() -> void:
 	for id: StringName in GameData.GODS:
 		_hud.set_god_state(id, gods.can_cast(id), gods.cooldowns[id], gods.cooldown_fraction(id))
 	_hud.set_frenzy(run.frenzy)
+	var tier: int = 0
+	while tier < FRENZY_TIERS.size() and run.frenzy >= FRENZY_TIERS[tier]:
+		tier += 1
+	if tier > _frenzy_tier:
+		Services.audio.play(FRENZY_SOUNDS[tier - 1])
+	_frenzy_tier = tier
 	_hud.set_guide(Ids.PIRA if guides.has(Ids.PIRA) else (Ids.JUGNU if guides.has(Ids.JUGNU) else &""))
 
 
 func _update_camera(delta: float) -> void:
-	if _shake > 0.0:
-		_shake = maxf(0.0, _shake - delta * 30.0)
-		_camera.offset = Vector2(_shake_rng.randf_range(-_shake, _shake), _shake_rng.randf_range(-_shake, _shake))
+	if _shake_t > 0.0:
+		_shake_t = maxf(0.0, _shake_t - delta)
+		var a: float = _shake_px * _shake_t / maxf(0.001, _shake_len)
+		_camera.offset = Vector2(_shake_rng.randf_range(-a, a), _shake_rng.randf_range(-a, a))
 	else:
 		_camera.offset = Vector2.ZERO
+
+
+## Shake (px, seconds) from FeelTuning; a stronger shake replaces a weaker one in progress.
+func _on_shake(px: float, seconds: float) -> void:
+	if not settings.screen_shake or px <= 0.0:
+		return
+	var current: float = _shake_px * _shake_t / maxf(0.001, _shake_len)
+	if px >= current:
+		_shake_px = px
+		_shake_t = seconds
+		_shake_len = seconds
+	if px >= 8.0:
+		Services.audio.play(&"sfx.fb.shake.rumble")
+
+
+## Hit-stop request. Short stops (swarm kills) respect a minimum gap so a dying swarm doesn't
+## stutter; elite, hurt, god and boss stops always land (feel-test B4).
+func _on_impact(seconds: float) -> void:
+	var s: float = seconds * tuning.hitstop_scale
+	if s <= 0.0:
+		return
+	if _hitstop > 0.0:
+		_hitstop = maxf(_hitstop, s)
+	elif _since_stop >= tuning.hitstop_min_gap or seconds >= tuning.hitstop_elite_kill:
+		_hitstop = s
+		_since_stop = 0.0
+
+
+func _on_shot() -> void:
+	Services.audio.play(AudioIds.release(_arrow_tier), _player.global_position)
+
+
+func _footsteps(delta: float) -> void:
+	if _player.velocity.length_squared() < 400.0 or _player.downed:
+		_step_t = 0.0
+		return
+	_step_t -= delta
+	if _step_t <= 0.0:
+		_step_t = STEP_INTERVAL
+		var slow: bool = world.field.speed_factor(_player.global_position) < 1.0
+		Services.audio.play(&"sfx.player.step.earth" if slow else &"sfx.player.step.grass")
 
 
 func hud() -> Hud:
@@ -380,11 +482,24 @@ func _finish_tutorial() -> void:
 
 func _on_pickup_collected(kind: StringName, _amount: int, at: Vector2) -> void:
 	_hud.fly_pickup(kind, get_viewport().get_canvas_transform() * at)
+	if kind == Ids.SPIRIT:
+		_spirit_step = mini(_spirit_step + 1, PENTATONIC.size() - 1) if _spirit_t > 0.0 else 0
+		_spirit_t = SPIRIT_COMBO
+		Services.audio.play(&"sfx.pickup.spirit.collect", AudioService.NO_POS, pow(2.0, PENTATONIC[_spirit_step] / 12.0))
+	else:
+		Services.audio.play(&"sfx.pickup.meat.collect")
 
 
 func _on_portals_changed(open: bool) -> void:
 	for p: Node2D in _builder.portals:
 		p.visible = open
+	if not _builder.portals.is_empty():
+		Services.audio.play(&"sfx.world.portal.open" if open else &"sfx.world.portal.close", _builder.portals[0].position)
+	if open:
+		Services.audio.start_loop(&"sfx.world.portal.loop", LOOP_PORTAL)
+	else:
+		Services.audio.stop_loop(LOOP_PORTAL)
+	Services.audio.ambience(AMBIENCE_BED, 1.0 if open else 0.0)
 
 
 func _on_wave_started(index: int, total: int) -> void:
@@ -403,6 +518,10 @@ func _on_room_cleared() -> void:
 
 func open_gate() -> void:
 	gate_open = true
+	Services.audio.stop_loop(LOOP_GATE)
+	Services.audio.play(&"sfx.world.gate.open")
+	if plan.family == rules.boss_family:
+		Services.audio.music_clip(&"victory")
 	if _builder.gate_sealed != null:
 		_builder.gate_sealed.visible = false
 	if _builder.gate_open != null:
@@ -415,13 +534,21 @@ func _on_cage_freed(c: Cage) -> void:
 	run.animals_freed += 1
 	world.pickups.drop(Ids.SPIRIT, c.position + Vector2(0, -10), Cage.SPIRIT_REWARD)
 	world.fx.play(&"ash_burst", c.position + Vector2(0, -20), 1.0)
+	Services.audio.play(&"sfx.rescue.cage.break", c.position)
 	match c.kind:
 		Ids.CAGE_BIRD:
 			guides.add(Ids.PIRA)
 			run.add_guide(Ids.PIRA)
+			Services.audio.play(&"sfx.rescue.freed.pira")
+			Services.audio.start_loop(&"sfx.companion.pira.chirp_loop", LOOP_COMPANION)
 		Ids.CAGE_JAR:
 			guides.add(Ids.JUGNU)
 			run.add_guide(Ids.JUGNU)
+			Services.audio.play(&"sfx.rescue.freed.jugnu")
+			if not guides.has(Ids.PIRA):
+				Services.audio.start_loop(&"sfx.companion.jugnu.shimmer_loop", LOOP_COMPANION)
+		_:
+			Services.audio.play(&"sfx.rescue.freed.hare")
 	Services.analytics.log_event(&"animal_freed", {"cage": String(c.kind), "grove": run.grove})
 
 
@@ -446,6 +573,11 @@ func _go_to_next_grove() -> void:
 
 
 func _on_died() -> void:
+	Services.audio.play(&"sfx.player.death")
+	Services.audio.music_clip(&"defeat")
+	Services.audio.stop_loop(LOOP_LOWHP)
+	Services.audio.set_low_hp(false)
+	_low_hp = false
 	_rate_room(false)
 	rails.on_death()
 	_player.knock_down()
@@ -465,6 +597,8 @@ func _on_revive_rewarded(placement: StringName) -> void:
 		return
 	Services.analytics.log_event(&"ad_reward_granted", {"placement": String(placement), "grove": run.grove})
 	_player.revive()
+	Services.audio.play(&"sfx.player.revive")
+	Services.audio.music_clip(&"boss" if world.boss() != null else &"grove")
 	_defeat.visible = false
 	_hud.set_health(run.hp, run.max_hp)
 
@@ -493,6 +627,15 @@ func _feed_dda(delta: float, taken: int) -> void:
 		_room_near_deaths += 1
 	var close: int = world.enemies_near(_player.global_position, 128.0, _near)
 	intensity.feed(delta, float(taken) / run.max_hp, near_death, close)
+	Services.audio.set_intensity(intensity.phase, intensity.intensity, run.frenzy)
+	var low_now: bool = hp_frac < LOW_HP and not run.is_dead()
+	if low_now != _low_hp:
+		_low_hp = low_now
+		Services.audio.set_low_hp(low_now)
+		if low_now:
+			Services.audio.start_loop(&"sfx.fb.lowhp.heartbeat_loop", LOOP_LOWHP)
+		else:
+			Services.audio.stop_loop(LOOP_LOWHP)
 	if intensity.wants_relief(hp_frac):
 		world.pickups.drop(Ids.SPIRIT, _player.global_position + Vector2(0, -60), 1)
 
