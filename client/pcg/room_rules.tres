@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="RoomRules" format=3]
+
+[ext_resource type="Script" path="res://pcg/room_rules.gd" id="1_r"]
+[ext_resource type="Script" path="res://pcg/chunk_def.gd" id="1_c"]
+[ext_resource type="Resource" path="res://pcg/chunks/glade_a.tres" id="2_glade_a"]
+[ext_resource type="Resource" path="res://pcg/chunks/glade_b.tres" id="3_glade_b"]
+[ext_resource type="Resource" path="res://pcg/chunks/glade_c.tres" id="4_glade_c"]
+[ext_resource type="Resource" path="res://pcg/chunks/glade_cage.tres" id="5_glade_cage"]
+[ext_resource type="Resource" path="res://pcg/chunks/maze_a.tres" id="6_maze_a"]
+[ext_resource type="Resource" path="res://pcg/chunks/maze_b.tres" id="7_maze_b"]
+[ext_resource type="Resource" path="res://pcg/chunks/maze_c.tres" id="8_maze_c"]
+[ext_resource type="Resource" path="res://pcg/chunks/river_a.tres" id="9_river_a"]
+[ext_resource type="Resource" path="res://pcg/chunks/river_b.tres" id="10_river_b"]
+[ext_resource type="Resource" path="res://pcg/chunks/river_c.tres" id="11_river_c"]
+[ext_resource type="Resource" path="res://pcg/chunks/ring_a.tres" id="12_ring_a"]
+[ext_resource type="Resource" path="res://pcg/chunks/ring_b.tres" id="13_ring_b"]
+[ext_resource type="Resource" path="res://pcg/chunks/ring_c.tres" id="14_ring_c"]
+[ext_resource type="Resource" path="res://pcg/chunks/hollow_a.tres" id="15_hollow_a"]
+[ext_resource type="Resource" path="res://pcg/chunks/hollow_b.tres" id="16_hollow_b"]
+[ext_resource type="Resource" path="res://pcg/chunks/tutorial_cage.tres" id="17_tutorial_cage"]
+[ext_resource type="Resource" path="res://pcg/chunks/tutorial_portal.tres" id="18_tutorial_portal"]
+
+[resource]
+script = ExtResource("1_r")
+chunks = Array[ExtResource("1_c")]([ExtResource("2_glade_a"), ExtResource("3_glade_b"), ExtResource("4_glade_c"), ExtResource("5_glade_cage"), ExtResource("6_maze_a"), ExtResource("7_maze_b"), ExtResource("8_maze_c"), ExtResource("9_river_a"), ExtResource("10_river_b"), ExtResource("11_river_c"), ExtResource("12_ring_a"), ExtResource("13_ring_b"), ExtResource("14_ring_c"), ExtResource("15_hollow_a"), ExtResource("16_hollow_b"), ExtResource("17_tutorial_cage"), ExtResource("18_tutorial_portal")])
+fallback_rooms = Array[PackedStringArray]([PackedStringArray("glade_b", "glade_cage", "glade_c"), PackedStringArray("ring_a", "glade_b", "ring_b"), PackedStringArray("hollow_a", "glade_cage", "hollow_b")])
+tutorial_room = PackedStringArray("tutorial_portal", "glade_b", "tutorial_cage")

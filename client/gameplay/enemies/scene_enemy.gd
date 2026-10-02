@@ -86,7 +86,8 @@ func tick(delta: float, world: CombatWorld) -> int:
 	root_t = maxf(0.0, root_t - delta)
 	knock = knock * maxf(0.0, 1.0 - 6.0 * delta)
 	var move: Vector2 = Vector2.ZERO if root_t > 0.0 else _behave(delta, world)
-	var p: Vector2 = position + (move + knock) * delta
+	var step: Vector2 = (move * world.field.speed_factor(position) + knock) * delta
+	var p: Vector2 = world.field.slide(position, step)
 	var r: float = def.hitbox_radius
 	position = Vector2(clampf(p.x, bounds.position.x + r, bounds.end.x - r), clampf(p.y, bounds.position.y + r, bounds.end.y - r))
 	visual.scale.x = -1.0 if world.hunter_position().x < position.x else 1.0
@@ -100,9 +101,9 @@ func _on_activate() -> void:
 	pass
 
 
-## Returns the desired velocity for this tick.
+## Returns the desired velocity for this tick (default: follow the room's flow field).
 func _behave(_delta: float, world: CombatWorld) -> Vector2:
-	return (world.hunter_position() - position).normalized() * def.move_speed
+	return world.field.direction(position, world.hunter_position()) * def.move_speed
 
 
 func _contact_damage() -> int:

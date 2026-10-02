@@ -22,7 +22,7 @@ func _run_bench() -> void:
 	run.run.max_hp = 1000000
 	run.run.hp = 1000000
 	run.director.waves = [[]]
-	var room: Rect2 = run.layout.walkable
+	var room: Rect2 = run.plan.walkable_rect()
 	for i: int in 30:
 		run.world.spawn(Ids.ROTLING, room.position + Vector2(40 + (i % 10) * 30, 60 + (i / 10) * 40))
 	for i: int in 6:
@@ -37,7 +37,7 @@ func _run_bench() -> void:
 		run._physics_process(STEP)
 		times.append((Time.get_ticks_usec() - start) / 1000.0)
 		if run.world.alive_count() < 30:
-			run.world.spawn(Ids.ROTLING, run.layout.portals[t % run.layout.portals.size()])
+			run.world.spawn(Ids.ROTLING, RoomPlan.cell_center(run.plan.portals[t % run.plan.portals.size()]))
 	times.sort()
 	var total: float = 0.0
 	for v: float in times:

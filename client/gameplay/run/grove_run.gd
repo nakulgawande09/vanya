@@ -23,7 +23,8 @@ var world: CombatWorld
 var gods: GodCaster
 var guides: Guides
 var director: WaveDirector
-var layout: RoomLayout
+var rules: RoomRules = preload("res://pcg/room_rules.tres")
+var plan: RoomPlan
 var cage: Cage
 var light_bonus: float = 0.0
 var gate_open: bool = false
@@ -40,10 +41,9 @@ var in_transition: bool = false
 @onready var _defeat: DefeatScreen = %Defeat
 
 var _darkness: Darkness
-var _room_nodes: Array[Node] = []
-var _portal_nodes: Array[Node2D] = []
-var _gate_sealed: Node2D
-var _gate_opened: Node2D
+var _builder: RoomBuilder
+var _next_plan: RoomPlan
+var _next_task: int = -1
 var _defeat_t: float = -1.0
 var _shake: float = 0.0
 var _orbs: PackedVector2Array = PackedVector2Array()
@@ -70,8 +70,9 @@ func _ready() -> void:
 	world = CombatWorld.new()
 	world.name = "Combat"
 	add_child(world)
-	layout = RoomLayout.generate(run_seed, 1)
-	world.setup(layout.walkable, {"emissive": _emissive, "decals": _decals, "entities": _entities}, run, _player,
+	_builder = RoomBuilder.new(_emissive)
+	plan = RoomGenerator.generate(rules, run_seed, 1)
+	world.setup(plan.walkable_rect(), {"emissive": _emissive, "decals": _decals, "entities": _entities}, run, _player,
 			GameData.shrine_bonus(profile, ShrineDef.Stat.DAMAGE), run_seed)
 	world.projectiles.set_arrow_texture(ThemeRegistry.texture_for(GameData.arrow(profile.equipped_arrow).texture_id))
 	world.shake_requested.connect(func(a: float) -> void: _shake = maxf(_shake, a))
@@ -105,6 +106,9 @@ func _ready() -> void:
 
 
 func _exit_tree() -> void:
+	if _next_task >= 0:
+		WorkerThreadPool.wait_for_task_completion(_next_task)
+		_next_task = -1
 	AdaptiveQuality.set_combat(false)
 
 
@@ -121,27 +125,27 @@ func _notification(what: int) -> void:
 
 
 ## Builds a fresh room for `grove` (between rooms only: never instantiates during waves).
-func start_grove(grove: int) -> void:
+## `room` is a plan generated ahead of time (off the main thread); null generates one now.
+func start_grove(grove: int, room: RoomPlan = null) -> void:
 	world.clear()
-	for n: Node in _room_nodes:
-		n.queue_free()
-	_room_nodes.clear()
-	_portal_nodes.clear()
+	_builder.clear()
 	run.grove = grove
-	layout = RoomLayout.generate(run_seed, grove)
-	layout.paint(_floor, run_seed)
-	_place_props()
-	_player.position = layout.start
+	plan = room if room != null else RoomGenerator.generate(rules, run_seed, grove)
+	_builder.build(plan, _floor, _decals, _entities, run_seed)
+	world.set_room(plan)
+	_place_cage()
+	_player.position = plan.start_position()
 	_player.velocity = Vector2.ZERO
+	var size: Vector2 = plan.size_px()
 	_camera.limit_left = 0
 	_camera.limit_top = 0
-	_camera.limit_right = int(layout.size.x)
-	_camera.limit_bottom = int(layout.size.y)
+	_camera.limit_right = int(size.x)
+	_camera.limit_bottom = int(size.y)
 	_camera.reset_smoothing()
 	gate_open = false
 	var defs: Dictionary[StringName, ArchetypeDef] = world.defs
 	var waves: Array[Array] = WavePlanner.plan(GameData.waves(), grove, defs, SeededRng.new(run_seed, grove, &"waves"))
-	director = WaveDirector.new(waves, layout.portals, GameData.waves().wave_spacing)
+	director = WaveDirector.new(waves, _builder.portal_positions(plan), GameData.waves().wave_spacing)
 	director.portals_changed.connect(_on_portals_changed)
 	director.wave_started.connect(_on_wave_started)
 	director.room_cleared.connect(_on_room_cleared)
@@ -166,7 +170,7 @@ func _physics_process(delta: float) -> void:
 		_on_cage_freed(cage)
 	guides.tick(delta, incoming > 0)
 	gods.tick(delta)
-	if gate_open and not in_transition and _player.global_position.distance_to(layout.gate + Vector2(0, 12)) < GATE_RANGE:
+	if gate_open and not in_transition and _player.global_position.distance_to(plan.gate_position() + Vector2(0, 12)) < GATE_RANGE:
 		_go_to_next_grove()
 	if _defeat_t >= 0.0:
 		_defeat_t += delta
@@ -190,58 +194,21 @@ func end_run() -> void:
 	SceneRouter.change_to(CAMP_SCENE)
 
 
-func _place_props() -> void:
-	_add_prop(ThemeRegistry.prop_for(&"dance_ring"), layout.center, _decals)
-	for p: Vector2 in layout.bushes:
-		var b: Node2D = _add_prop(ThemeRegistry.prop_for(&"bush"), p, _entities)
-		if b != null:
-			b.scale = Vector2(-1 if p.x > layout.size.x / 2 else 1, 1) * 0.8
-	for p: Vector2 in layout.torches:
-		_add_visual(ThemeRegistry.visual_for(Ids.TORCH), p, _entities)
-	for p: Vector2 in layout.idols:
-		_add_prop(ThemeRegistry.prop_for(&"idol"), p, _entities)
-	for d: Dictionary in layout.decor:
-		_add_prop(ThemeRegistry.prop_for(d["id"] as StringName), d["at"] as Vector2, _decals)
-	for p: Vector2 in layout.portals:
-		var portal: Node2D = _add_prop(ThemeRegistry.prop_for(&"portal"), p, _decals)
-		if portal != null:
-			portal.visible = false
-			portal.scale = Vector2(0.9, 0.6)
-			_portal_nodes.append(portal)
-	_gate_sealed = _add_prop(ThemeRegistry.prop_for(&"gate_sealed"), layout.gate, _entities)
-	_gate_opened = _add_prop(ThemeRegistry.prop_for(&"gate_open"), layout.gate, _entities)
-	if _gate_opened != null:
-		_gate_opened.visible = false
+func _place_cage() -> void:
 	cage = null
-	if layout.has_cage:
-		cage = Cage.new()
-		cage.name = "Cage"
-		cage.position = layout.cage_at
-		_entities.add_child(cage)
-		var kind: StringName = Ids.CAGE_HARE
-		if not guides.has(Ids.PIRA):
-			kind = Ids.CAGE_BIRD
-		elif not guides.has(Ids.JUGNU) and ThemeRegistry.has_visual(Ids.CAGE_JAR):
-			kind = Ids.CAGE_JAR
-		cage.setup(kind)
-		_room_nodes.append(cage)
-
-
-func _add_prop(scene: PackedScene, at: Vector2, parent: Node2D) -> Node2D:
-	return _add_visual(scene, at, parent)
-
-
-func _add_visual(scene: PackedScene, at: Vector2, parent: Node2D) -> Node2D:
-	if scene == null:
-		return null
-	var n: Node2D = scene.instantiate() as Node2D
-	n.position = at
-	parent.add_child(n)
-	var glow: Node2D = Emissive.lift(n, _emissive)
-	if glow != null:
-		_room_nodes.append(glow)
-	_room_nodes.append(n)
-	return n
+	if not plan.has_cage():
+		return
+	cage = Cage.new()
+	cage.name = "Cage"
+	cage.position = RoomPlan.cell_center(plan.cage) + Vector2(0, 12)
+	_entities.add_child(cage)
+	var kind: StringName = Ids.CAGE_HARE
+	if not guides.has(Ids.PIRA):
+		kind = Ids.CAGE_BIRD
+	elif not guides.has(Ids.JUGNU) and ThemeRegistry.has_visual(Ids.CAGE_JAR):
+		kind = Ids.CAGE_JAR
+	cage.setup(kind)
+	_builder.track(cage)
 
 
 func _update_light() -> void:
@@ -249,12 +216,12 @@ func _update_light() -> void:
 	_darkness.begin()
 	var hunter_light: float = BASE_LIGHT * (1.0 + light_bonus) * guides.light_scale()
 	_darkness.add_hole(xf, _player.global_position + Vector2(0, -30), hunter_light, 1.0)
-	for p: Vector2 in layout.torches:
+	for p: Vector2 in _builder.torches:
 		_darkness.add_hole(xf, p + Vector2(0, -40), TORCH_LIGHT, 0.95)
 	if cage != null and not cage.is_free:
 		_darkness.add_hole(xf, cage.position + Vector2(0, -20), 60.0, 0.8)
 	if gate_open:
-		_darkness.add_hole(xf, layout.gate + Vector2(0, -20), 80.0, 0.9)
+		_darkness.add_hole(xf, plan.gate_position() + Vector2(0, -20), 80.0, 0.9)
 	var n: int = world.projectiles.orb_positions(_orbs)
 	for i: int in n:
 		_darkness.add_hole(xf, _orbs[i], 34.0, 0.7)
@@ -281,7 +248,7 @@ func _update_camera(delta: float) -> void:
 
 
 func _on_portals_changed(open: bool) -> void:
-	for p: Node2D in _portal_nodes:
+	for p: Node2D in _builder.portals:
 		p.visible = open
 
 
@@ -293,10 +260,10 @@ func _on_wave_started(index: int, total: int) -> void:
 
 func _on_room_cleared() -> void:
 	gate_open = true
-	if _gate_sealed != null:
-		_gate_sealed.visible = false
-	if _gate_opened != null:
-		_gate_opened.visible = true
+	if _builder.gate_sealed != null:
+		_builder.gate_sealed.visible = false
+	if _builder.gate_open != null:
+		_builder.gate_open.visible = true
 	_save_checkpoint()
 	Services.analytics.log_event(&"room_cleared", {"grove": run.grove, "hp": run.hp, "kills": run.kills})
 
@@ -317,11 +284,19 @@ func _on_cage_freed(c: Cage) -> void:
 
 func _go_to_next_grove() -> void:
 	in_transition = true
+	# Generate the next room on a worker while the screen fades (standards §C4); the main thread
+	# only instantiates.
+	var next_grove: int = run.grove + 1
+	_next_task = WorkerThreadPool.add_task(func() -> void:
+		_next_plan = RoomGenerator.generate(rules, run_seed, next_grove), false, "room_generation")
 	var tw: Tween = create_tween()
 	tw.tween_property(_fade, "color:a", 1.0, 0.35)
 	tw.tween_callback(func() -> void:
+		WorkerThreadPool.wait_for_task_completion(_next_task)
+		_next_task = -1
 		run.next_grove()
-		start_grove(run.grove)
+		start_grove(run.grove, _next_plan)
+		_next_plan = null
 	)
 	tw.tween_property(_fade, "color:a", 0.0, 0.35)
 	tw.tween_callback(func() -> void: in_transition = false)

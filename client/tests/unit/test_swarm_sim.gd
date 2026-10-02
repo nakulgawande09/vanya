@@ -83,3 +83,29 @@ func test_separation_ignores_foreign_handles_in_shared_grid() -> void:
 	grid.commit()
 	sim.tick(1.0 / 30.0, Vector2(600, 600), 14.0, grid)
 	assert_bool(sim.is_active(i)).is_true()
+
+
+func test_units_path_around_a_wall_with_a_gap() -> void:
+	var field: FlowField = FlowField.new(13, 30, 32.0)
+	var codes: PackedByteArray = PackedByteArray()
+	codes.resize(13 * 30)
+	codes.fill(FlowField.FREE)
+	for x: int in range(0, 10):
+		codes[12 * 13 + x] = FlowField.BLOCKED  # a wall across row 12 with a gap at columns 10-12
+	field.set_grid(codes)
+	var bounds: Rect2 = Rect2(0, 0, 13 * 32, 30 * 32)
+	var sim: SwarmSim = SwarmSim.new(2, 14.0, 72.0, bounds)
+	sim.field = field
+	var target: Vector2 = Vector2(100, 600)
+	var i: int = sim.spawn(Vector2(100, 200), 30)
+	var grid: SpatialHash = SpatialHash.new(bounds, 64.0, 2)
+	for step: int in 900:
+		field.update(1.0 / 30.0, target)
+		grid.clear()
+		grid.insert(i, sim.pos[i], sim.radius)
+		grid.commit()
+		sim.tick(1.0 / 30.0, target, 14.0, grid)
+		assert_bool(field.is_blocked(sim.pos[i])).is_false()
+	# Through the gap and at the hunter (lunges keep it circling within a body length or two).
+	assert_float(sim.pos[i].y).is_greater(13 * 32.0)
+	assert_float(sim.pos[i].distance_to(target)).is_less(70.0)

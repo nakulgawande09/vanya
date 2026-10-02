@@ -59,7 +59,7 @@ func test_gate_leads_to_next_grove() -> void:
 	while not run.gate_open and guard < 120:
 		_step(run, 1.0)
 		guard += 1
-	(run.get_node("%Player") as Player).global_position = run.layout.gate + Vector2(0, 12)
+	(run.get_node("%Player") as Player).global_position = run.plan.gate_position() + Vector2(0, 12)
 	_step(run, 0.1)
 	assert_bool(run.in_transition).is_true()
 	await get_tree().create_timer(1.0).timeout
@@ -101,7 +101,7 @@ func test_god_spends_spirit_and_cools_down() -> void:
 
 func test_cage_frees_after_standing_close() -> void:
 	var run: GroveRun = _start()
-	assert_bool(run.layout.has_cage).is_true()  # grove 1 always has the bird cage
+	assert_bool(run.plan.has_cage()).is_true()  # grove 1 always has the bird cage
 	var player: Player = run.get_node("%Player") as Player
 	player.global_position = run.cage.position + Vector2(10, 0)
 	var spirit_before: int = run.run.spirit

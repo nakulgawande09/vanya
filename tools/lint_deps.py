@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Enforces the client dependency rules (docs/standards.md §A.2).
 
-- core/ must not reference themes/, ui/, services/, gameplay/ or addons/, or the service and theme autoloads.
+- core/, pcg/ and dda/ must not reference themes/, ui/, services/, gameplay/ or addons/, or the service and theme autoloads.
 - Gameplay code must not hard-code theme paths (use ThemeRegistry.visual_for).
 - Theme folders must not contain scripts or native code (App Store 2.5.2).
 - No Godot 3 APIs (yield, KinematicBody2D, `export var`, ...).
@@ -45,7 +45,7 @@ def main() -> int:
     for path in gd_files():
         rel = path.relative_to(CLIENT).as_posix()
         text = path.read_text(encoding="utf-8")
-        if rel.startswith("core/"):
+        if rel.startswith(("core/", "pcg/", "dda/")):
             for pattern, message in FORBIDDEN_IN_CORE:
                 if pattern.search(text):
                     errors.append(f"{rel}: {message}")

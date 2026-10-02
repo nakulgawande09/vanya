@@ -22,6 +22,8 @@ var fx: FxPool
 var numbers: DamageNumbers
 var swarm: SwarmSim
 var swarm_renderer: SwarmRenderer
+## Room pathing shared by every beast; rebuilt per room from the RoomPlan.
+var field: FlowField = FlowField.new(RoomPlan.COLS, RoomPlan.ROWS, RoomPlan.TILE)
 var defs: Dictionary[StringName, ArchetypeDef] = {}
 var enemies: Array[SceneEnemy] = []
 var _grid: SpatialHash
@@ -44,6 +46,7 @@ func setup(room_bounds: Rect2, layers: Dictionary, the_run: RunState, the_hunter
 	_grid = SpatialHash.new(bounds, 64.0, SWARM_CAPACITY + 16)
 	var rot: ArchetypeDef = defs[Ids.ROTLING]
 	swarm = SwarmSim.new(SWARM_CAPACITY, rot.hitbox_radius, rot.move_speed, bounds)
+	swarm.field = field
 	swarm_renderer = SwarmRenderer.new()
 	swarm_renderer.name = "Swarm"
 	entities.add_child(swarm_renderer)
@@ -83,9 +86,17 @@ func set_quality(profile: QualityProfile) -> void:
 	swarm_renderer.set_quality(profile)
 
 
+## Loads a room's passability (logs, idols, roots) into the shared flow field.
+func set_room(plan: RoomPlan) -> void:
+	field.set_grid(plan.flow_codes())
+
+
 ## Spawns an archetype at a point (portal). Returns false if its pool is exhausted.
 func spawn(id: StringName, at: Vector2) -> bool:
+	at = field.nearest_free(at)
 	var jitter: Vector2 = Vector2(_rng.next_float() - 0.5, _rng.next_float() - 0.5) * SPAWN_JITTER * 2.0
+	if field.is_blocked(at + jitter):
+		jitter = Vector2.ZERO
 	if id == Ids.ROTLING:
 		if swarm.alive >= mini(SWARM_CAPACITY, _quality.max_enemies):
 			return false
@@ -227,6 +238,7 @@ func tick(delta: float) -> int:
 			_grid.insert(e.handle, e.position, e.def.hitbox_radius)
 	_grid.commit()
 	var hp: Vector2 = hunter_position()
+	field.update(delta, hp)
 	var incoming: int = 0
 	var contacts: int = swarm.tick(delta, hp, hunter_radius(), _grid)
 	if contacts > 0:

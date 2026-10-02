@@ -40,7 +40,7 @@ func _behave(delta: float, world: CombatWorld) -> Vector2:
 			if _t >= def.attack_cooldown:
 				_cycles += 1
 				_set_phase(Phase.SUMMON if _cycles % 3 == 0 else Phase.TELEGRAPH)
-			return to_h.normalized() * def.move_speed
+			return world.field.direction(position, world.hunter_position()) * def.move_speed
 		Phase.TELEGRAPH:
 			if glow != null:
 				glow.scale = Vector2.ONE * (1.0 + 0.6 * absf(sin(_t * 18.0)))
@@ -54,7 +54,8 @@ func _behave(delta: float, world: CombatWorld) -> Vector2:
 			var r: float = def.hitbox_radius
 			var next: Vector2 = position + _charge_dir * def.projectile_speed * delta
 			var hit_wall: bool = next.x < bounds.position.x + r or next.x > bounds.end.x - r \
-					or next.y < bounds.position.y + r or next.y > bounds.end.y - r
+					or next.y < bounds.position.y + r or next.y > bounds.end.y - r \
+					or world.field.is_blocked(next + _charge_dir * r * 0.6)
 			if hit_wall:
 				world.shake(8.0)
 				_set_phase(Phase.STUNNED)

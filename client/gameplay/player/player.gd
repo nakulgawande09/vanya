@@ -76,7 +76,8 @@ func tick(delta: float) -> void:
 	var v: Vector2 = input_vector
 	if v == Vector2.ZERO:
 		v = Input.get_vector(&"move_left", &"move_right", &"move_up", &"move_down")
-	velocity = v * speed
+	var pace: float = speed * (world.field.speed_factor(global_position) if world != null else 1.0)
+	velocity = v * pace
 	move_and_slide()
 	if absf(v.x) > 0.1 and _shooting_t <= 0.0:
 		_facing = signf(v.x)

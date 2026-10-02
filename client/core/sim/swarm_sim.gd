@@ -34,6 +34,8 @@ var radius: float
 var speed: float
 var lunge_range: float
 var bounds: Rect2
+## Optional room pathing: units follow its gradient around obstacles and slow on roots.
+var field: FlowField
 
 var _neighbours: PackedInt32Array = PackedInt32Array()
 
@@ -136,26 +138,31 @@ func tick(delta: float, target: Vector2, target_radius: float, grid: SpatialHash
 		var to_target: Vector2 = target - pos[i]
 		var dist: float = to_target.length()
 		var dir: Vector2 = to_target / dist if dist > 0.001 else Vector2.ZERO
+		var pace: float = speed
+		if field != null:
+			dir = field.direction(pos[i], target)
+			pace *= field.speed_factor(pos[i])
 		var desired: Vector2 = Vector2.ZERO
 		if s == State.LUNGE:
-			desired = lunge_dir[i] * speed * LUNGE_SPEED_MULT
+			desired = lunge_dir[i] * pace * LUNGE_SPEED_MULT
 			if state_t[i] >= LUNGE_TIME:
 				state[i] = State.RUN
 				state_t[i] = 0.0
 				cooldown[i] = LUNGE_COOLDOWN
 		else:
-			desired = dir * speed
+			desired = dir * pace
 			if dist < lunge_range and cooldown[i] <= 0.0:
 				state[i] = State.LUNGE
 				state_t[i] = 0.0
 				anim_t[i] = 0.0
 				lunge_dir[i] = dir
-		desired += _separation(i, grid) * speed
+		desired += _separation(i, grid) * pace
 		if root_t[i] > 0.0:
 			desired = Vector2.ZERO
 		vel[i] = vel[i].lerp(desired, minf(1.0, delta * 10.0))
 		knock[i] = knock[i] * maxf(0.0, 1.0 - KNOCK_DECAY * delta)
-		var p: Vector2 = pos[i] + (vel[i] + knock[i]) * delta
+		var step: Vector2 = (vel[i] + knock[i]) * delta
+		var p: Vector2 = field.slide(pos[i], step) if field != null else pos[i] + step
 		pos[i] = Vector2(clampf(p.x, bounds.position.x + radius, bounds.end.x - radius),
 				clampf(p.y, bounds.position.y + radius, bounds.end.y - radius))
 		if dist < touch:
