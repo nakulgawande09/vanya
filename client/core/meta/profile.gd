@@ -10,6 +10,9 @@ var equipped_arrow: StringName = &"stone"
 var shrine_levels: Dictionary[StringName, int] = {}
 var best_grove: int = 0
 var runs: int = 0
+var tutorial_done: bool = false
+## Adaptive-difficulty state (SkillRating.to_dict()).
+var skill: Dictionary = {}
 
 
 static func from_dict(d: Dictionary) -> Profile:
@@ -18,6 +21,9 @@ static func from_dict(d: Dictionary) -> Profile:
 	p.spirit = VarUtil.to_int(d.get("spirit"), 0)
 	p.best_grove = VarUtil.to_int(d.get("best_grove"), 0)
 	p.runs = VarUtil.to_int(d.get("runs"), 0)
+	p.tutorial_done = d.get("tutorial_done", false) == true
+	var sk: Variant = d.get("skill", {})
+	p.skill = sk if sk is Dictionary else {}
 	var arrows: Variant = d.get("owned_arrows", [])
 	if arrows is Array:
 		for a: Variant in arrows:
@@ -41,7 +47,8 @@ func to_dict() -> Dictionary:
 	for a: StringName in owned_arrows:
 		arrows.append(String(a))
 	return {"meat": meat, "spirit": spirit, "owned_arrows": arrows, "equipped_arrow": String(equipped_arrow),
-			"shrine_levels": levels, "best_grove": best_grove, "runs": runs}
+			"shrine_levels": levels, "best_grove": best_grove, "runs": runs, "tutorial_done": tutorial_done,
+			"skill": skill}
 
 
 func can_buy_arrow(arrow: ArrowDef) -> bool:

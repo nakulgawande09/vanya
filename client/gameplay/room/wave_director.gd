@@ -1,8 +1,8 @@
 class_name WaveDirector
 extends RefCounted
 ## Runs a room's waves through its spawn portals: open → spawn the wave's beasts one by one →
-## wait until they fall → relax → next wave. The intensity director (dev-plan §7.3) will later
-## stretch or shorten the relax windows; for now it guarantees a spirit drop when the hunter is low.
+## wait until they fall → relax → next wave. The intensity director (dev-plan §7.3) paces it:
+## spawning pauses during a PEAK, and the next wave waits for its RELAX window to end.
 
 signal wave_started(index: int, total: int)
 signal portals_changed(open: bool)
@@ -21,12 +21,14 @@ var _portals: Array[Vector2] = []
 var _queue: Array = []
 var _t: float = 0.0
 var _portal_cursor: int = 0
+var _intensity: IntensityDirector
 
 
-func _init(planned: Array[Array], portals: Array[Vector2], relax: float) -> void:
+func _init(planned: Array[Array], portals: Array[Vector2], relax: float, intensity: IntensityDirector = null) -> void:
 	waves = planned
 	_portals = portals
 	relax_time = relax
+	_intensity = intensity
 
 
 func total_waves() -> int:
@@ -40,6 +42,8 @@ func tick(delta: float, world: CombatWorld) -> void:
 			if _t >= WARMUP:
 				_next_wave()
 		Phase.SPAWNING:
+			if _intensity != null and _intensity.phase == IntensityDirector.Phase.PEAK:
+				return  # finish the fight in front of you first: no new beasts at the peak
 			if _t >= SPAWN_INTERVAL:
 				_t = 0.0
 				if _queue.is_empty():
@@ -59,10 +63,8 @@ func tick(delta: float, world: CombatWorld) -> void:
 				else:
 					phase = Phase.RELAX
 					_t = 0.0
-					if world.run.hp < world.run.max_hp * 0.35:
-						world.pickups.drop(Ids.SPIRIT, world.hunter_position() + Vector2(0, -60), 1)
 		Phase.RELAX:
-			if _t >= relax_time:
+			if _t >= relax_time and (_intensity == null or _intensity.allows_new_wave()):
 				_next_wave()
 
 

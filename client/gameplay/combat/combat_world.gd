@@ -16,6 +16,11 @@ var bounds: Rect2
 var run: RunState
 var hunter: Player
 var damage_bonus: float = 0.0
+## Extra chance a fallen beast leaves a spirit wisp (DDA supply-side help).
+var extra_spirit_chance: float = 0.0
+## Beasts spawned / killed in the current room, for DDA's damage-dealt ratio.
+var room_spawned: int = 0
+var room_kills: int = 0
 var projectiles: ProjectileManager
 var pickups: PickupPool
 var fx: FxPool
@@ -100,10 +105,14 @@ func spawn(id: StringName, at: Vector2) -> bool:
 	if id == Ids.ROTLING:
 		if swarm.alive >= mini(SWARM_CAPACITY, _quality.max_enemies):
 			return false
-		return swarm.spawn(at + jitter, defs[id].max_hp, _rng.next_float()) >= 0
+		var ok: bool = swarm.spawn(at + jitter, defs[id].max_hp, _rng.next_float()) >= 0
+		if ok:
+			room_spawned += 1
+		return ok
 	for e: SceneEnemy in enemies:
 		if not e.active and e.def.id == id and not e.visible:
 			e.activate(at + jitter)
+			room_spawned += 1
 			return true
 	return false
 
@@ -214,6 +223,8 @@ func shake(amount: float) -> void:
 
 
 func clear() -> void:
+	room_spawned = 0
+	room_kills = 0
 	for i: int in swarm.capacity:
 		if swarm.state[i] != SwarmSim.State.FREE:
 			swarm.state[i] = SwarmSim.State.FREE
@@ -288,7 +299,8 @@ func _on_killed(id: StringName, at: Vector2) -> void:
 	pickups.drop(Ids.MEAT, at, meat_pickups)
 	if def.meat_drop > meat_pickups:
 		run.add_meat(def.meat_drop - meat_pickups)
-	if _rng.chance(def.spirit_chance):
+	room_kills += 1
+	if _rng.chance(def.spirit_chance + extra_spirit_chance):
 		pickups.drop(Ids.SPIRIT, at, 1 if def.role != ArchetypeDef.Role.BOSS else 5)
 	enemy_killed.emit(id, at)
 

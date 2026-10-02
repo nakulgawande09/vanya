@@ -19,6 +19,10 @@ const CHECKPOINT_KEY: String = "run_checkpoint"
 
 var run: RunState
 var profile: Profile
+var settings: GameSettings
+var skill: SkillRating
+var rails: DdaRails = DdaRails.new()
+var intensity: IntensityDirector
 var world: CombatWorld
 var gods: GodCaster
 var guides: Guides
@@ -49,12 +53,26 @@ var _shake: float = 0.0
 var _orbs: PackedVector2Array = PackedVector2Array()
 var _extra_lights: Array[Vector2] = []
 var _shake_rng: RandomNumberGenerator = RandomNumberGenerator.new()
+var _near: PackedInt32Array = PackedInt32Array()
+# Per-room DDA bookkeeping.
+var _room_d: float = 0.0
+var _room_scale: float = 1.0
+var _room_t: float = 0.0
+var _room_damage: int = 0
+var _room_min_hp: float = 1.0
+var _room_near_deaths: int = 0
+var _room_rated: bool = false
+var _was_low: bool = false
 
 
 func _ready() -> void:
 	if run_seed == 0:
 		run_seed = int(Time.get_unix_time_from_system()) ^ Time.get_ticks_usec()
 	profile = Profile.from_dict(_saved_profile())
+	settings = GameSettings.from_dict(_saved_settings())
+	skill = SkillRating.from_dict(profile.skill)
+	rails.adaptive = settings.adaptive_challenge
+	_near.resize(48)
 	var hunter_def: ArchetypeDef = GameData.archetype(Ids.HUNTER)
 	var max_hp: int = hunter_def.max_hp + int(GameData.shrine_bonus(profile, ShrineDef.Stat.HEALTH))
 	run = RunState.new(max_hp)
@@ -143,9 +161,19 @@ func start_grove(grove: int, room: RoomPlan = null) -> void:
 	_camera.limit_bottom = int(size.y)
 	_camera.reset_smoothing()
 	gate_open = false
+	_room_scale = rails.next_scale(grove, skill.target_difficulty(settings.target_success()))
+	_room_d = DdaRails.room_difficulty(grove, _room_scale)
+	world.extra_spirit_chance = rails.supply_chance()
+	_room_t = 0.0
+	_room_damage = 0
+	_room_min_hp = float(run.hp) / run.max_hp
+	_room_near_deaths = 0
+	_room_rated = false
 	var defs: Dictionary[StringName, ArchetypeDef] = world.defs
-	var waves: Array[Array] = WavePlanner.plan(GameData.waves(), grove, defs, SeededRng.new(run_seed, grove, &"waves"))
-	director = WaveDirector.new(waves, _builder.portal_positions(plan), GameData.waves().wave_spacing)
+	var waves: Array[Array] = WavePlanner.plan(GameData.waves(), grove, defs, SeededRng.new(run_seed, grove, &"waves"),
+			_room_scale)
+	intensity = IntensityDirector.new()
+	director = WaveDirector.new(waves, _builder.portal_positions(plan), GameData.waves().wave_spacing, intensity)
 	director.portals_changed.connect(_on_portals_changed)
 	director.wave_started.connect(_on_wave_started)
 	director.room_cleared.connect(_on_room_cleared)
@@ -165,6 +193,7 @@ func _physics_process(delta: float) -> void:
 			run.take_damage(taken)
 			world.numbers.show_number(_player.global_position + Vector2(0, -90), taken, DamageNumbers.Kind.HURT)
 			world.shake(3.0)
+		_feed_dda(delta, taken)
 		director.tick(delta, world)
 	if cage != null and cage.tick(delta, _player.global_position):
 		_on_cage_freed(cage)
@@ -259,6 +288,8 @@ func _on_wave_started(index: int, total: int) -> void:
 
 
 func _on_room_cleared() -> void:
+	_rate_room(true)
+	rails.on_grove_cleared()
 	gate_open = true
 	if _builder.gate_sealed != null:
 		_builder.gate_sealed.visible = false
@@ -303,6 +334,8 @@ func _go_to_next_grove() -> void:
 
 
 func _on_died() -> void:
+	_rate_room(false)
+	rails.on_death()
 	_player.knock_down()
 	_defeat_t = 0.0
 	Services.analytics.log_event(&"hunter_down", {"grove": run.grove})
@@ -330,7 +363,55 @@ func _on_quality_changed(_old: int, _new: int) -> void:
 
 func _save_checkpoint() -> void:
 	Services.save.set_value(CHECKPOINT_KEY, {"grove": run.grove, "meat": run.meat, "spirit": run.spirit})
+	profile.skill = skill.to_dict()
+	Services.save.set_value("profile", profile.to_dict())
 	Services.save.flush()
+
+
+## DDA inputs each tick: damage share, near-death dips, beasts within 4 tiles (dev-plan §7.3).
+func _feed_dda(delta: float, taken: int) -> void:
+	_room_t += delta
+	_room_damage += taken
+	var hp_frac: float = float(run.hp) / run.max_hp
+	_room_min_hp = minf(_room_min_hp, hp_frac)
+	var low: bool = hp_frac < 0.2
+	var near_death: bool = low and not _was_low
+	_was_low = low
+	if near_death:
+		_room_near_deaths += 1
+	var close: int = world.enemies_near(_player.global_position, 128.0, _near)
+	intensity.feed(delta, float(taken) / run.max_hp, near_death, close)
+	if intensity.wants_relief(hp_frac):
+		world.pickups.drop(Ids.SPIRIT, _player.global_position + Vector2(0, -60), 1)
+
+
+## Rates the room once (clear or the first death) and logs the §7.2 room telemetry.
+func _rate_room(cleared: bool) -> void:
+	if _room_rated:
+		return
+	_room_rated = true
+	var hp_frac: float = float(maxi(run.hp, 0)) / run.max_hp
+	var expected_time: float = 30.0 + 15.0 * director.total_waves()
+	var time_score: float = clampf(1.0 - (_room_t - expected_time) / expected_time, 0.0, 1.0)
+	var s: float = SkillRating.performance(cleared, hp_frac, _room_near_deaths / 3.0, time_score)
+	var ratio: float = float(world.room_kills) / maxf(1.0, float(world.room_spawned))
+	var before: float = skill.rating
+	skill.update(_room_d, s, cleared, ratio)
+	profile.skill = skill.to_dict()
+	Services.analytics.log_event(&"room_result", {
+		"grove": run.grove, "template": String(plan.family), "fallback_room": plan.fallback,
+		"budget_scale": snappedf(_room_scale, 0.01), "difficulty": roundi(_room_d), "rating_before": roundi(before),
+		"rating_after": roundi(skill.rating), "performance": snappedf(s, 0.01), "outcome": "clear" if cleared else "death",
+		"time_s": roundi(_room_t), "damage_taken": _room_damage, "hp_end": snappedf(hp_frac, 0.01),
+		"hp_min": snappedf(_room_min_hp, 0.01), "near_deaths": _room_near_deaths, "kills": world.room_kills,
+		"spawned": world.room_spawned, "theme_id": String(ThemeRegistry.theme_id),
+		"difficulty_setting": settings.difficulty, "adaptive": settings.adaptive_challenge,
+	})
+
+
+func _saved_settings() -> Dictionary:
+	var s: Variant = Services.save.load_game().get("settings", {})
+	return s if s is Dictionary else {}
 
 
 func _saved_profile() -> Dictionary:
