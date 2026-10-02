@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" path="res://themes/grove_default/fx/rot_stain.svg" id="1_rot_stain"]
 
-[sub_resource type="Animation" id="Animation_idle"]
+[sub_resource type="Animation" id="Animation_AnimationPlayer_idle"]
 resource_name = "idle"
 length = 1
 loop_mode = 1
@@ -21,7 +21,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_main"]
 _data = {
-&"idle": SubResource("Animation_idle")
+&"idle": SubResource("Animation_AnimationPlayer_idle")
 }
 
 [node name="RotStain" type="Node2D"]

@@ -142,7 +142,8 @@ class Anim:
     tracks: list[Track] = field(default_factory=list)
 
 
-def add_animations(scene: Scene, anims: list[Anim], autoplay: str = "idle") -> None:
+def add_animations(scene: Scene, anims: list[Anim], autoplay: str = "idle", parent: str = ".",
+                   name: str = "AnimationPlayer", lib_id: str = "AnimationLibrary_main") -> None:
     refs = []
     for a in anims:
         props = [f'resource_name = "{a.name}"', f"length = {num(a.length)}"]
@@ -161,10 +162,10 @@ def add_animations(scene: Scene, anims: list[Anim], autoplay: str = "idle") -> N
                 f'"values": [{", ".join(t.values)}]',
                 "}",
             ]
-        refs.append((a.name, scene.sub_res("Animation", props, f"Animation_{a.name}")))
-    lib = scene.sub_res("AnimationLibrary", ["_data = {", ",\n".join(f'&"{n}": SubResource("{r}")' for n, r in refs), "}"], "AnimationLibrary_main")
-    scene.node("AnimationPlayer", "AnimationPlayer", ".", ["libraries = {", f'&"": SubResource("{lib}")', "}",
-                                                         f'autoplay = &"{autoplay}"'])
+        refs.append((a.name, scene.sub_res("Animation", props, f"Animation_{name}_{a.name}")))
+    lib = scene.sub_res("AnimationLibrary", ["_data = {", ",\n".join(f'&"{n}": SubResource("{r}")' for n, r in refs), "}"], lib_id)
+    scene.node(name, "AnimationPlayer", parent, ["libraries = {", f'&"": SubResource("{lib}")', "}",
+                                                 f'autoplay = &"{autoplay}"'])
 
 
 # --------------------------------------------------------------------------- svg helpers
@@ -249,8 +250,8 @@ def loop_for(kind: str) -> Anim:
         return _loop("idle", 2.6, "Body:position", vec(0, 0), vec(3, -4))
     if kind == "twinkle":  # .twinkle 1.3s opacity .25
         return _loop("idle", 1.3, "Body:modulate", "Color(1, 1, 1, 1)", "Color(1, 1, 1, 0.25)")
-    if kind == "flicker":  # Grove .flicker .18s steps(2) opacity .75 (flame glow only)
-        return Anim("idle", 0.18, True, [Track("Emissive:modulate", [0, 0.09], ["Color(1, 1, 1, 1)", "Color(1, 1, 1, 0.75)"], discrete=True)])
+    if kind == "flicker":  # Grove .flicker .18s steps(2) opacity .75 — the flame glow only, see build_visual
+        return Anim("idle", 0.18, True, [Track(".:modulate", [0, 0.09], ["Color(1, 1, 1, 1)", "Color(1, 1, 1, 0.75)"], discrete=True)])
     if kind == "pulse":   # .pulse 1.2s opacity .35 scale 1.25
         return _loop("idle", 1.2, "Body:scale", vec(1, 1), vec(1.12, 1.12),
                      [Track("Body:modulate", [0, 0.6, 1.2], ["Color(1, 1, 1, 1)", "Color(1, 1, 1, 0.6)", "Color(1, 1, 1, 1)"])])
@@ -309,7 +310,13 @@ def build_visual(theme: str, v: Visual) -> None:
             scene.node(f"Glow{i}", "Sprite2D", "Body/Emissive", [
                 f'material = SubResource("{mat}")', f'texture = SubResource("{tex_id}")',
                 f"position = {vec(px, py)}", f"scale = {vec(size / 64, size / 64)}"])
-    add_animations(scene, [loop_for(v.loop)])
+    if v.loop == "flicker" and glows:
+        # The flicker lives inside Emissive so it keeps working after rooms lift the glow above
+        # the darkness (gameplay/lighting/emissive.gd); its AnimationPlayer roots at Emissive.
+        add_animations(scene, [loop_for("")])
+        add_animations(scene, [loop_for("flicker")], parent="Body/Emissive", name="Flicker", lib_id="AnimationLibrary_flicker")
+    else:
+        add_animations(scene, [loop_for(v.loop)])
     out = THEMES / v.out
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(scene.text(), encoding="utf-8")

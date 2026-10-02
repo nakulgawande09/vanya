@@ -30,7 +30,7 @@ fill_to = Vector2(1, 0.5)
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_add"]
 blend_mode = 1
 
-[sub_resource type="Animation" id="Animation_idle"]
+[sub_resource type="Animation" id="Animation_AnimationPlayer_idle"]
 resource_name = "idle"
 length = 2.4
 loop_mode = 1
@@ -47,7 +47,7 @@ tracks/0/keys = {
 "values": [Vector2(1, 1), Vector2(1, 1.03), Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_run"]
+[sub_resource type="Animation" id="Animation_AnimationPlayer_run"]
 resource_name = "run"
 length = 0.5714
 loop_mode = 1
@@ -112,7 +112,7 @@ tracks/4/keys = {
 "values": [-0.1745, 0.1745, -0.1745]
 }
 
-[sub_resource type="Animation" id="Animation_shoot"]
+[sub_resource type="Animation" id="Animation_AnimationPlayer_shoot"]
 resource_name = "shoot"
 length = 0.4286
 tracks/0/type = "value"
@@ -152,7 +152,7 @@ tracks/2/keys = {
 "values": [0.0, 0.5236, 0.1745, 0.0]
 }
 
-[sub_resource type="Animation" id="Animation_hurt"]
+[sub_resource type="Animation" id="Animation_AnimationPlayer_hurt"]
 resource_name = "hurt"
 length = 0.2143
 tracks/0/type = "value"
@@ -180,7 +180,7 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 0.45, 0.45, 1), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_down"]
+[sub_resource type="Animation" id="Animation_AnimationPlayer_down"]
 resource_name = "down"
 length = 0.7143
 tracks/0/type = "value"
@@ -220,7 +220,7 @@ tracks/2/keys = {
 "values": [Color(1, 1, 1, 1), Color(0.8, 0.8, 0.85, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_revive"]
+[sub_resource type="Animation" id="Animation_AnimationPlayer_revive"]
 resource_name = "revive"
 length = 0.5714
 tracks/0/type = "value"
@@ -262,12 +262,12 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_main"]
 _data = {
-&"idle": SubResource("Animation_idle"),
-&"run": SubResource("Animation_run"),
-&"shoot": SubResource("Animation_shoot"),
-&"hurt": SubResource("Animation_hurt"),
-&"down": SubResource("Animation_down"),
-&"revive": SubResource("Animation_revive")
+&"idle": SubResource("Animation_AnimationPlayer_idle"),
+&"run": SubResource("Animation_AnimationPlayer_run"),
+&"shoot": SubResource("Animation_AnimationPlayer_shoot"),
+&"hurt": SubResource("Animation_AnimationPlayer_hurt"),
+&"down": SubResource("Animation_AnimationPlayer_down"),
+&"revive": SubResource("Animation_AnimationPlayer_revive")
 }
 
 [node name="Hunter" type="Node2D"]

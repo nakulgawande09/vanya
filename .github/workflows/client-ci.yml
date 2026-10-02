@@ -51,6 +51,8 @@ jobs:
           ${{ steps.godot.outputs.bin }} --headless --path client res://bench/bench_swarm_40.tscn 2>&1 | tee bench.log
           grep '^{' bench.log > bench_swarm_40.json
           cat bench_swarm_40.json
+          # A full grove must load without script errors or broken animation tracks.
+          if grep -E "SCRIPT ERROR|couldn't resolve track" bench.log; then exit 1; fi
 
       - name: Upload benchmark
         uses: actions/upload-artifact@v4

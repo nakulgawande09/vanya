@@ -17,14 +17,36 @@ fill_to = Vector2(1, 0.5)
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_add"]
 blend_mode = 1
 
-[sub_resource type="Animation" id="Animation_idle"]
+[sub_resource type="Animation" id="Animation_AnimationPlayer_idle"]
+resource_name = "idle"
+length = 1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_main"]
+_data = {
+&"idle": SubResource("Animation_AnimationPlayer_idle")
+}
+
+[sub_resource type="Animation" id="Animation_Flicker_idle"]
 resource_name = "idle"
 length = 0.18
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Emissive:modulate")
+tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -34,9 +56,9 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.75)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_main"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_flicker"]
 _data = {
-&"idle": SubResource("Animation_idle")
+&"idle": SubResource("Animation_Flicker_idle")
 }
 
 [node name="Coral" type="Node2D"]
@@ -60,5 +82,11 @@ scale = Vector2(0.5281, 0.5281)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_main")
+}
+autoplay = &"idle"
+
+[node name="Flicker" type="AnimationPlayer" parent="Body/Emissive"]
+libraries = {
+&"": SubResource("AnimationLibrary_flicker")
 }
 autoplay = &"idle"
